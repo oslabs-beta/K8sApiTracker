@@ -10,9 +10,9 @@ export default function Column(props:ColumnProps):React.JSX.Element {
   
   return (
       <div className="row">
-        <div>{props.api}</div>
-        <div>{props.location}</div>
-        <div>{props.status}</div>
+        <div className="api-info" >{props.api}</div>
+        <div className="api-info">{props.location}</div>
+        <div className="api-info">{props.status}</div>
       </div>
     )
 }
