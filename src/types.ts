@@ -1,0 +1,1 @@
+export type Column = React.JSX.Element;
