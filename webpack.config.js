@@ -18,7 +18,7 @@ const config = {
     },
     devServer: {
         static: {
-            directory: path.join(__dirname, 'index.html'),
+            directory: path.join(__dirname, './static'),
           },
           hot: true,
           compress: true,
@@ -26,7 +26,7 @@ const config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'index.html',
+            template: '/static/index.html',
         }),
 
         new MiniCssExtractPlugin(),
@@ -43,7 +43,7 @@ const config = {
             },
             {
                 test: /\.css$/i,
-                use: [stylesHandler,'css-loader'],
+                use: [stylesHandler, 'style-loader', 'css-loader'],
             },
             {
                 test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
@@ -55,7 +55,7 @@ const config = {
         ],
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
+        extensions: ['.tsx', '.ts', '.jsx', '.js', '...', '.css'],
     },
 };
 

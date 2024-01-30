@@ -1,0 +1,12 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: lightblue;
+    border-radius: 10px;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
