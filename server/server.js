@@ -11,12 +11,23 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
-app.get('/',
-    clusterController.kubectlController,
+
+app.get('/home',
+    clusterController.kubectlGetAll,
     (req, res) => {
         console.log(`Inside of GET '/' route`);
-        res.status(200).sendFile(path.resolve(__dirname, "../index.html"))
+        console.log(res.locals.clusterData);
+        res.status(200).json(res.locals.clusterData);
+        // res.status(200).sendFile(path.resolve(__dirname, "../index.html"))
+        // res.(200);
     });
+
+
+
+// Catch All Handler
+app.use('*', (req, res, next) => {
+    res.status(404).send('Page Not Found');
+});
 
 
 // GLOBAL ERROR HANDLER
