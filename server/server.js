@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
 
-app.get('/home',
+app.get('/dependencies',
     clusterController.kubectlGetAll,
     (req, res) => {
         console.log(`Inside of GET '/' route`);
