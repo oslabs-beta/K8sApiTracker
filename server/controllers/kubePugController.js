@@ -17,15 +17,16 @@ kubePugController.getApiInfo = (req, res, next) => {
           apiInfo.push(apiCache)
         }
       }
-      console.log('apiCache', apiCache)
+      // console.log('apiCache', apiCache)
       console.log('apiInfo', apiInfo)
+      res.locals.apiInfo = apiInfo;
+      return next();
     })
-    .catch(err => {
-      next(err);
-    })
+    .catch(err => 
+      next(err)
+    )
 }
 
-kubePugController.getApiInfo()
 
 // catControllers.deleteCat = (req, res, next) => {
 //   //get id off url
