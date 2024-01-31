@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 
 const clusterController = require('./controllers/clusterController.js');
+const kubePugController = require('../server/controllers/kubePugController');
 
 const app = express();
 const PORT = 3000;
@@ -22,27 +23,28 @@ app.get('/dependencies',
         // res.(200);
     });
 
-
-
+app.get('/apiInfo', kubePugController.getApiInfo, (req, res) => {
+  return res.status(200).json(res.locals.apiInfo);
+})
 // Catch All Handler
 app.use('*', (req, res, next) => {
-    res.status(404).send('Page Not Found');
+  res.status(404).send('Page Not Found');
 });
 
 
 // GLOBAL ERROR HANDLER
 app.use((err, req, res, next) => {
-    const defaultErr = {
-        log: "Global err handler, unkonwn middleware error",
-        status: 500,
-        message: "Unknown server error. Please try again"
-    };
-    const errObj = Object.assign({}, defaultErr, err);
-    return res.status(errObj.status).json(errObj.message);
+  const defaultErr = {
+    log: 'Global err handler, unkonwn middleware error',
+    status: 500,
+    message: 'Unknown server error. Please try again'
+  };
+  const errObj = Object.assign({}, defaultErr, err);
+  return res.status(errObj.status).json(errObj.message);
 });
 
 app.listen(PORT, () => {
-    console.log(`Listening on port: ${PORT}`);
+  console.log(`Listening on port: ${PORT}`);
 });
 
 module.exports = app;
