@@ -1,13 +1,13 @@
 {
-  "name": "my-webpack-project",
+  "name": "kdt",
   "version": "1.0.0",
-  "description": "My webpack project",
+  "description": "Kubernetes dependency tracking",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./server/server.js",
     "build": "webpack --mode=production --node-env=production",
-    "dev": "webpack serve --open --mode=development",
-    "build:prod": "webpack --mode=production --node-env=production"
+    "dev": "nodemon ./server/server.js & webpack serve --open --mode=development"
   },
   "keywords": [],
   "author": "",
@@ -27,7 +27,9 @@
   "dependencies": {
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
+    "express": "^4.18.2",
     "lodash": "^4.17.21",
+    "nodemon": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
