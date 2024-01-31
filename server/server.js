@@ -14,14 +14,14 @@ app.use(express.static(path.resolve(__dirname, '../dist')));
 
 
 app.get('/dependencies',
-  clusterController.kubectlGetAll,
-  (req, res) => {
-    console.log('Inside of GET \'/\' route');
-    console.log(res.locals.clusterData);
-    res.status(200).json(res.locals.clusterData);
-    // res.status(200).sendFile(path.resolve(__dirname, "../index.html"))
-    // res.(200);
-  });
+    clusterController.kubectlGetAll,
+    (req, res) => {
+        console.log(`Inside of GET '/' route`);
+        console.log(res.locals.clusterData);
+        res.status(200).json(res.locals.clusterData);
+        // res.status(200).sendFile(path.resolve(__dirname, "../index.html"))
+        // res.(200);
+    });
 
 app.get('/apiInfo', kubePugController.getApiInfo, (req, res) => {
   return res.status(200).json(res.locals.apiInfo);
