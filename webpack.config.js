@@ -10,20 +10,24 @@ const config = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
-,    },
+        ,
+    },
     devServer: {
         static: {
             directory: path.join(__dirname, './static'),
-          },
-          proxy: {
-            '/api': {
-              target: 'http://localhost:3000',
-              pathRewrite: {'^/api': ''},
-          },
         },
-          hot: true,
-          compress: true,
-          port: 8080
+        proxy: {
+            '/api': {
+                target: 'http://localhost:3000',
+                pathRewrite: { '^/api': '' },
+            },
+            '/': {
+                target: 'http://localhost:3000',
+            },
+        },
+        hot: true,
+        compress: true,
+        port: 8080
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -58,8 +62,8 @@ const config = {
 module.exports = () => {
     if (isProduction) {
         config.mode = 'production';
-        
-        
+
+
     } else {
         config.mode = 'development';
     }
