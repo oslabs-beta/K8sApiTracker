@@ -16,6 +16,7 @@ kubePugController.getApiInfo = (req, res, next) => {
           }
           apiInfo.push(apiCache)
         }
+<<<<<<< HEAD
       }
       // console.log('apiCache', apiCache)
       console.log('apiInfo', apiInfo)
@@ -27,6 +28,19 @@ kubePugController.getApiInfo = (req, res, next) => {
     )
 }
 
+=======
+        // Object.assign(apiInfo, apiObjectInfo);
+      }
+      console.log('apiCache', apiCache)
+      console.log('apiInfo', apiInfo)
+    })
+    .catch(err => {
+      next(err);
+    })
+}
+
+kubePugController.getApiInfo()
+>>>>>>> 894bfdf7989438fb7860cc7f6d5b2f6a841df2de
 
 // catControllers.deleteCat = (req, res, next) => {
 //   //get id off url
