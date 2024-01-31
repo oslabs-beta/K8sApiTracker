@@ -24,6 +24,12 @@ clusterController.kubectlGetAll = async (req, res, next) => {
                             apiVersion: object.apiVersion,
                             namespace: object.metadata.namespace
                         }
+
+                        if (newObj.kind === 'Pod') {
+                            newObj.image = object.spec.containers[0].image;
+                        }
+                        else newObj.image = '-';
+
                         clusterData.push(newObj);
                     })
                     // console.log(clusterData);
