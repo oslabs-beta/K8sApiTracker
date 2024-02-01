@@ -2,7 +2,8 @@ const path = require('path');
 const express = require('express');
 
 const clusterController = require('./controllers/clusterController.js');
-const kubePugController = require('../server/controllers/kubePugController');
+const kubePugController = require('./controllers/kubePugController');
+const compareController = require('./controllers/compareController');
 
 const app = express();
 const PORT = 3000;
@@ -14,18 +15,16 @@ app.use(express.static(path.resolve(__dirname, '../dist')));
 
 
 app.get('/dependencies',
-    clusterController.kubectlGetAll,
-    (req, res) => {
-        console.log(`Inside of GET '/' route`);
-        console.log(res.locals.clusterData);
-        res.status(200).json(res.locals.clusterData);
-        // res.status(200).sendFile(path.resolve(__dirname, "../index.html"))
-        // res.(200);
-    });
+  clusterController.kubectlGetAll, 
+  kubePugController.getApiInfo,
+  compareController.compare,
+  (req, res) => {
+    console.log(`Inside of GET '/dependencies' route`);
+    // console.log(res.locals.clusterData);
+    res.status(200).json(res.locals.clusterData);
 
-app.get('/apiInfo', kubePugController.getApiInfo, (req, res) => {
-  return res.status(200).json(res.locals.apiInfo);
-})
+  });
+
 // Catch All Handler
 app.use('*', (req, res, next) => {
   res.status(404).send('Page Not Found');
