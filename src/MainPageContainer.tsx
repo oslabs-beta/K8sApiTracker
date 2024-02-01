@@ -26,14 +26,13 @@ export default function MainPageContainer():React.JSX.Element {
   for(const dependency of dependencies){
     // for each subarray, create a new row, passing in the data from data, 
     // which we get from a fetch request to the back end
-    rows.push(<Row key={dependency.name} api={dependency.apiVersion} status={dependency.deprecationStatus} location={"some filepath"} 
+    rows.push(<Row key={dependency.name} api={dependency.apiVersion} status={dependency.deprecationStatus} location={dependency.name} 
     stable={dependency.newVersion? 'Placeholder': 'Up to date'} notes={dependency.description? 'Placeholder': 'NA'}/>);
   }
 
   // create the header row
-  const headerNames: string[] = ['API', 'STATUS', 'LOCATION', 'STABLE VERSION', 'NOTES'];
   const header: React.JSX.Element[] = [];
-  header.push(<RowHeader key={'row-header-key'} api={headerNames[0]} status={headerNames[1]} location={headerNames[2]} stable={headerNames[3]} notes={headerNames[4]}/>)
+  header.push(<RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES'/>)
 
   return (
     <div className='mainPageContainer'>
