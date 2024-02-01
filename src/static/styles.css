@@ -140,3 +140,8 @@ body {
     padding: 3px; 
     width: 20%;
 }
+
+.icon{
+    padding: 4px;
+    color: blue;
+}

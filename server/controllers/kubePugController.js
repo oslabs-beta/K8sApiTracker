@@ -27,7 +27,7 @@ kubePugController.getApiInfo = (req, res, next) => {
         else apiInfo[apiObject.kind].deprecationStatus = 'stable'
       }
 
-      console.log('apiInfo', apiInfo)
+      // console.log('apiInfo', apiInfo)
       res.locals.apiInfo = apiInfo;
       return next();
     })
