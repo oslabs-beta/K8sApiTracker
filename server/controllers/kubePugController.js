@@ -1,5 +1,6 @@
 const kubePugController = {};
 kubePugController.getApiInfo = (req, res, next) => {
+  console.log('Inside of kubePug controller');
   fetch('https://kubepug.xyz/data/data.json')
     .then(apiInfo => apiInfo.json())
     .then(data => {
@@ -11,6 +12,8 @@ kubePugController.getApiInfo = (req, res, next) => {
           replacement: apiObject.replacement,
           description: apiObject.description
         }
+
+        // console.log('apiObject.kind: ', apiObject.kind);
 
         // IS DEPRECATED
         if (apiObject.hasOwnProperty("deprecated_version")) {
