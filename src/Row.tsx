@@ -1,19 +1,23 @@
 import React from 'react';
 
-type ColumnProps = {
+
+type RowProps = {
   api: string,
   location: string,
   status: string,
-  backgroundColor: string
+  stable: string,
+  notes: string
 }
 
-export default function Column(props:ColumnProps):React.JSX.Element {
+export default function Row(props:RowProps):React.JSX.Element {
   
   return (
-      <div className="row" color={props.backgroundColor}>
-        <div className="api-info">{props.api}</div>
-        <div className="api-info">{props.location}</div>
-        <div className="api-info">{props.status}</div>
+      <div className='row'>
+        <div className="api-info-api">{props.api}</div>
+        <div className="api-info-location">{props.location}</div>
+        <div className={"api-info-status-" + props.status}>{props.status}</div>
+        <div className="api-info-stable-version">{props.stable}</div>
+        <div className={"api-info-notes"}>{props.notes}</div>
       </div>
     )
 }
