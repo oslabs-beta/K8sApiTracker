@@ -16,18 +16,22 @@ kubePugController.getApiInfo = (req, res, next) => {
         // console.log('apiObject.kind: ', apiObject.kind);
 
         // IS DEPRECATED
-        if (apiObject.hasOwnProperty("deprecated_version")) {
+        // if (apiObject.hasOwnProperty("deprecated_version")) {
+        //   // IF NO REPLACEMENT AVAILABLE
+        //   if (!Object.values(apiObject.replacement).length) {
+        //     // console.log('Object.values(apiObject.replacement): ', Object.values(apiObject.replacement))
+        //     apiInfo[apiObject.kind].deprecationStatus = 'removed';
 
-          if (!Object.values(apiObject.replacement).length) {
+        //   }
+        //   else {
+        //     apiInfo[apiObject.kind].deprecationStatus = 'updateAvailable';
+        //   }
+        // }
 
-            apiInfo[apiObject.kind].deprecationStatus = 'noReplacement';
+        // // IS NOT DEPRECATED
+        // else apiInfo[apiObject.kind].deprecationStatus = 'stable'
 
-          }
-          apiInfo[apiObject.kind].deprecationStatus = 'updateAvailable';
-        }
-
-        // IS NOT DEPRECATED
-        else apiInfo[apiObject.kind].deprecationStatus = 'stable'
+        // console.log(apiInfo[apiObject.kind].deprecationStatus)
       }
 
       // console.log('apiInfo', apiInfo)

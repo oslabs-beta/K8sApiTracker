@@ -23,7 +23,7 @@ app.get('/dependencies',
     (req, res) => {
         // console.log(`Inside of GET '/dependencies' route`);
         // console.log(res.locals.clusterData);
-        console.log(res.locals.clusterData);
+        // console.log(res.locals.clusterData);
         res.status(200).json(res.locals.clusterData);
 
     });
