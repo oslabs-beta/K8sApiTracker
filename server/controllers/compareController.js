@@ -4,8 +4,6 @@ const compareController = {};
 compareController.compare = (req, res, next) => {
   const kubePug = res.locals.apiInfo;
   const clusterData = res.locals.clusterData;
-
-
   // Declare resultObj
   const resultObj = {};
   const checked = {};
@@ -23,6 +21,9 @@ compareController.compare = (req, res, next) => {
       object.newVersion = false;
       object.description = false;
     }
+    //! REPLACE THIS WHEN WE GET ACTUAL DEPRECATION STATUS
+    // 4. Status: 'stable', 'updateAvailable', 'deprecated', 'noReplacement'
+    object.deprecationStatus = 'stable';
   }
 //   console.log('res.locals.clusterData', clusterData)
   return next();
