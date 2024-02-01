@@ -2,7 +2,7 @@
 
 body {
     font-family: "Open Sans", "PT Sans";
-    background-color: rgb(11, 11, 11);
+    background-color: rgb(0, 22, 43);
 }
 
 .app {
@@ -13,7 +13,8 @@ body {
 }
 
 .kdt-header{
-    text-shadow: 2px 2px 2px rgb(53, 94, 255);
+    /* text-shadow: 2px 2px 2px rgb(53, 94, 255); */
+    font-weight: 400;
 }
 
 .summary-container{
@@ -28,7 +29,7 @@ body {
     flex-direction: column;
     background-color: rgb(49, 49, 49);
     border-radius: 20px;
-    border: 15px solid rgb(135, 135, 135);
+    border: 5px solid rgb(82, 83, 97);
     align-items: left;
     overflow: hidden;
 }
@@ -46,14 +47,14 @@ body {
     display: flex;
     flex-direction: row;
     color: rgb(220, 220, 220);
-    background-color: rgb(137, 137, 137);
+    background-color: rgb(82, 83, 97);
     border-radius: 15px;
 }
 
 .api-info-api {
     display: flex;
 	align-items: center;
-    font-size: large;
+    font-size: small;
     flex-wrap: wrap;
     width: 15vw;
     margin: 10px;
@@ -61,19 +62,22 @@ body {
     border-radius: 5px;
     word-wrap: break-word;
 }
+
+.api-info-status-wrapper {
+    width: 15vw;
+}
+
 .api-info-status-Stable {
     display: flex;
 	align-items: center;
     font-size: small;
     flex-wrap: wrap;
-    width: 15vw;
+    width: fit-content;
     margin: 10px;
     padding: 6px;    
     border-radius: 10px;
     word-wrap: break-word;
-    background-color: rgba(80, 139, 84, 0.671);
-    border: 1px solid black;
-    box-shadow: 2px 2px 2px rgb(120, 118, 118);
+    background-color: rgba(74, 255, 149, 0.122);
 }
 
 .api-info-status-Deprecated {
@@ -81,14 +85,12 @@ body {
 	align-items: center;
     font-size: small;
     flex-wrap: wrap;
-    width: 15vw;
+    width: fit-content;
     margin: 10px;
     padding: 6px;    
-    border-radius: 15px;
+    border-radius: 10px;
     word-wrap: break-word;
-    background-color: rgba(234, 191, 16, 0.841);
-    border: 1px solid black;
-    box-shadow: 2px 2px 2px rgb(120, 118, 118);
+    background-color: rgba(255, 204, 0, 0.195);
 }
 
 .api-info-status-Removed {
@@ -96,20 +98,18 @@ body {
 	align-items: center;
     font-size: small;
     flex-wrap: wrap;
-    width: 15vw;
+    width: fit-content;
     margin: 10px;
     padding: 6px;    
     border-radius: 10px;
     word-wrap: break-word;
-    background-color: rgba(232, 24, 20, 0.841);
-    border: 1px solid black;
-    box-shadow: 2px 2px 2px rgb(120, 118, 118);
+    background-color: rgba(255, 4, 0, 0.213);
 }
 
 .api-info-location {
     display: flex;
 	align-items: center;
-    font-size: large;
+    font-size: small;
     flex-wrap: wrap;
     width: 15vw;
     margin: 10px;
@@ -124,6 +124,7 @@ body {
     width: 15vw;
     margin: 10px;
     padding: 3px; 
+    font-size: small;
 }
 
 .api-info-notes{
@@ -132,6 +133,7 @@ body {
     width: 15vw;
     margin: 10px;
     padding: 3px; 
+    font-size: small;
 }
 
 .headerName {
