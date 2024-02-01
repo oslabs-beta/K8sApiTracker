@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaCheckCircle } from "react-icons/fa";
 import { IoIosWarning } from "react-icons/io";
-import { VscError } from "react-icons/vsc";
+import { SiIfixit } from "react-icons/si";
 
 type RowProps = {
   api: string,
@@ -19,7 +19,7 @@ export default function Row(props:RowProps):React.JSX.Element {
   } else if (props.status === 'updateAvailable'){
     icon = <IoIosWarning className="icon-deprecated"/>
   } else{
-    icon = <VscError className="icon-removed"/>
+    icon = <SiIfixit className="icon-removed"/>
   }
 
   //-------- Icons can be found here: https://react-icons.github.io/react-icons/search/#q=error --------//
@@ -35,7 +35,7 @@ export default function Row(props:RowProps):React.JSX.Element {
           </div>
         </div>
         <div className="api-info-stable-version">{props.stable}</div>
-        <div className={"api-info-notes" + (props.notes =='NA' ? '-has-notes': '' )}>{props.notes}</div>
+        <div className={"api-info-notes" + (props.notes === 'NA' ? '-has-notes': '' )}>{props.notes}</div>
       </div>
     )
 }
