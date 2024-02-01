@@ -12,6 +12,7 @@ type RowProps = {
 }
 
 export default function Row(props:RowProps):React.JSX.Element {
+  // render the icon depending on the status of the api
   let icon: any;
   if(props.status === 'stable'){
     icon = <FaCheckCircle className="icon-stable"/>;
@@ -22,7 +23,6 @@ export default function Row(props:RowProps):React.JSX.Element {
   }
 
   //-------- Icons can be found here: https://react-icons.github.io/react-icons/search/#q=error --------//
-
 
   return (
       <div className='row'>
