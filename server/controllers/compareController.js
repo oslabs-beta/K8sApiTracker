@@ -24,7 +24,7 @@ compareController.compare = (req, res, next) => {
         if (!Object.values(kubePug[object.kind].replacement).length) {
           object.newVersion = false;
           object.deprecationStatus = 'removed';
-          object.description = false;
+          object.description = kubePug[object.kind].description;
         }
 
         // If replacement is available, set newVersion to it's data and deprecationStatus tp "updateAvailable"
