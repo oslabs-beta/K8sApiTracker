@@ -16,7 +16,7 @@ export default function Row(props:RowProps):React.JSX.Element {
   let icon: any;
   if(props.status === 'stable'){
     icon = <FaCheckCircle className="icon-stable"/>;
-  } else if (props.status === 'deprecated'){
+  } else if (props.status === 'updateAvailable'){
     icon = <IoIosWarning className="icon-deprecated"/>
   } else{
     icon = <VscError className="icon-removed"/>
@@ -35,7 +35,7 @@ export default function Row(props:RowProps):React.JSX.Element {
           </div>
         </div>
         <div className="api-info-stable-version">{props.stable}</div>
-        <div className={"api-info-notes"}>{props.notes}</div>
+        <div className={"api-info-notes" + (props.notes =='NA' ? '-has-notes': '' )}>{props.notes}</div>
       </div>
     )
 }
