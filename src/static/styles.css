@@ -61,7 +61,7 @@ body {
     border-radius: 5px;
     word-wrap: break-word;
 }
-.api-info-status-Stable {
+.api-info-status-stable {
     display: flex;
 	align-items: center;
     font-size: small;
@@ -139,4 +139,9 @@ body {
     margin: 10px;
     padding: 3px; 
     width: 20%;
+}
+
+.icon{
+    padding: 4px;
+    color: blue;
 }
