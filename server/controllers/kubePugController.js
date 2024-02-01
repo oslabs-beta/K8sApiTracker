@@ -11,9 +11,23 @@ kubePugController.getApiInfo = (req, res, next) => {
           replacement: apiObject.replacement,
           description: apiObject.description
         }
+
+        // IS DEPRECATED
+        if (apiObject.hasOwnProperty("deprecated_version")) {
+
+          if (!Object.values(apiObject.replacement).length) {
+
+            apiInfo[apiObject.kind].deprecationStatus = 'noReplacement';
+
+          }
+          apiInfo[apiObject.kind].deprecationStatus = 'updateAvailable';
+        }
+
+        // IS NOT DEPRECATED
+        else apiInfo[apiObject.kind].deprecationStatus = 'stable'
       }
-      
-      // console.log('apiInfo', apiInfo)
+
+      console.log('apiInfo', apiInfo)
       res.locals.apiInfo = apiInfo;
       return next();
     })
