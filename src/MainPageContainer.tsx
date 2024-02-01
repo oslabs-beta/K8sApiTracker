@@ -6,12 +6,12 @@ export default function MainPageContainer():React.JSX.Element {
   //create an array of row components
   const rows: React.JSX.Element[] = [];
 
-  // get state
+  // initialize our state
   const [dependencies, setDependencies] = useState([]);
-  //const [backgroundColor, setBackgroundColor] = useState(['white', 'lightblue']);
-  //make fetch request to get our data somewhere in here too
 
-  // make a fetch request to our backend at the route /dependencies
+  // make a fetch request to our backend at the route /dependencies.
+  // call a useEffect here to fetch our data when the page loads and update state.
+  // Our dependency array is an empty array, so that this only happens once on page load
   useEffect(() => {
     async function getDependencies() {
       let response = await fetch('/dependencies');
@@ -19,8 +19,7 @@ export default function MainPageContainer():React.JSX.Element {
       setDependencies(responseData);
     }
     getDependencies();
-  }, []); // call a useEffect here to fetch our data when the page loads and update state.
-          // Our dependency array is an empty array, so that this only happens once on page load
+  }, []); 
 
   //iterate through state to make all of our rows, and push them into the array
   for(const dependency of dependencies){
@@ -30,14 +29,10 @@ export default function MainPageContainer():React.JSX.Element {
     stable={dependency.newVersion? 'Placeholder': 'Up to date'} notes={dependency.description? 'Placeholder': 'NA'}/>);
   }
 
-  // create the header row
-  const header: React.JSX.Element[] = [];
-  header.push(<RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES'/>)
-
   return (
     <div className='mainPageContainer'>
-      {header}
-      {rows}
+      <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES'/>
+      {rows}     
     </div>
   )
 }
