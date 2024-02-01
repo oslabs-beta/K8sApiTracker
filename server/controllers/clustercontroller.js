@@ -1,7 +1,7 @@
 const clusterController = {};
 
 clusterController.kubectlGetAll = async (req, res, next) => {
-    console.log('Inside of kubectlGetAll Controller');
+    // console.log('Inside of kubectlGetAll Controller');
 
 
     const childProcess = require('child_process');

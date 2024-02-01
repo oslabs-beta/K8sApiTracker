@@ -1,8 +1,6 @@
-
-
 body {
     font-family: "Open Sans", "PT Sans";
-    background-color: rgb(11, 11, 11);
+    background: linear-gradient(135.9deg, rgb(64, 63, 73) 16.4%, rgb(38, 35, 59) 56.1%);
 }
 
 .app {
@@ -13,14 +11,13 @@ body {
 }
 
 .kdt-header{
-    text-shadow: 2px 2px 2px rgb(53, 94, 255);
+    font-weight: 300;
 }
 
 .summary-container{
     color: black;
     background-color: white;
     width: 100%;
-
 }
 
 .mainPageContainer {
@@ -28,9 +25,10 @@ body {
     flex-direction: column;
     background-color: rgb(49, 49, 49);
     border-radius: 20px;
-    border: 15px solid rgb(135, 135, 135);
+    border: 5px solid rgb(82, 83, 97);
     align-items: left;
     overflow: hidden;
+    width: 75vw;
 }
 
 .row {
@@ -46,34 +44,38 @@ body {
     display: flex;
     flex-direction: row;
     color: rgb(220, 220, 220);
-    background-color: rgb(137, 137, 137);
+    background-color: rgb(82, 83, 97);
     border-radius: 15px;
 }
 
 .api-info-api {
     display: flex;
 	align-items: center;
-    font-size: large;
+    font-size: small;
     flex-wrap: wrap;
-    width: 15vw;
+    width: 20%;
     margin: 10px;
     padding: 3px;    
     border-radius: 5px;
     word-wrap: break-word;
 }
-.api-info-status-Stable {
+
+.api-info-status-wrapper {
+    width: 20%;
+    margin: 10px;
+    padding: 3px;    
+}
+
+.api-info-status-stable {
     display: flex;
 	align-items: center;
     font-size: small;
     flex-wrap: wrap;
-    width: 15vw;
-    margin: 10px;
+    width: fit-content;
     padding: 6px;    
     border-radius: 10px;
     word-wrap: break-word;
-    background-color: rgba(80, 139, 84, 0.671);
-    border: 1px solid black;
-    box-shadow: 2px 2px 2px rgb(120, 118, 118);
+    background-color: rgba(74, 255, 149, 0.122);
 }
 
 .api-info-status-Deprecated {
@@ -81,14 +83,11 @@ body {
 	align-items: center;
     font-size: small;
     flex-wrap: wrap;
-    width: 15vw;
-    margin: 10px;
+    width: fit-content;
     padding: 6px;    
-    border-radius: 15px;
+    border-radius: 10px;
     word-wrap: break-word;
-    background-color: rgba(234, 191, 16, 0.841);
-    border: 1px solid black;
-    box-shadow: 2px 2px 2px rgb(120, 118, 118);
+    background-color: rgba(255, 204, 0, 0.195);
 }
 
 .api-info-status-Removed {
@@ -96,22 +95,19 @@ body {
 	align-items: center;
     font-size: small;
     flex-wrap: wrap;
-    width: 15vw;
-    margin: 10px;
+    width: fit-content;
     padding: 6px;    
     border-radius: 10px;
     word-wrap: break-word;
-    background-color: rgba(232, 24, 20, 0.841);
-    border: 1px solid black;
-    box-shadow: 2px 2px 2px rgb(120, 118, 118);
+    background-color: rgba(255, 4, 0, 0.213);
 }
 
 .api-info-location {
     display: flex;
 	align-items: center;
-    font-size: large;
+    font-size: small;
     flex-wrap: wrap;
-    width: 15vw;
+    width: 20%;
     margin: 10px;
     padding: 3px;    
     border-radius: 5px;
@@ -121,17 +117,19 @@ body {
 .api-info-stable-version{
     display: flex;
 	align-items: center;
-    width: 15vw;
+    width: 20%;
     margin: 10px;
     padding: 3px; 
+    font-size: small;
 }
 
 .api-info-notes{
     display: flex;
 	align-items: center;
-    width: 15vw;
+    width: 20%;
     margin: 10px;
     padding: 3px; 
+    font-size: small;
 }
 
 .headerName {
@@ -139,4 +137,19 @@ body {
     margin: 10px;
     padding: 3px; 
     width: 20%;
+}
+
+.icon-stable {
+    padding: 5px;
+    color: rgb(74, 255, 149);
+}
+
+.icon-removed {
+    padding: 5px;
+    color: rgba(255, 4, 0, 0.213);
+}
+
+.icon-deprecated {
+    padding: 5px;
+    color: rgba(255, 204, 0, 0.195);
 }
