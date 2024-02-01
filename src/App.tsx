@@ -6,7 +6,7 @@ export default function App():React.JSX.Element {
 
   return (
     <div className="app">
-      <h1 className="kdt-header">Kubernetes Dependency Tracker</h1>
+      <h1 className="kdt-header">KUBERNETES DEPENDENCY TRACKER</h1>
       <MainPageContainer />
     </ div>
   );

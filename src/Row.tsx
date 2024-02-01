@@ -14,11 +14,11 @@ type RowProps = {
 export default function Row(props:RowProps):React.JSX.Element {
   let icon: any;
   if(props.status === 'stable'){
-    icon = <FaCheckCircle className="icon"/>;
+    icon = <FaCheckCircle className="icon-stable"/>;
   } else if (props.status === 'deprecated'){
-    icon = <IoIosWarning />
+    icon = <IoIosWarning className="icon-deprecated"/>
   } else{
-    icon = <VscError />
+    icon = <VscError className="icon-removed"/>
   }
 
   //-------- Icons can be found here: https://react-icons.github.io/react-icons/search/#q=error --------//

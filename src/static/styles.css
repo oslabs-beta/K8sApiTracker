@@ -2,7 +2,7 @@
 
 body {
     font-family: "Open Sans", "PT Sans";
-    background-color: rgb(0, 22, 43);
+    background: linear-gradient(135.9deg, rgb(64, 63, 73) 16.4%, rgb(38, 35, 59) 56.1%);
 }
 
 .app {
@@ -14,7 +14,7 @@ body {
 
 .kdt-header{
     /* text-shadow: 2px 2px 2px rgb(53, 94, 255); */
-    font-weight: 400;
+    font-weight: 300;
 }
 
 .summary-container{
@@ -32,6 +32,7 @@ body {
     border: 5px solid rgb(82, 83, 97);
     align-items: left;
     overflow: hidden;
+    width: 75vw;
 }
 
 .row {
@@ -143,7 +144,17 @@ body {
     width: 20%;
 }
 
-.icon{
-    padding: 4px;
-    color: blue;
+.icon-stable {
+    padding: 5px;
+    color: rgb(74, 255, 149);
+}
+
+.icon-removed {
+    padding: 5px;
+    color: rgba(255, 4, 0, 0.213);
+}
+
+.icon-deprecated {
+    padding: 5px;
+    color: rgba(255, 204, 0, 0.195);
 }
