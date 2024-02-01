@@ -6,36 +6,34 @@ compareController.compare = (req, res, next) => {
   const kubePug = res.locals.apiInfo;
   const clusterData = res.locals.clusterData;
   //     
-  // Iterate through clusterData
+  // Iterate through clusterData objects
   for (const object of clusterData) {
     let found = false;
 
     // console.log('clusterData Kind: ', object.kind);
     // console.log('object.apiVersion: ', object.apiVersion);
-    // console.log('---------------------------');
 
-
+    // If kubePug object containes the current object
     if (kubePug.hasOwnProperty(object.kind)) {
 
+      // If current object that's matched inside of kubePug also has the same api version
       if (object.apiVersion === kubePug[object.kind].version) {
-        //! MATCH FOUND
-
-        if (!Object.values(kubePug[object.kind].replacement).length) {
-          console.log('DEPRECATED and NO REPLACEMENT');
-          //! DEPRECATED & NO REPLACEMENT
-          object.kind.deprecationStatus = 'noReplacement';
-          object.newVersion = false;
-        }
-        else {
-          console.log('DEPRECATED with REPLACEMENT AVAILABLE');
-          //! DEPRECATED w/ REPLACEMENT AVAILABLE
-          object.newVersion = kubePug[object.kind].replacement.version;
-        }
-
-        // Add kubePug data properties to clusterData
-        object.description = kubePug[object.kind].description;
-        object.deprecationStatus = kubePug[object.kind].deprecationStatus;
         found = true;
+
+        // If replacement is empty, set newVersion to false and deprecationStatus to "removed"
+        if (!Object.values(kubePug[object.kind].replacement).length) {
+          object.newVersion = false;
+          object.deprecationStatus = 'removed';
+          object.description = false;
+        }
+
+        // If replacement is available, set newVersion to it's data and deprecationStatus tp "updateAvailable"
+        else {
+          object.newVersion = kubePug[object.kind].replacement.version;
+          object.deprecationStatus = 'updateAvailable';
+          object.description = kubePug[object.kind].description;
+        }
+
       }
 
     }
@@ -46,6 +44,14 @@ compareController.compare = (req, res, next) => {
       object.description = false;
       object.deprecationStatus = 'stable';
     }
+
+
+    console.log('Kind: ', object.kind);
+    console.log('Deprecation: ', object.deprecationStatus);
+    console.log('New Version: ', object.newVersion);
+    console.log('----------------------------------------');
+
+
   }
   //   console.log('res.locals.clusterData', clusterData)
   return next();
