@@ -5,6 +5,7 @@ const clusterController = require('./controllers/clusterController.js');
 const kubePugController = require('./controllers/kubePugController');
 const compareController = require('./controllers/compareController');
 const fauxDataController = require('./controllers/fauxDataController.js');
+const dependencyScraperController = require('./controllers/dependencyScraper.js');
 
 const app = express();
 const PORT = 3000;
@@ -21,9 +22,6 @@ app.get('/dependencies',
     kubePugController.getApiInfo,
     compareController.compare,
     (req, res) => {
-        // console.log(`Inside of GET '/dependencies' route`);
-        // console.log(res.locals.clusterData);
-        // console.log(res.locals.clusterData);
         res.status(200).json(res.locals.clusterData);
 
     });
@@ -31,6 +29,14 @@ app.get('/dependencies',
 app.get('/info', kubePugController.getApiInfo, (req, res) => {
     return res.status(200).json(res.locals.apiInfo);
 })
+
+
+app.get('/test',
+    dependencyScraperController.getDependencies,
+    (req, res) =>{
+        res.status(200).json(res.locals.test);
+})
+
 
 // Catch All Handler
 app.use('*', (req, res, next) => {
