@@ -1,0 +1,6 @@
+apiVersion: v1beta1
+kind: CronJobList
+metadata:
+  name: storage-class-list
+spec:
+  type: storage-class-list
