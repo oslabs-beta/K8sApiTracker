@@ -1,12 +1,6 @@
-const {
-    glob,
-    globSync,
-    globStream,
-    globStreamSync,
-    Glob,
-  } = require('glob');
+const { glob } = require('glob');
 const fs = require('fs');
-const yaml = require('js-yaml');
+// const yaml = require('js-yaml');
 
 const dependencyScraperController = {};
 
@@ -15,7 +9,6 @@ dependencyScraperController.getDependencies = (req, res, next) => {
         //get our list of files
         const getYaml = async () => {
             const response = await glob('**/*.yaml', { ignore: 'node_modules/**' });
-            // console.log(response);
             return response;
         };
 
@@ -31,7 +24,7 @@ dependencyScraperController.getDependencies = (req, res, next) => {
                     const content = fs.readFileSync(file, 'utf-8');                
                     //add all properties to an object using regex to scrape yaml file for values
                     const properties = ['apiVersion', 'kind', 'name', 'namespace', 'image'];
-                    const defaults = ['NA', 'NA', 'NA', 'NA', 'NA'];
+                    const defaults = ['NA', 'NA', 'NA', 'Default', 'NA'];
                     for (let i = 0; i < properties.length; i++){
                         try {
                             const version = new RegExp(`${properties[i]}:.*`);

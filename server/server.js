@@ -26,6 +26,7 @@ app.get('/dependencies',
         res.status(200).json(res.locals.clusterData);
     });
 
+    
 app.get('/info', kubePugController.getApiInfo, (req, res) => {
     return res.status(200).json(res.locals.apiInfo);
 })
