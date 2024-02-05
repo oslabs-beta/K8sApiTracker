@@ -1,6 +1,13 @@
 body {
+    overflow: auto;
+    height: 100%;
     font-family: "Open Sans", "PT Sans";
     background: linear-gradient(135.9deg, rgb(54, 46, 119) 16.4%, rgb(12, 6, 51) 56.1%);
+}
+
+html {
+    overflow: hidden;
+    height: 100%;
 }
 
 .app {
