@@ -16,6 +16,7 @@ export default function MainPageContainer(): React.JSX.Element {
     async function getDependencies() {
       let response = await fetch('/dependencies');
       const responseData = await response.json()
+      console.log(responseData)
       setDependencies(responseData);
     }
     getDependencies();
