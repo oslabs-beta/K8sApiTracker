@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "allowSyntheticDefaultImports": true,
+      "noImplicitAny": true,
+      "module": "CommonJS",
+      "target": "es5",
+      "allowJs": true,
+      "jsx": "react"
+    },
+    "files": [
+              "server/controllers/clusterController.ts",
+              "server/controllers/dependencyScraper.ts",
+              "server/server.ts"
+            ]
+  }
