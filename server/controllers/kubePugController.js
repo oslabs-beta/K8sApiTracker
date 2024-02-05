@@ -40,13 +40,6 @@ kubePugController.getApiInfo = (req, res, next) => {
     })
     .catch(err => next(err))
 };
-
-
-// catControllers.deleteCat = (req, res, next) => {
-//   //get id off url
-//   const catName = req.params.catName;
-//   //find the note and delete it
-//   Cat.findOneAndDelete(catName)
-// };    
+ 
 
 module.exports = kubePugController;

@@ -2,13 +2,16 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
-    "module": "es6",
-    "target": "es5",
-    "moduleResolution": "bundler",
+    "module": "node16",
+    "target": "es6",
     "allowJs": true,
-    "jsx": "react"
+    "jsx": "react",
+    "esModuleInterop": true
   },
   "files": [
             "src/index.tsx", 
+            "server/controllers/clusterController.ts",
+            "server/controllers/dependencyScraper.ts",
+            "server/server.ts"
           ]
 }
