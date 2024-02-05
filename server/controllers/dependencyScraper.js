@@ -1,50 +1,60 @@
 const { glob } = require('glob');
 const fs = require('fs');
-// const yaml = require('js-yaml');
+const path = require('path');
 
 const dependencyScraperController = {};
 
 dependencyScraperController.getDependencies = (req, res, next) => {
-        //perform globbing logic here to take our data from our files and put it in a data form
-        //get our list of files
-        const getYaml = async () => {
-            const response = await glob('**/*.yaml', { ignore: 'node_modules/**' });
-            return response;
-        };
+  // invokes glob to crawl through cwd and returns an array of yaml filenames
+  const getYaml = async () => {
+    try {
+      const options = {
+        cwd: path.resolve(__dirname, '../../../'),
+        absolute: true,
+        ignore: 'node_modules/**'
+      };
+      const response = await glob('**/*.yaml', options);
+      console.log(response);
+      return response;
+    }
+    catch(e) {
+        console.log('error')
+    }
+  };
 
-        getYaml()
-        .then((data) => {
-            try {
-                //create our array to hold all of our apis
-                const dependencies = [];
-                // iterate through the files, and create an object for each api
-                for(const file of data) {
-                    const obj = {};
-                    // use fs method, to get the content from the yaml file
-                    const content = fs.readFileSync(file, 'utf-8');                
-                    //add all properties to an object using regex to scrape yaml file for values
-                    const properties = ['apiVersion', 'kind', 'name', 'namespace', 'image'];
-                    const defaults = ['NA', 'NA', 'NA', 'Default', 'NA'];
-                    for (let i = 0; i < properties.length; i++){
-                        try {
-                            const version = new RegExp(`${properties[i]}:.*`);
-                            let array = version.exec(content);
-                            obj[properties[i]] = array[0];                        
-                        }
-                        catch {
-                            obj[properties[i]] = defaults[i]; // if the pattern is not available, use the default
-                        }
-                    };
-                    dependencies.push(obj);
-                };
-                //save the data on locals and go to next middleware function
-                res.locals.clusterData = dependencies;
-                return next();                   
-            }
-            catch (err){
-                return next(err || 'There was an error sraping dependencies');
-            }   
-        })   
+  getYaml()
+    .then((data) => {
+      try {
+        // create array to hold api data
+        const dependencies = [];
+        for(const file of data) {
+            const obj = {};
+            const content = fs.readFileSync(file, 'utf-8');
+            // const content = fs.readFileSync(path.resolve(__dirname, '../../../'), 'utf-8');              
+            // console.log(content);
+            //add all properties to an object using regex to scrape yaml file for values
+            const properties = ['apiVersion', 'kind', 'name', 'namespace', 'image'];
+            const defaults = ['NA', 'NA', 'NA', 'Default', 'NA'];
+            for (let i = 0; i < properties.length; i++){
+                try {
+                    const version = new RegExp(`${properties[i]}:.*`);
+                    let array = version.exec(content);
+                    obj[properties[i]] = array[0];                        
+                }
+                catch {
+                    obj[properties[i]] = defaults[i]; // if the pattern is not available, use the default
+                }
+            };
+            dependencies.push(obj);
+        };
+        console.log(dependencies);
+        //save the data on locals and go to next middleware function
+        res.locals.clusterData = dependencies;
+        return next();                   
+      } catch (err){
+        return next(err || 'There was an error sraping dependencies');
+      }   
+  })
 }    
 
 module.exports = dependencyScraperController;
