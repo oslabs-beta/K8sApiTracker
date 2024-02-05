@@ -13,10 +13,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '../dist')));
 app.get('/dependencies', 
-//clusterController.kubectlGetAll,
+// clusterController.kubectlGetAll,
 dependencyScraperController.getDependencies, // This is our repo scraping middleware, outputs the same thing as the kubectlGetAll middleware
-//fauxDataController.getFauxData,
-kubePugController.getApiInfo, compareController.compare, (req, res) => {
+fauxDataController.getFauxData, kubePugController.getApiInfo, compareController.compare, (req, res) => {
     res.status(200).json(res.locals.clusterData);
 });
 app.get('/info', kubePugController.getApiInfo, (req, res) => {
