@@ -1,6 +1,5 @@
 const path = require('path');
 const express = require('express');
-import { Request, Response, NextFunction } from 'express';
 
 const clusterController = require('./controllers/clusterController.js');
 const kubePugController = require('./controllers/kubePugController.js');
@@ -8,7 +7,6 @@ const compareController = require('./controllers/compareController.js');
 const fauxDataController = require('./controllers/fauxDataController.js');
 const dependencyScraperController = require('./controllers/dependencyScraper.js');
 const dependencyScraperControllerTest = require('./controllers/dependencyScraperTest.js');
-
 
 const app = express();
 const PORT = 3000;
@@ -25,29 +23,29 @@ app.get('/dependencies',
     fauxDataController.getFauxData,
     kubePugController.getApiInfo,
     compareController.compare,
-    (req: Request, res: Response) => {
+    (req, res) => {
         res.status(200).json(res.locals.clusterData);
     });
 
-app.get('/info', kubePugController.getApiInfo, (req: Request, res: Response) => {
+app.get('/info', kubePugController.getApiInfo, (req, res) => {
     return res.status(200).json(res.locals.apiInfo);
 })
 
 app.get('/test', 
-    dependencyScraperController.getDependencies, 
-    (req: Request, res: Response)=>{
+    dependencyScraperControllerTest.getDependencies, 
+    (req, res)=>{
         return res.status(200).json(res.locals.clusterData);
 })
 
 
 // Catch All Handler
-app.use('*', (req: Request, res: Response, next: NextFunction) => {
+app.use('*', (req, res, next) => {
     res.status(404).send('Page Not Found');
 });
 
 
 // GLOBAL ERROR HANDLER
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+app.use((err, req, res, next) => {
     const defaultErr = {
         log: 'Global err handler, unkonwn middleware error',
         status: 500,

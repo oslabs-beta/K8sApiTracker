@@ -1,6 +1,5 @@
 const { glob } = require('glob');
 const fs = require('fs');
-// const yaml = require('js-yaml');
 
 const dependencyScraperController = {};
 

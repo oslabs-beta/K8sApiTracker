@@ -1,56 +1,44 @@
-const path = require('path');
-const express = require('express');
-
-const clusterController = require('./controllers/clusterController.js');
-const kubePugController = require('./controllers/kubePugController');
-const compareController = require('./controllers/compareController');
-const fauxDataController = require('./controllers/fauxDataController.js');
-const dependencyScraperController = require('./controllers/dependencyScraper.js');
-
-const app = express();
-const PORT = 3000;
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var path = require('path');
+var express = require('express');
+var clusterController = require('./controllers/clusterController.js');
+var kubePugController = require('./controllers/kubePugController.js');
+var compareController = require('./controllers/compareController.js');
+var fauxDataController = require('./controllers/fauxDataController.js');
+var dependencyScraperController = require('./controllers/dependencyScraper.js');
+var dependencyScraperControllerTest = require('./controllers/dependencyScraperTest.js');
+var app = express();
+var PORT = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 app.use(express.static(path.resolve(__dirname, '../dist')));
-
-
-app.get('/dependencies',
-    clusterController.kubectlGetAll,
-    //dependencyScraperController.getDependencies, // This is our repo scraping middleware, outputs the same thing as the kubectlGetAll middleware
-    fauxDataController.getFauxData,
-    kubePugController.getApiInfo,
-    compareController.compare,
-    (req, res) => {
-        res.status(200).json(res.locals.clusterData);
-    });
-
-    
-app.get('/info', kubePugController.getApiInfo, (req, res) => {
+app.get('/dependencies', clusterController.kubectlGetAll, 
+//dependencyScraperController.getDependencies, // This is our repo scraping middleware, outputs the same thing as the kubectlGetAll middleware
+fauxDataController.getFauxData, kubePugController.getApiInfo, compareController.compare, function (req, res) {
+    res.status(200).json(res.locals.clusterData);
+});
+app.get('/info', kubePugController.getApiInfo, function (req, res) {
     return res.status(200).json(res.locals.apiInfo);
-})
-
-
+});
+app.get('/test', dependencyScraperController.getDependencies, function (req, res) {
+    return res.status(200).json(res.locals.clusterData);
+});
 // Catch All Handler
-app.use('*', (req, res, next) => {
+app.use('*', function (req, res, next) {
     res.status(404).send('Page Not Found');
 });
-
-
 // GLOBAL ERROR HANDLER
-app.use((err, req, res, next) => {
-    const defaultErr = {
+app.use(function (err, req, res, next) {
+    var defaultErr = {
         log: 'Global err handler, unkonwn middleware error',
         status: 500,
         message: 'Unknown server error. Please try again'
     };
-    const errObj = Object.assign({}, defaultErr, err);
+    var errObj = Object.assign({}, defaultErr, err);
     return res.status(errObj.status).json(errObj.message);
 });
-
-app.listen(PORT, () => {
-    console.log(`Listening on port: ${PORT}`);
+app.listen(PORT, function () {
+    console.log("Listening on port: ".concat(PORT));
 });
-
 module.exports = app;
