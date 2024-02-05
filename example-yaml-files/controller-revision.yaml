@@ -1,5 +1,5 @@
 apiVersion: v1beta2
-kind: Faux
+kind: FlowSchema
 metadata:
   name: controller-revision
 spec:

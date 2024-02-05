@@ -1,5 +1,5 @@
 apiVersion: v1beta1
-kind: Faux
+kind: CronJobList
 metadata:
   name: storage-class-list
 spec:
