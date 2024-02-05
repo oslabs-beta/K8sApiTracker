@@ -9,6 +9,9 @@
     "jsx": "react"
   },
   "files": ["src/index.tsx", 
-            "server/controllers/dependencyScraper.ts", 
+            "server/controllers/clusterController.ts",
+            "server/controllers/compareController.ts",
+            "server/controllers/dependencyScraper.ts",
+            "server/controllers/kubePugController.ts", 
             "server/server.ts"]
 }

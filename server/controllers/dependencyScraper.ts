@@ -10,7 +10,7 @@ type GetDependencies = (req: Request, res: Response, next: NextFunction) => void
 type DependencyScraperController = {
     getDependencies: GetDependencies;
 }
-
+// define types for our api objects that go within our api array  
 type ApiObj = Record<string, string>
 
 //then have our functionality below
