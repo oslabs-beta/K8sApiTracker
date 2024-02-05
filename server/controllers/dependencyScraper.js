@@ -14,7 +14,7 @@ dependencyScraperController.getDependencies = (req, res, next) => {
 
         getYaml()
         .then((data) => {
-            try{
+            try {
                 //create our array to hold all of our apis
                 const dependencies = [];
                 // iterate through the files, and create an object for each api
