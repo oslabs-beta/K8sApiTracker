@@ -1,6 +1,6 @@
 const kubePugController = {};
 kubePugController.getApiInfo = (req, res, next) => {
-  console.log('Inside of kubePug controller');
+  // console.log('Inside of kubePug controller');
   fetch('https://kubepug.xyz/data/data.json')
     .then(apiInfo => apiInfo.json())
     .then(data => {

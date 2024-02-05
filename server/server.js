@@ -5,6 +5,7 @@ const clusterController = require('./controllers/clusterController.js');
 const kubePugController = require('./controllers/kubePugController');
 const compareController = require('./controllers/compareController');
 const fauxDataController = require('./controllers/fauxDataController.js');
+const dependencyScraperController = require('./controllers/dependencyScraper.js');
 
 const app = express();
 const PORT = 3000;
@@ -17,20 +18,19 @@ app.use(express.static(path.resolve(__dirname, '../dist')));
 
 app.get('/dependencies',
     clusterController.kubectlGetAll,
+    //dependencyScraperController.getDependencies, // This is our repo scraping middleware, outputs the same thing as the kubectlGetAll middleware
     fauxDataController.getFauxData,
     kubePugController.getApiInfo,
     compareController.compare,
     (req, res) => {
-        // console.log(`Inside of GET '/dependencies' route`);
-        // console.log(res.locals.clusterData);
-        // console.log(res.locals.clusterData);
         res.status(200).json(res.locals.clusterData);
-
     });
 
+    
 app.get('/info', kubePugController.getApiInfo, (req, res) => {
     return res.status(200).json(res.locals.apiInfo);
 })
+
 
 // Catch All Handler
 app.use('*', (req, res, next) => {

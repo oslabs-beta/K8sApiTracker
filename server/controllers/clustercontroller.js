@@ -1,8 +1,6 @@
 const clusterController = {};
 
 clusterController.kubectlGetAll = async (req, res, next) => {
-    // console.log('Inside of kubectlGetAll Controller');
-
 
     const childProcess = require('child_process');
     const { default: cluster } = require('cluster');
@@ -32,7 +30,6 @@ clusterController.kubectlGetAll = async (req, res, next) => {
 
                         clusterData.push(newObj);
                     })
-                    // console.log(clusterData);
                     resolve(clusterData);
                     // resolve({ stdout, stderr });
                 }
@@ -42,8 +39,6 @@ clusterController.kubectlGetAll = async (req, res, next) => {
 
     // The following command is run from the directory that this file is in
     res.locals.clusterData = await sh('kubectl get all -o json');
-    // res.locals.clusterData = stdout.stdout;
-
     return next();
 }
 
