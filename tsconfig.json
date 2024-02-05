@@ -9,6 +9,6 @@
     "jsx": "react"
   },
   "files": ["src/index.tsx", 
-            "server/controllers/dependencyScraperTest.ts", 
+            "server/controllers/dependencyScraper.ts", 
             "server/server.ts"]
 }

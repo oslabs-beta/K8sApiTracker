@@ -7,7 +7,6 @@ var kubePugController = require('./controllers/kubePugController.js');
 var compareController = require('./controllers/compareController.js');
 var fauxDataController = require('./controllers/fauxDataController.js');
 var dependencyScraperController = require('./controllers/dependencyScraper.js');
-var dependencyScraperControllerTest = require('./controllers/dependencyScraperTest.js');
 var app = express();
 var PORT = 3000;
 app.use(express.json());

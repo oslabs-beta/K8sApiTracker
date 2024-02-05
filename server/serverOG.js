@@ -5,7 +5,7 @@ const clusterController = require('./controllers/clusterController.js');
 const kubePugController = require('./controllers/kubePugController.js');
 const compareController = require('./controllers/compareController.js');
 const fauxDataController = require('./controllers/fauxDataController.js');
-const dependencyScraperController = require('./controllers/dependencyScraper.js');
+const dependencyScraperController = require('./controllers/dependencyScraperOG.js');
 const dependencyScraperControllerTest = require('./controllers/dependencyScraperTest.js');
 
 const app = express();
