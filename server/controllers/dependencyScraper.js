@@ -11,22 +11,32 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const { glob } = require('glob');
 const fs = require('fs');
+const path = require('path');
 //then have our functionality below
 const dependencyScraperController = {
     //define our method to get dependencies
     getDependencies: (req, res, next) => {
-        //perform globbing logic here to take our data from our files and put it in a data form
-        //get our list of files
+        // invokes glob to crawl through cwd and returns an array of yaml filenames
         const getYaml = () => __awaiter(void 0, void 0, void 0, function* () {
-            const response = yield glob('**/*.yaml', { ignore: 'node_modules/**' });
-            return response;
+            try {
+                const options = {
+                    cwd: path.resolve(__dirname, '../../../'),
+                    absolute: true,
+                    ignore: 'node_modules/**'
+                };
+                const response = yield glob('**/*.yaml', options);
+                return response;
+            }
+            catch (e) {
+                console.log('error scraping directory for yaml filepaths');
+            }
         });
         getYaml()
             .then((data) => {
             try {
-                //create our array to hold all of our apis
+                //create our array to hold all of our api objects
                 const dependencies = [];
-                // iterate through the files, and create an object for each api
+                // iterate through the files
                 for (const file of data) {
                     const obj = {};
                     // use fs method, to get the content from the yaml file

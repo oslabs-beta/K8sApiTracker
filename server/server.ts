@@ -25,8 +25,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
 app.get('/dependencies',
-    clusterController.kubectlGetAll,
-    //dependencyScraperController.getDependencies, // This is our repo scraping middleware, outputs the same thing as the kubectlGetAll middleware
+    // clusterController.kubectlGetAll,
+    dependencyScraperController.getDependencies, // This is our repo scraping middleware, outputs the same thing as the kubectlGetAll middleware
     fauxDataController.getFauxData,
     kubePugController.getApiInfo,
     compareController.compare,
