@@ -12,7 +12,13 @@ type DependencyScraperController = {
     getDependencies: GetDependencies;
 }
 // define types for our api objects that go within our api array  
-type ApiObj = Record<string, string>
+type ApiObj = Record<string, string>;
+// type for globbing options
+type options = {
+    cwd: string,
+    absolute: boolean,
+    ignore: string
+};
 
 //then have our functionality below
 const dependencyScraperController: DependencyScraperController = {
@@ -21,30 +27,30 @@ const dependencyScraperController: DependencyScraperController = {
         // invokes glob to crawl through cwd and returns an array of yaml filenames
         const getYaml = async () => {
             try {
-                const options = {
+                const options: options = {
                   cwd: path.resolve(__dirname, '../../../'),
                   absolute: true,
                   ignore: 'node_modules/**'
                 };
-                const response = await glob('**/*.yaml', options);
-                console.log(response);
+                const response: string[] = await glob('**/*.yaml', options);
                 return response;
               }
               catch(e) {
-                  console.log('error')
+                  console.log('error scraping directory for yaml filepaths');
               }
         };
 
         getYaml()
         .then((data) => {
             try {
-                //create our array to hold all of our apis
-                const dependencies = [];
-                // iterate through the files, and create an object for each api
+                //create our array to hold all of our api objects
+                const dependencies: ApiObj[] = [];
+                // iterate through the files
                 for(const file of data) {
                     const obj: ApiObj = {};
                     // use fs method, to get the content from the yaml file
-                    const content = fs.readFileSync(file, 'utf-8');                
+                    const content = fs.readFileSync(file, 'utf-8');      
+                    console.log(content);          
                     //add all properties to an object using regex to scrape yaml file for values
                     const properties = ['apiVersion', 'kind', 'name', 'namespace', 'image'];
                     const defaults = ['NA', 'NA', 'NA', 'Default', 'NA'];
