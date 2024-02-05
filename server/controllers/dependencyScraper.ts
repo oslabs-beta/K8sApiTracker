@@ -49,8 +49,7 @@ const dependencyScraperController: DependencyScraperController = {
                 for(const file of data) {
                     const obj: ApiObj = {};
                     // use fs method, to get the content from the yaml file
-                    const content = fs.readFileSync(file, 'utf-8');      
-                    console.log(content);          
+                    const content: string = fs.readFileSync(file, 'utf-8');          
                     //add all properties to an object using regex to scrape yaml file for values
                     const properties = ['apiVersion', 'kind', 'name', 'namespace', 'image'];
                     const defaults = ['NA', 'NA', 'NA', 'Default', 'NA'];
