@@ -27,7 +27,7 @@ app.get('/test', dependencyScraperController.getDependencies, function (req, res
 app.use('*', function (req, res, next) {
     res.status(404).send('Page Not Found');
 });
-// GLOBAL ERROR HANDLER
+// GLOBAL ERROR HANDLER 
 app.use(function (err, req, res, next) {
     var defaultErr = {
         log: 'Global err handler, unkonwn middleware error',

@@ -8,9 +8,16 @@ const compareController = require('./controllers/compareController.js');
 const fauxDataController = require('./controllers/fauxDataController.js');
 const dependencyScraperController = require('./controllers/dependencyScraper.js');
 
-
 const app = express();
 const PORT = 3000;
+
+// define types for custom errors
+type Error = {
+    log: string,
+    status: number,
+    message: string
+}
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -38,7 +45,6 @@ app.get('/test',
         return res.status(200).json(res.locals.clusterData);
 })
 
-
 // Catch All Handler
 app.use('*', (req: Request, res: Response, next: NextFunction) => {
     res.status(404).send('Page Not Found');
@@ -47,7 +53,7 @@ app.use('*', (req: Request, res: Response, next: NextFunction) => {
 
 // GLOBAL ERROR HANDLER 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-    const defaultErr = {
+    const defaultErr: Error = {
         log: 'Global err handler, unkonwn middleware error',
         status: 500,
         message: 'Unknown server error. Please try again'

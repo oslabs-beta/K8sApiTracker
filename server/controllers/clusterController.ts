@@ -2,7 +2,7 @@ import { Request, Response, NextFunction, RequestHandler } from 'express';
 
 //define all of our types here
 //define our get dependencies functions types
-type KubectlGetAll = (req: Request, res: Response, next: NextFunction) => Promise<any>
+type KubectlGetAll = (req: Request, res: Response, next: NextFunction) => void
 
 //define all of our larger controller's types
 type ClusterController = {
@@ -17,17 +17,17 @@ type NewObj  = {
     namespace: string,
     image: string
 }
+
 type ClusterData = NewObj[];
 
 const clusterController: ClusterController = {
     kubectlGetAll: async (req: Request, res: Response, next: NextFunction) => {
 
         const childProcess = require('child_process');
-        const { default: cluster } = require('cluster');
-    
+
         const clusterData: ClusterData = [];
     
-        async function sh(cmd_to_execute: any) {
+        async function sh(cmd_to_execute: string) {
             return new Promise(function (resolve, reject) {
                 childProcess.exec(cmd_to_execute, (err: any, stdout: any, stderr: any) => {
                     if (err) {
@@ -52,7 +52,6 @@ const clusterController: ClusterController = {
                             clusterData.push(newObj);
                         })
                         resolve(clusterData);
-                        // resolve({ stdout, stderr });
                     }
                 });
             });
@@ -62,7 +61,6 @@ const clusterController: ClusterController = {
         res.locals.clusterData = await sh('kubectl get all -o json');
         return next();
     }
-
 };
 
 module.exports = clusterController;
