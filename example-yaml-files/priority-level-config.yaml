@@ -1,0 +1,6 @@
+apiVersion: v1beta1
+kind: Faux
+metadata: 
+  name: priority-level-config
+spec:
+  type: priority-level-config
