@@ -33,7 +33,9 @@ export default function MainPageContainer(): React.JSX.Element {
   return (
     <div className='mainPageContainer'>
       <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' />
-      {rows}
+      <div className='row-content-container'>
+        {rows}        
+      </div>
     </div>
   )
 }
