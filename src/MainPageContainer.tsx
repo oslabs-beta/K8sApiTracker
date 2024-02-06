@@ -1,6 +1,10 @@
 import Row from './Row';
 import RowHeader from './RowHeader';
 import React, { useState, useEffect } from 'react';
+import { SpinningCircles } from 'react-loading-icons'
+
+// use this website to change loading icon https://www.npmjs.com/package/react-loading-icons
+
 
 export default function MainPageContainer(): React.JSX.Element {
   //create an array of row components
@@ -9,6 +13,7 @@ export default function MainPageContainer(): React.JSX.Element {
   // initialize our state
   const [dependencies, setDependencies] = useState([]);
 
+  const [isLoading, setLoading] = useState(true)
   // make a fetch request to our backend at the route /dependencies.
   // call a useEffect here to fetch our data when the page loads and update state.
   // Our dependency array is an empty array, so that this only happens once on page load
@@ -18,6 +23,7 @@ export default function MainPageContainer(): React.JSX.Element {
       const responseData = await response.json()
       console.log(responseData)
       setDependencies(responseData);
+      setLoading(false);
     }
     getDependencies();
   }, []);
@@ -33,6 +39,7 @@ export default function MainPageContainer(): React.JSX.Element {
   return (
     <div className='mainPageContainer'>
       <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' />
+      {isLoading? <SpinningCircles className="content-loading" /> : null}
       <div className='row-content-container'>
         {rows}        
       </div>

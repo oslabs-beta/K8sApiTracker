@@ -5,6 +5,7 @@ compareController.compare = (req, res, next) => {
   // console.log('Inside of compare controller');
   const kubePug = res.locals.apiInfo;
   const clusterData = res.locals.clusterData;
+  //console.log(clusterData)
   //     
   // Iterate through clusterData objects
   for (const object of clusterData) {

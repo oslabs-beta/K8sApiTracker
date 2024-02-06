@@ -214,3 +214,11 @@ html {
     max-height: 78vh;
     overflow-y: scroll;
 }
+
+.content-loading{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin: 10px;
+}
+
