@@ -36,6 +36,10 @@ export default function MainPageContainer(): React.JSX.Element {
       stable={dependency.newVersion ? dependency.newVersion : 'Up to date'} notes={dependency.description ? dependency.description : 'NA'} />);
   }
 
+
+  // define a function to sort the dependencies by status, which will be passed into the header
+  
+
   return (
     <div className='mainPageContainer'>
       <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' />
