@@ -167,18 +167,14 @@ html {
 .headerName-api {
     font-size: small;
     margin: 10px;
-<<<<<<< HEAD
     padding: 3px;
-=======
-    padding: 3px; 
     width: 17%;
 }
 
 .headerName-stable {
     font-size: small;
     margin: 10px;
-    padding: 3px; 
->>>>>>> 9bb642f499a527ffa686e5340c99bd9356d509e3
+    padding: 3px;
     width: 15%;
 }
 
@@ -215,24 +211,18 @@ html {
     font-size: 18px;
 }
 
-<<<<<<< HEAD
-footer {
-    text-align: center;
-    color: grey;
-=======
-.row-content-container{
+.row-content-container {
     max-height: 78vh;
     overflow-y: scroll;
 }
 
-.content-loading{
+.content-loading {
     display: flex;
     width: 100%;
     align-items: center;
     margin: 10px;
 }
 
-.filter-button{
+.filter-button {
     margin-left: 5px;
->>>>>>> 9bb642f499a527ffa686e5340c99bd9356d509e3
 }
