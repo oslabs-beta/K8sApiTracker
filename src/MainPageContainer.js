@@ -38,11 +38,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Row_1 = __importDefault(require("./Row"));
 const RowHeader_1 = __importDefault(require("./RowHeader"));
 const react_1 = __importStar(require("react"));
+const react_loading_icons_1 = require("react-loading-icons");
+// use this website to change loading icon https://www.npmjs.com/package/react-loading-icons
 function MainPageContainer() {
     //create an array of row components
     const rows = [];
     // initialize our state
     const [dependencies, setDependencies] = (0, react_1.useState)([]);
+    const [isLoading, setLoading] = (0, react_1.useState)(true);
     // make a fetch request to our backend at the route /dependencies.
     // call a useEffect here to fetch our data when the page loads and update state.
     // Our dependency array is an empty array, so that this only happens once on page load
@@ -53,6 +56,7 @@ function MainPageContainer() {
                 const responseData = yield response.json();
                 console.log(responseData);
                 setDependencies(responseData);
+                setLoading(false);
             });
         }
         getDependencies();
@@ -63,8 +67,10 @@ function MainPageContainer() {
         // which we get from a fetch request to the back end
         rows.push(react_1.default.createElement(Row_1.default, { key: dependency.name, api: dependency.apiVersion, status: dependency.deprecationStatus, location: dependency.name, stable: dependency.newVersion ? dependency.newVersion : 'Up to date', notes: dependency.description ? dependency.description : 'NA' }));
     }
+    // define a function to sort the dependencies by status, which will be passed into the header
     return (react_1.default.createElement("div", { className: 'mainPageContainer' },
         react_1.default.createElement(RowHeader_1.default, { key: 'row-header-key', api: 'API', status: 'STATUS', location: 'LOCATION', stable: 'STABLE VERSION', notes: 'NOTES' }),
-        rows));
+        isLoading ? react_1.default.createElement(react_loading_icons_1.SpinningCircles, { className: "content-loading" }) : null,
+        react_1.default.createElement("div", { className: 'row-content-container' }, rows)));
 }
 exports.default = MainPageContainer;

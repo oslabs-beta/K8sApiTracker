@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
+    "noImplicitAny": true, //no implicit type of any
     "module": "node16",
     "target": "es6",
     "allowJs": true,
@@ -9,6 +9,7 @@
     "esModuleInterop": true
   },
   "files": [
+<<<<<<< HEAD
     "src/index.tsx",
     "server/controllers/clusterController.ts",
     "server/controllers/dependencyScraper.ts",
@@ -16,3 +17,12 @@
     "server/server.ts"
   ]
 }
+=======
+            "src/index.tsx", 
+            "server/controllers/clusterController.ts",
+            "server/controllers/dependencyScraper.ts",
+            "server/controllers/kubePugController.ts",
+            "server/server.ts"
+          ]
+}
+>>>>>>> development
