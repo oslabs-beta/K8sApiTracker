@@ -51,6 +51,7 @@ function MainPageContainer() {
             return __awaiter(this, void 0, void 0, function* () {
                 let response = yield fetch('/dependencies');
                 const responseData = yield response.json();
+                console.log(responseData);
                 setDependencies(responseData);
             });
         }
