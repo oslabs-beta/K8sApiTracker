@@ -46,9 +46,9 @@ const dependencyScraperController = {
                     const defaults = ['NA', 'NA', 'NA', 'Default', 'NA'];
                     for (let i = 0; i < properties.length; i++) {
                         try {
-                            const version = new RegExp(`${properties[i]}:.*`);
+                            const version = new RegExp(`${properties[i]}:\\s*(.*)`);
                             let array = version.exec(content);
-                            obj[properties[i]] = array[0];
+                            obj[properties[i]] = array[0].replace(`${properties[i]}:`, '').trim();
                         }
                         catch (_a) {
                             obj[properties[i]] = defaults[i]; // if the pattern is not available, use the default

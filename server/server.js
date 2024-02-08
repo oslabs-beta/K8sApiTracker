@@ -17,11 +17,11 @@ app.get('/dependencies',
 dependencyScraperController.getDependencies, // This is our repo scraping middleware, outputs the same thing as the kubectlGetAll middleware
 // fauxDataController.getFauxData,
 kubePugController.getApiInfo, compareController.compare, (req, res) => {
-    return res.status(200).json(res.locals.clusterData);
+    res.status(200).json(res.locals.clusterData);
 });
-// app.get('/info', kubePugController.getApiInfo, (req: Request, res: Response) => {
-//     return res.status(200).json(res.locals.apiInfo);
-// })
+app.get('/info', kubePugController.getApiInfo, (req, res) => {
+    return res.status(200).json(res.locals.apiInfo);
+});
 // app.get('/test', 
 //     dependencyScraperController.getDependencies, 
 //     (req: Request, res: Response)=>{
