@@ -2,10 +2,10 @@ const path = require('path');
 const express = require('express');
 import { Request, Response, NextFunction } from 'express';
 
-const clusterController = require('./controllers/clusterController.js');
+// const clusterController = require('./controllers/clusterController.js');
 const kubePugController = require('./controllers/kubePugController.js');
 const compareController = require('./controllers/compareController.js');
-const fauxDataController = require('./controllers/fauxDataController.js');
+// const fauxDataController = require('./controllers/fauxDataController.js');
 const dependencyScraperController = require('./controllers/dependencyScraper.js');
 
 const app = express();
@@ -18,7 +18,6 @@ type Error = {
     message: string
 }
 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -27,22 +26,22 @@ app.use(express.static(path.resolve(__dirname, '../dist')));
 app.get('/dependencies',
     // clusterController.kubectlGetAll,
     dependencyScraperController.getDependencies, // This is our repo scraping middleware, outputs the same thing as the kubectlGetAll middleware
-    fauxDataController.getFauxData,
+    // fauxDataController.getFauxData,
     kubePugController.getApiInfo,
     compareController.compare,
     (req: Request, res: Response) => {
-        res.status(200).json(res.locals.clusterData);
+        return res.status(200).json(res.locals.clusterData);
     });
 
-app.get('/info', kubePugController.getApiInfo, (req: Request, res: Response) => {
-    return res.status(200).json(res.locals.apiInfo);
-})
+// app.get('/info', kubePugController.getApiInfo, (req: Request, res: Response) => {
+//     return res.status(200).json(res.locals.apiInfo);
+// })
 
-app.get('/test', 
-    dependencyScraperController.getDependencies, 
-    (req: Request, res: Response)=>{
-        return res.status(200).json(res.locals.clusterData);
-})
+// app.get('/test', 
+//     dependencyScraperController.getDependencies, 
+//     (req: Request, res: Response)=>{
+//         return res.status(200).json(res.locals.clusterData);
+// })
 
 // Catch All Handler
 app.use('*', (req: Request, res: Response, next: NextFunction) => {
