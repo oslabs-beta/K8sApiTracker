@@ -19,6 +19,7 @@ html {
 
 .kdt-header {
     font-weight: 300;
+    margin: 15px 15px 15px 15px;
 }
 
 .summary-container {
@@ -36,7 +37,6 @@ html {
     align-items: left;
     overflow: hidden;
     width: 85vw;
-    margin-bottom: 10px;
 }
 
 .row {
@@ -48,12 +48,12 @@ html {
 }
 
 .rowHeader {
-    margin: 1.5em 1.5em 0.5em 1.5em;
+    margin: 1em 1.5em 0.5em 1.5em;
     display: flex;
     flex-direction: row;
     color: rgb(220, 220, 220);
     background-color: rgb(82, 83, 97);
-    border-radius: 15px;
+    border-radius: 10px;
 }
 
 .api-info-api {
@@ -61,7 +61,7 @@ html {
     align-items: center;
     font-size: small;
     flex-wrap: wrap;
-    width: 15%;
+    width: 17%;
     margin: 10px;
     padding: 3px;
     border-radius: 5px;
@@ -167,11 +167,23 @@ html {
 .headerName-api {
     font-size: small;
     margin: 10px;
+<<<<<<< HEAD
     padding: 3px;
+=======
+    padding: 3px; 
+    width: 17%;
+}
+
+.headerName-stable {
+    font-size: small;
+    margin: 10px;
+    padding: 3px; 
+>>>>>>> 9bb642f499a527ffa686e5340c99bd9356d509e3
     width: 15%;
 }
 
 .headerName-status {
+    display: flex;
     font-size: small;
     margin: 10px;
     padding: 3px;
@@ -203,7 +215,24 @@ html {
     font-size: 18px;
 }
 
+<<<<<<< HEAD
 footer {
     text-align: center;
     color: grey;
+=======
+.row-content-container{
+    max-height: 78vh;
+    overflow-y: scroll;
+}
+
+.content-loading{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin: 10px;
+}
+
+.filter-button{
+    margin-left: 5px;
+>>>>>>> 9bb642f499a527ffa686e5340c99bd9356d509e3
 }
