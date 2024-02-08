@@ -9,9 +9,10 @@
     "esModuleInterop": true
   },
   "files": [
-            "src/index.tsx", 
-            "server/controllers/clusterController.ts",
-            "server/controllers/dependencyScraper.ts",
-            "server/server.ts"
-          ]
+    "src/index.tsx",
+    "server/controllers/clusterController.ts",
+    "server/controllers/dependencyScraper.ts",
+    "server/controllers/compareController.ts",
+    "server/server.ts"
+  ]
 }
