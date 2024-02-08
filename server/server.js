@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const path = require('path');
 const express = require('express');
 // const clusterController = require('./controllers/clusterController.js');
-const kubePugController = require('./controllers/kubePugControllerOG.js');
+const kubePugController = require('./controllers/kubePugController.js');
 const compareController = require('./controllers/compareController.js');
 // const fauxDataController = require('./controllers/fauxDataController.js');
 const dependencyScraperController = require('./controllers/dependencyScraper.js');
