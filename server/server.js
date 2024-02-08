@@ -2,9 +2,9 @@ const path = require('path');
 const express = require('express');
 
 const clusterController = require('./controllers/clusterController.js');
+const fauxDataController = require('./controllers/fauxDataController.js');
 const kubePugController = require('./controllers/kubePugController');
 const compareController = require('./controllers/compareController');
-const fauxDataController = require('./controllers/fauxDataController.js');
 
 const app = express();
 const PORT = 3000;
@@ -23,20 +23,16 @@ app.get('/dependencies',
     (req, res) => {
         // console.log(`Inside of GET '/dependencies' route`);
         // console.log(res.locals.clusterData);
-        // console.log(res.locals.clusterData);
+        console.log(res.locals.clusterData);
         res.status(200).json(res.locals.clusterData);
 
     });
 
-app.get('/info', kubePugController.getApiInfo, (req, res) => {
-    return res.status(200).json(res.locals.apiInfo);
-})
 
 // Catch All Handler
 app.use('*', (req, res, next) => {
     res.status(404).send('Page Not Found');
 });
-
 
 // GLOBAL ERROR HANDLER
 app.use((err, req, res, next) => {

@@ -10,11 +10,11 @@ body {
     color: white;
 }
 
-.kdt-header{
+.kdt-header {
     font-weight: 300;
 }
 
-.summary-container{
+.summary-container {
     color: black;
     background-color: white;
     width: 100%;
@@ -51,12 +51,12 @@ body {
 
 .api-info-api {
     display: flex;
-	align-items: center;
+    align-items: center;
     font-size: small;
     flex-wrap: wrap;
     width: 15%;
     margin: 10px;
-    padding: 3px;    
+    padding: 3px;
     border-radius: 5px;
     word-wrap: break-word;
 }
@@ -66,17 +66,17 @@ body {
     align-items: center;
     width: 15%;
     margin: 10px;
-    padding: 3px;    
+    padding: 3px;
 }
 
 .api-info-status-stable {
     display: flex;
-	align-items: center;
+    align-items: center;
     font-size: small;
     flex-wrap: wrap;
     width: 100%;
     height: fit-content;
-    padding: 6px;    
+    padding: 6px;
     border-radius: 10px;
     word-wrap: break-word;
     background-color: rgba(74, 255, 149, 0.122);
@@ -84,12 +84,12 @@ body {
 
 .api-info-status-updateAvailable {
     display: flex;
-	align-items: center;
+    align-items: center;
     font-size: small;
     flex-wrap: wrap;
     width: 100%;
     height: fit-content;
-    padding: 6px;    
+    padding: 6px;
     border-radius: 10px;
     word-wrap: break-word;
     background-color: rgba(255, 204, 0, 0.195);
@@ -97,12 +97,12 @@ body {
 
 .api-info-status-removed {
     display: flex;
-	align-items: center;
+    align-items: center;
     font-size: small;
     flex-wrap: wrap;
     width: 100%;
     height: fit-content;
-    padding: 6px;    
+    padding: 6px;
     border-radius: 10px;
     word-wrap: break-word;
     background-color: rgba(255, 4, 0, 0.213);
@@ -110,22 +110,22 @@ body {
 
 .api-info-location {
     display: flex;
-	align-items: center;
+    align-items: center;
     font-size: small;
     flex-wrap: wrap;
     width: 20%;
     margin: 10px;
-    padding: 3px;    
+    padding: 3px;
     border-radius: 5px;
     word-wrap: break-word;
 }
 
-.api-info-stable-version{
+.api-info-stable-version {
     display: flex;
-	align-items: center;
+    align-items: center;
     width: 15%;
     margin: 10px;
-    padding: 3px; 
+    padding: 3px;
     font-size: small;
 }
 
@@ -133,19 +133,19 @@ body {
     display: flex;
     width: 35%;
     margin: 10px;
-    padding: 3px; 
+    padding: 3px;
     font-size: small;
-    max-height: 100px; 
+    max-height: 100px;
     overflow-y: scroll;
 }
 
 
-.api-info-notes-has-notes{
+.api-info-notes-has-notes {
     display: flex;
-	align-items: center;
+    align-items: center;
     width: 35%;
     margin: 10px;
-    padding: 3px; 
+    padding: 3px;
     font-size: small;
     overflow-y: scroll;
 }
@@ -153,28 +153,28 @@ body {
 .headerName {
     font-size: small;
     margin: 10px;
-    padding: 3px; 
+    padding: 3px;
     width: 20%;
 }
 
 .headerName-api {
     font-size: small;
     margin: 10px;
-    padding: 3px; 
+    padding: 3px;
     width: 15%;
 }
 
 .headerName-status {
     font-size: small;
     margin: 10px;
-    padding: 3px; 
+    padding: 3px;
     width: 15%;
 }
 
 .headerName-notes {
     font-size: small;
     margin: 10px;
-    padding: 3px; 
+    padding: 3px;
     width: 35%;
 }
 
@@ -194,4 +194,9 @@ body {
     padding: 5px 8px 5px 5px;
     color: rgb(255, 204, 0);
     font-size: 18px;
+}
+
+footer {
+    text-align: center;
+    color: grey;
 }
