@@ -2,10 +2,10 @@ const path = require('path');
 const express = require('express');
 import { Request, Response, NextFunction } from 'express';
 
-const clusterController = require('./controllers/clusterController.js');
+// const clusterController = require('./controllers/clusterController.js');
 const kubePugController = require('./controllers/kubePugController.js');
 const compareController = require('./controllers/compareController.js');
-const fauxDataController = require('./controllers/fauxDataController.js');
+// const fauxDataController = require('./controllers/fauxDataController.js');
 const dependencyScraperController = require('./controllers/dependencyScraper.js');
 
 const app = express();
@@ -17,7 +17,6 @@ type Error = {
     status: number,
     message: string
 }
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
