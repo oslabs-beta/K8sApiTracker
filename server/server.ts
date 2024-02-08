@@ -38,12 +38,6 @@ app.get('/info', kubePugController.getApiInfo, (req: Request, res: Response) => 
     return res.status(200).json(res.locals.apiInfo);
 })
 
-// app.get('/test', 
-//     dependencyScraperController.getDependencies, 
-//     (req: Request, res: Response)=>{
-//         return res.status(200).json(res.locals.clusterData);
-// })
-
 // Catch All Handler
 app.use('*', (req: Request, res: Response, next: NextFunction) => {
     res.status(404).send('Page Not Found');
