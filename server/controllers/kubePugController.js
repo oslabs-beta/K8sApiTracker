@@ -6,7 +6,7 @@ const kubePugController = {
         fetch('https://kubepug.xyz/data/data.json')
             .then(apiInfo => apiInfo.json())
             .then((data) => {
-            console.log('data', data);
+            // console.log('data', data);
             const apiInfo = {};
             for (const apiObject of data) {
                 apiInfo[apiObject.kind] = {
@@ -17,7 +17,7 @@ const kubePugController = {
             }
             ;
             res.locals.apiInfo = apiInfo;
-            console.log('res.locals.apiInfo', res.locals.apiInfo);
+            // console.log('res.locals.apiInfo', res.locals.apiInfo)
             return next();
         })
             .catch(err => {
