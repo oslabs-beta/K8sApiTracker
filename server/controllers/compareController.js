@@ -2,7 +2,7 @@
 const compareController = {};
 
 compareController.compare = (req, res, next) => {
-  console.log('Inside of compare controller');
+  // console.log('Inside of compare controller');
   const kubePug = res.locals.apiInfo;
   const clusterData = res.locals.clusterData;
   //     
@@ -46,10 +46,10 @@ compareController.compare = (req, res, next) => {
     }
 
 
-    console.log('Kind: ', object.kind);
-    console.log('Deprecation: ', object.deprecationStatus);
-    console.log('New Version: ', object.newVersion);
-    console.log('----------------------------------------');
+    // console.log('Kind: ', object.kind);
+    // console.log('Deprecation: ', object.deprecationStatus);
+    // console.log('New Version: ', object.newVersion);
+    // console.log('----------------------------------------');
 
 
   }

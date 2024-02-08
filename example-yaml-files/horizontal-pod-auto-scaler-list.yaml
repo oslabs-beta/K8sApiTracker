@@ -1,0 +1,6 @@
+apiVersion: v2beta1
+kind: APIGroupDiscoveryList
+metadata:
+  name: horizontal-pod-auto-scaler-list
+spec:
+  type: horizontal-pod-auto-scaler-list

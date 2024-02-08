@@ -1,0 +1,6 @@
+apiVersion: v1alpha1
+kind: CSIStorageCapacity
+metadata:
+  name: cluster-trust-bundle
+spec:
+  type: cluster-trust-bundle

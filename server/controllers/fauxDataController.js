@@ -1,7 +1,7 @@
 const fauxDataController = {};
 
 fauxDataController.getFauxData = (req, res, next) => {
-    console.log('Inside of getFauxData controller');
+    // console.log('Inside of getFauxData controller');
     // Push faux data with updates available
     res.locals.clusterData.push(
         {
