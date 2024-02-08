@@ -3,7 +3,7 @@ const express = require('express');
 import { Request, Response, NextFunction } from 'express';
 
 // const clusterController = require('./controllers/clusterController.js');
-const kubePugController = require('./controllers/kubePugController.js');
+const kubePugController = require('./controllers/kubePugControllerOG.js');
 const compareController = require('./controllers/compareController.js');
 // const fauxDataController = require('./controllers/fauxDataController.js');
 const dependencyScraperController = require('./controllers/dependencyScraper.js');

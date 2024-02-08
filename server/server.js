@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const path = require('path');
 const express = require('express');
 // const clusterController = require('./controllers/clusterController.js');
-const kubePugController = require('./controllers/kubePugController.js');
+const kubePugController = require('./controllers/kubePugControllerOG.js');
 const compareController = require('./controllers/compareController.js');
-const fauxDataController = require('./controllers/fauxDataController.js');
+// const fauxDataController = require('./controllers/fauxDataController.js');
 const dependencyScraperController = require('./controllers/dependencyScraper.js');
 const app = express();
 const PORT = 3000;
@@ -22,11 +22,6 @@ kubePugController.getApiInfo, compareController.compare, (req, res) => {
 app.get('/info', kubePugController.getApiInfo, (req, res) => {
     return res.status(200).json(res.locals.apiInfo);
 });
-// app.get('/test', 
-//     dependencyScraperController.getDependencies, 
-//     (req: Request, res: Response)=>{
-//         return res.status(200).json(res.locals.clusterData);
-// })
 // Catch All Handler
 app.use('*', (req, res, next) => {
     res.status(404).send('Page Not Found');
