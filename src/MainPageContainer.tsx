@@ -29,23 +29,24 @@ export default function MainPageContainer(): React.JSX.Element {
     getDependencies();
   }, []);
 
-  useEffect(()=>{
-    // console.log('statuses', statuses)
+  useEffect(()=> {
+    console.log(renderedDependencies)
     // create a new array
     const newArr: any[] = [];
     //add all that are in the desired group from our master data
     for (const dependency of dependencies) {
       // only add it if the user has filtered for it
       if(statuses.includes(dependency.deprecationStatus)){
+        console.log(statuses, dependency.deprecationStatus)
         newArr.push(dependency);
       }
     }
     //update the state
     setRenderedDependencies(newArr);
-  }, statuses)
+  }, [statuses])
 
   function updateStatuses(status: string){
-    //if status has the string, remove it
+    //if statuses has the string, remove it
     if(statuses.includes(status)){
       const newStatuses: string[] = [...statuses]
       newStatuses.splice(newStatuses.indexOf(status),1);
