@@ -21,7 +21,6 @@ export default function RowHeader(props:RowHeaderProps):React.JSX.Element {
         <div className='headerName-status'>
           <div>{props.status}</div>
           <div className="filter-dropdown">
-            {/* < FilterDropdown filters={props.filters} filter={props.filter}/> */}
             < FilterDropdownNative filters={props.filters} filter={props.filter}/>
           </div>
         </div>

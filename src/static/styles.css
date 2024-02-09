@@ -228,32 +228,36 @@ html {
     margin: 10px;
 }
 
-.filter-dropdown {
-    margin: 10px;
-    width: 50%;
-    height: 40%;
-}
-
-.filter-dropdown2{
+.filter-button {
+    background: none;
+    border: 1px solid rgb(74, 74, 74);
+    border-radius: 5%;
+    color: white;
+    font-family: "Open Sans", "PT Sans";
+    font-weight: 400;
     width: 100%;
-    height: 100%;
+    height: 20%;
+    margin-left: 5px;
 }
 
-.filter-dropdown3 {
-    height: 100%;
-}
-
-.filter-dropdown-item{
-    width: 50px;
-    font-size: 12px;
-}
-
-.checkbox{
-    background: red;
+.filter-dropdown {
     margin: 0;
+    margin-left: 5px;
     padding: 0;
 }
 
-.menu-item{
-    background: blue;
+.filter-dropdown-item {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.filter-checkbox {
+    accent-color: rgb(54, 46, 119);
+}
+
+.filter-label {
+    display: flex;
+    justify-content: center;
 }
