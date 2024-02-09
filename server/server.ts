@@ -31,15 +31,10 @@ app.get('/dependencies',
         res.status(200).json(res.locals.clusterData);
     });
 
-app.get('/info', kubePugController.getApiInfo, (req: Request, res: Response) => {
-    return res.status(200).json(res.locals.apiInfo);
-})
-
 // Catch All Handler
 app.use('*', (req: Request, res: Response, next: NextFunction) => {
     res.status(404).send('Page Not Found');
 });
-
 
 // GLOBAL ERROR HANDLER 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
