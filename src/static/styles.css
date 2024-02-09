@@ -235,12 +235,12 @@ html {
     color: white;
     font-family: "Open Sans", "PT Sans";
     font-weight: 400;
-    width: 100%;
     height: 20%;
     margin-left: 5px;
 }
 
 .filter-dropdown {
+    position: absolute;
     margin: 0;
     margin-left: 5px;
     padding: 0;
@@ -248,13 +248,17 @@ html {
 
 .filter-dropdown-item {
     margin: 0;
-    padding: 0;
+    padding: 3px;
     display: flex;
+    background-color: rgb(65, 65, 65);
+    border-radius: 2px;
     flex-direction: row;
 }
 
 .filter-checkbox {
     accent-color: rgb(54, 46, 119);
+    margin: 0;
+    margin-right: 3px;
 }
 
 .filter-label {

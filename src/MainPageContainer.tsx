@@ -30,14 +30,12 @@ export default function MainPageContainer(): React.JSX.Element {
   }, []);
 
   useEffect(()=> {
-    console.log(renderedDependencies)
     // create a new array
     const newArr: any[] = [];
     //add all that are in the desired group from our master data
     for (const dependency of dependencies) {
       // only add it if the user has filtered for it
       if(statuses.includes(dependency.deprecationStatus)){
-        console.log(statuses, dependency.deprecationStatus)
         newArr.push(dependency);
       }
     }
@@ -63,7 +61,7 @@ export default function MainPageContainer(): React.JSX.Element {
   for (const dependency of renderedDependencies) {
     // for each subarray, create a new row, passing in the data from data, 
     // which we get from a fetch request to the back end
-    rows.push(<Row key={dependency.name} api={dependency.apiVersion} status={dependency.deprecationStatus} location={dependency.name}
+    rows.push(<Row key={dependency.location + dependency.apiVersion} api={dependency.apiVersion} status={dependency.deprecationStatus} location={dependency.name}
       stable={dependency.newVersion ? dependency.newVersion : 'Up to date'} notes={dependency.description ? dependency.description : 'NA'} />);      
   }
 

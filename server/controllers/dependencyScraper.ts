@@ -49,7 +49,7 @@ const dependencyScraperController: DependencyScraperController = {
                 for(const file of data) {
                     const obj: ApiObj = {};
                     // use fs method, to get the content from the yaml file
-                    const content: string = fs.readFileSync(file, 'utf-8');          
+                    const content: string = fs.readFileSync(file, 'utf-8');   
                     //add all properties to an object using regex to scrape yaml file for values
                     const properties = ['apiVersion', 'kind', 'name', 'namespace', 'image'];
                     const defaults = ['NA', 'NA', 'NA', 'Default', 'NA'];
@@ -63,6 +63,8 @@ const dependencyScraperController: DependencyScraperController = {
                             obj[properties[i]] = defaults[i]; // if the pattern is not available, use the default
                         }
                     };
+                    // also add in the filepath to send to the frontend
+                    obj.location = file;
                     dependencies.push(obj);
                 };
                 //save the data on locals and go to next middleware function
