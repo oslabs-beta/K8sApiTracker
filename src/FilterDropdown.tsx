@@ -13,12 +13,10 @@ export default function FilterDropdownNative(props: FilterDropdown) {
       setIsOpen(!isOpen)
   }
 
-  let triangle = isOpen ? <VscTriangleUp />: <VscTriangleDown />;
-
   return (
     <div >
       <button onClick={toggleDropdown} className="filter-button">
-        {triangle}
+        {isOpen ? <VscTriangleUp />: <VscTriangleDown />}
       </button>
 
       {isOpen && (

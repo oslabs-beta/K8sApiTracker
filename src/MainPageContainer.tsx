@@ -12,7 +12,7 @@ export default function MainPageContainer(): React.JSX.Element {
   // initialize our state
   const [dependencies, setDependencies] = useState([]);
   const [isLoading, setLoading] = useState(true)
-  const [statuses, setStatuses] = useState<string[]>(['stable', 'updateAvailable', 'removed']);
+  const [filters, setFilters] = useState<string[]>(['stable', 'updateAvailable', 'removed']);
   
   // make a fetch request to our backend at the route /dependencies.
   // call a useEffect here to fetch our data when the page loads and update state.
@@ -33,17 +33,16 @@ export default function MainPageContainer(): React.JSX.Element {
     getDependencies();
   }, []);
 
-  function updateStatuses(status: string){
-    //if statuses has the string, remove it
-    if(statuses.includes(status)){
-      const newStatuses: string[] = [...statuses]
-      newStatuses.splice(newStatuses.indexOf(status),1);
-      setStatuses(newStatuses);
+  function updateFilters(status: string){
+    //if the filter is already applied, remove it from the filters array
+    if(filters.includes(status)){
+      const newFilters: string[] = [...filters]
+      newFilters.splice(newFilters.indexOf(status),1);
+      setFilters(newFilters);
     }
-    //otherwise, add it
+    // if the filter is not already applied, add it to the filters array
     else {
-      const newStatuses: string[] = [...statuses, status]
-      setStatuses(newStatuses);
+      setFilters([...filters, status]);
     }
   }
 
@@ -51,7 +50,7 @@ export default function MainPageContainer(): React.JSX.Element {
   for (const dependency of dependencies) {
     // for each subarray, create a new row, passing in the data from data, 
     // which we get from a fetch request to the back end
-    if(statuses.includes(dependency.deprecationStatus)){
+    if(filters.includes(dependency.deprecationStatus)){
       rows.push(<Row key={dependency.location + dependency.apiVersion} api={dependency.apiVersion} status={dependency.deprecationStatus} location={dependency.name}
       stable={dependency.newVersion ? dependency.newVersion : 'Up to date'} notes={dependency.description ? dependency.description : 'NA'} />);        
     }
@@ -59,7 +58,7 @@ export default function MainPageContainer(): React.JSX.Element {
 
   return (
     <div className='mainPageContainer'>
-      <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' filters={statuses} filter={updateStatuses}/>
+      <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' filters={filters} filter={updateFilters}/>
       {isLoading? <SpinningCircles className="content-loading" /> : null}
       <div className='row-content-container'>
         {rows}        
