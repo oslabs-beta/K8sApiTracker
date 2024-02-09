@@ -22,6 +22,13 @@ export default function MainPageContainer(): React.JSX.Element {
     async function getDependencies() {
       let response = await fetch('/dependencies');
       const responseData = await response.json()
+      //sort the response data alphabetically by deprecation status
+      responseData.sort((a: any, b:any) => {
+        console.log(a,b, a.deprecationStatus > b.deprecationStatus);
+        if (a.deprecationStatus < b.deprecationStatus) return -1;
+        if (a.deprecationStatus > b.deprecationStatu) return 1;
+        return 0;
+      })
       setDependencies(responseData);
       setRenderedDependencies(responseData)
       setLoading(false);
