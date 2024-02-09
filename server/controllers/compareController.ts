@@ -9,17 +9,12 @@ type compareController = {
 const compareController = {
 
   compare: (req: Request, res: Response, next: NextFunction) => {
-    // console.log('Inside of compare controller');
     const kubePug = res.locals.apiInfo;
     const clusterData = res.locals.clusterData;
-    //console.log(clusterData)
-    //     
+
     // Iterate through clusterData objects
     for (const object of clusterData) {
       let found: boolean = false;
-
-      // console.log('clusterData Kind: ', object.kind);
-      // console.log('object.apiVersion: ', object.apiVersion);
 
       // If kubePug object containes the current object
       if (kubePug.hasOwnProperty(object.kind)) {
@@ -52,16 +47,7 @@ const compareController = {
         object.description = false;
         object.deprecationStatus = 'stable';
       }
-
-
-      // console.log('Kind: ', object.kind);
-      // console.log('Deprecation: ', object.deprecationStatus);
-      // console.log('New Version: ', object.newVersion);
-      // console.log('----------------------------------------');
-
-
     }
-    //   console.log('res.locals.clusterData', clusterData)
     return next();
   }
 

@@ -25,11 +25,9 @@ type ApiInfo = {
 
 const kubePugController: KubePugController = {
 getApiInfo: (req: Request, res: Response, next: NextFunction) => {
-  // console.log('Inside of kubePug controller');
   fetch('https://kubepug.xyz/data/data.json')
     .then(apiInfo => apiInfo.json())
     .then((data: ApiObject[]) => {
-      // console.log('data', data);
       const apiInfo: ApiInfo = {};
       for (const apiObject of data){
         apiInfo[apiObject.kind]  = {
@@ -39,7 +37,6 @@ getApiInfo: (req: Request, res: Response, next: NextFunction) => {
         };
       };
       res.locals.apiInfo = apiInfo;
-      // console.log('res.locals.apiInfo', res.locals.apiInfo)
       return next();
     })
     .catch(err => {
