@@ -7,7 +7,8 @@ type RowHeaderProps = {
   location: string,
   stable: string,
   notes: string,
-  filter: () => void;
+  filters: string[],
+  filter: (status: string)=> void
 }
 
 export default function RowHeader(props:RowHeaderProps):React.JSX.Element {
@@ -18,7 +19,7 @@ export default function RowHeader(props:RowHeaderProps):React.JSX.Element {
         <div className='headerName'>{props.location}</div>
         <div className='headerName-status'>
           <div>{props.status}</div>
-          < FilterDropdown  />
+          < FilterDropdown filters={props.filters} filter={props.filter}/>
         </div>
         <div className='headerName-stable'>{props.stable}</div>
         <div className='headerName-notes'>{props.notes}</div>

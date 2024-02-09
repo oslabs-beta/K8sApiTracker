@@ -1,31 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
 
 //more info here: https://mui.com/material-ui/react-select/#multiple-select
 
-export default function FilterDropdown() {
-  const [statuses, setStatuses] = useState<string[]>([]);
+type FilterDropdown = {
+  filters: string[],
+  filter: (status: string)=> void
+}
 
-  function updateStatuses(status: string){
-    //if status has the string, remove it
-    if(statuses.includes(status)){
-      const newStatuses: string[] = [...statuses]
-      newStatuses.splice(newStatuses.indexOf(status),1);
-      setStatuses(newStatuses);
-    }
-    //otherwise, add it
-    else{
-      const newStatuses: string[] = [...statuses]
-      newStatuses.push(status);
-      setStatuses(newStatuses);
-    }
-  }
-
+export default function FilterDropdown(props: FilterDropdown) {
   return (
     <div>
       <FormControl sx={{ m: 1, width: '10vw' }}>
@@ -34,19 +22,19 @@ export default function FilterDropdown() {
           // use multiple to allow the select dropdown to check multiple options at once
           multiple
           // value stores the text in the box 
-          value={statuses} 
+          value={props.filters} 
         >
           <MenuItem>
-            <Checkbox checked={statuses.includes('stable')} onChange={()=>updateStatuses('stable')}/>
+            <Checkbox checked={props.filters.includes('stable')} onChange={()=>props.filter('stable')}/>
             <ListItemText primary="stable" />
           </MenuItem>
           <MenuItem>
-            <Checkbox checked={statuses.includes('updateAvailable')} onChange={()=>updateStatuses('updateAvailable')}/>
+            <Checkbox checked={props.filters.includes('updateAvailable')} onChange={()=>props.filter('updateAvailable')}/>
             <ListItemText primary="updateAvailable" />
           </MenuItem>
           <MenuItem>
-            <Checkbox checked={statuses.includes('deprecated')} onChange={()=>updateStatuses('deprecated')}/>
-            <ListItemText primary="deprecated" />
+            <Checkbox checked={props.filters.includes('removed')} onChange={()=>props.filter('removed')}/>
+            <ListItemText primary="removed" />
           </MenuItem>
         </Select>
       </FormControl>
