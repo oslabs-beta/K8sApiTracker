@@ -11,7 +11,6 @@ export default function MainPageContainer(): React.JSX.Element {
 
   // initialize our state
   const [dependencies, setDependencies] = useState([]);
-  const [renderedDependencies, setRenderedDependencies] = useState([]);
   const [isLoading, setLoading] = useState(true)
   const [statuses, setStatuses] = useState<string[]>(['stable', 'updateAvailable', 'removed']);
   
@@ -24,31 +23,15 @@ export default function MainPageContainer(): React.JSX.Element {
       const responseData = await response.json()
       //sort the response data alphabetically by deprecation status
       responseData.sort((a: any, b:any) => {
-        console.log(a,b, a.deprecationStatus > b.deprecationStatus);
         if (a.deprecationStatus < b.deprecationStatus) return -1;
         if (a.deprecationStatus > b.deprecationStatu) return 1;
         return 0;
       })
       setDependencies(responseData);
-      setRenderedDependencies(responseData)
       setLoading(false);
     }
     getDependencies();
   }, []);
-
-  useEffect(()=> {
-    // create a new array
-    const newArr: any[] = [];
-    //add all that are in the desired group from our master data
-    for (const dependency of dependencies) {
-      // only add it if the user has filtered for it
-      if(statuses.includes(dependency.deprecationStatus)){
-        newArr.push(dependency);
-      }
-    }
-    //update the state
-    setRenderedDependencies(newArr);
-  }, [statuses])
 
   function updateStatuses(status: string){
     //if statuses has the string, remove it
@@ -65,11 +48,13 @@ export default function MainPageContainer(): React.JSX.Element {
   }
 
   //iterate through state to make all of our rows, and push them into the array
-  for (const dependency of renderedDependencies) {
+  for (const dependency of dependencies) {
     // for each subarray, create a new row, passing in the data from data, 
     // which we get from a fetch request to the back end
-    rows.push(<Row key={dependency.location + dependency.apiVersion} api={dependency.apiVersion} status={dependency.deprecationStatus} location={dependency.name}
-      stable={dependency.newVersion ? dependency.newVersion : 'Up to date'} notes={dependency.description ? dependency.description : 'NA'} />);      
+    if(statuses.includes(dependency.deprecationStatus)){
+      rows.push(<Row key={dependency.location + dependency.apiVersion} api={dependency.apiVersion} status={dependency.deprecationStatus} location={dependency.name}
+      stable={dependency.newVersion ? dependency.newVersion : 'Up to date'} notes={dependency.description ? dependency.description : 'NA'} />);        
+    }
   }
 
   return (
