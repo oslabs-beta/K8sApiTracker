@@ -1,4 +1,4 @@
 /node_modules
 .DS_Store
-/dist
+dist/bundle.js.LICENSE.txt
 /**/*.js

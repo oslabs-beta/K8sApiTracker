@@ -17,9 +17,15 @@ html {
     color: white;
 }
 
-.kdt-header{
+.kdt-header {
     font-weight: 300;
     margin: 15px 15px 15px 15px;
+}
+
+.summary-container {
+    color: black;
+    background-color: white;
+    width: 100%;
 }
 
 .mainPageContainer {
@@ -52,12 +58,12 @@ html {
 
 .api-info-api {
     display: flex;
-	align-items: center;
+    align-items: center;
     font-size: small;
     flex-wrap: wrap;
     width: 17%;
     margin: 10px;
-    padding: 3px;    
+    padding: 3px;
     border-radius: 5px;
     word-wrap: break-word;
 }
@@ -67,17 +73,17 @@ html {
     align-items: center;
     width: 15%;
     margin: 10px;
-    padding: 3px;    
+    padding: 3px;
 }
 
 .api-info-status-stable {
     display: flex;
-	align-items: center;
+    align-items: center;
     font-size: small;
     flex-wrap: wrap;
     width: 100%;
     height: fit-content;
-    padding: 6px;    
+    padding: 6px;
     border-radius: 10px;
     word-wrap: break-word;
     background-color: rgba(74, 255, 149, 0.122);
@@ -85,12 +91,12 @@ html {
 
 .api-info-status-updateAvailable {
     display: flex;
-	align-items: center;
+    align-items: center;
     font-size: small;
     flex-wrap: wrap;
     width: 100%;
     height: fit-content;
-    padding: 6px;    
+    padding: 6px;
     border-radius: 10px;
     word-wrap: break-word;
     background-color: rgba(255, 204, 0, 0.195);
@@ -98,12 +104,12 @@ html {
 
 .api-info-status-removed {
     display: flex;
-	align-items: center;
+    align-items: center;
     font-size: small;
     flex-wrap: wrap;
     width: 100%;
     height: fit-content;
-    padding: 6px;    
+    padding: 6px;
     border-radius: 10px;
     word-wrap: break-word;
     background-color: rgba(255, 4, 0, 0.213);
@@ -111,22 +117,22 @@ html {
 
 .api-info-location {
     display: flex;
-	align-items: center;
+    align-items: center;
     font-size: small;
     flex-wrap: wrap;
     width: 20%;
     margin: 10px;
-    padding: 3px;    
+    padding: 3px;
     border-radius: 5px;
     word-wrap: break-word;
 }
 
-.api-info-stable-version{
+.api-info-stable-version {
     display: flex;
-	align-items: center;
+    align-items: center;
     width: 15%;
     margin: 10px;
-    padding: 3px; 
+    padding: 3px;
     font-size: small;
 }
 
@@ -134,19 +140,19 @@ html {
     display: flex;
     width: 35%;
     margin: 10px;
-    padding: 3px; 
+    padding: 3px;
     font-size: small;
-    max-height: 100px; 
+    max-height: 100px;
     overflow-y: scroll;
 }
 
 
-.api-info-notes-has-notes{
+.api-info-notes-has-notes {
     display: flex;
-	align-items: center;
+    align-items: center;
     width: 35%;
     margin: 10px;
-    padding: 3px; 
+    padding: 3px;
     font-size: small;
     overflow-y: scroll;
 }
@@ -154,21 +160,21 @@ html {
 .headerName {
     font-size: small;
     margin: 10px;
-    padding: 3px; 
+    padding: 3px;
     width: 20%;
 }
 
 .headerName-api {
     font-size: small;
     margin: 10px;
-    padding: 3px; 
+    padding: 3px;
     width: 17%;
 }
 
 .headerName-stable {
     font-size: small;
     margin: 10px;
-    padding: 3px; 
+    padding: 3px;
     width: 15%;
 }
 
@@ -176,14 +182,14 @@ html {
     display: flex;
     font-size: small;
     margin: 10px;
-    padding: 3px; 
+    padding: 3px;
     width: 15%;
 }
 
 .headerName-notes {
     font-size: small;
     margin: 10px;
-    padding: 3px; 
+    padding: 3px;
     width: 35%;
 }
 
@@ -205,18 +211,18 @@ html {
     font-size: 18px;
 }
 
-.row-content-container{
+.row-content-container {
     max-height: 78vh;
     overflow-y: scroll;
 }
 
-.content-loading{
+.content-loading {
     display: flex;
     width: 100%;
     align-items: center;
     margin: 10px;
 }
 
-.filter-button{
+.filter-button {
     margin-left: 5px;
 }
