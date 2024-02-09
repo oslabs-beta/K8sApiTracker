@@ -1,5 +1,4 @@
 import React from 'react';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
@@ -15,29 +14,30 @@ type FilterDropdown = {
 
 export default function FilterDropdown(props: FilterDropdown) {
   return (
-    <div>
-      <FormControl sx={{ m: 1, width: '10vw' }}>
-        <InputLabel id="demo-multiple-checkbox-label">Filter</InputLabel>
-        <Select
-          // use multiple to allow the select dropdown to check multiple options at once
-          multiple
-          // value stores the text in the box 
-          value={props.filters} 
-        >
-          <MenuItem>
-            <Checkbox checked={props.filters.includes('stable')} onChange={()=>props.filter('stable')}/>
+    <FormControl className="filter-dropdown2">
+      <Select
+        // use multiple to allow the select dropdown to check multiple options at once
+        multiple
+        // value stores the text in the box 
+        value={props.filters} 
+        className="filter-dropdown3"
+      >
+        <div className="filter-dropdown-item">
+          <MenuItem className="menu-item" >
+            <Checkbox className="checkbox" checked={props.filters.includes('stable')} onChange={()=>props.filter('stable')}/>
             <ListItemText primary="stable" />
           </MenuItem>
           <MenuItem>
-            <Checkbox checked={props.filters.includes('updateAvailable')} onChange={()=>props.filter('updateAvailable')}/>
+            <Checkbox className="checkbox" checked={props.filters.includes('updateAvailable')} onChange={()=>props.filter('updateAvailable')}/>
             <ListItemText primary="updateAvailable" />
           </MenuItem>
           <MenuItem>
-            <Checkbox checked={props.filters.includes('removed')} onChange={()=>props.filter('removed')}/>
+            <Checkbox className="checkbox" checked={props.filters.includes('removed')} onChange={()=>props.filter('removed')}/>
             <ListItemText primary="removed" />
           </MenuItem>
-        </Select>
-      </FormControl>
-    </div>
+        </div>
+
+      </Select>
+    </FormControl>
   );
 }

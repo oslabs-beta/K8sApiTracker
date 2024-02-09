@@ -158,38 +158,43 @@ html {
 }
 
 .headerName {
+    display: flex;
+    align-items: center;
     font-size: small;
     margin: 10px;
-    padding: 3px;
     width: 20%;
 }
 
 .headerName-api {
+    display: flex;
+    align-items: center;
     font-size: small;
     margin: 10px;
-    padding: 3px;
     width: 17%;
 }
 
 .headerName-stable {
+    display: flex;
+    align-items: center;
     font-size: small;
     margin: 10px;
-    padding: 3px;
     width: 15%;
 }
 
 .headerName-status {
     display: flex;
+    align-items: center;
+    display: flex;
     font-size: small;
     margin: 10px;
-    padding: 3px;
     width: 15%;
 }
 
 .headerName-notes {
+    display: flex;
+    align-items: center;
     font-size: small;
-    margin: 10px;
-    padding: 3px;
+    /* margin: 10px; */
     width: 35%;
 }
 
@@ -223,6 +228,32 @@ html {
     margin: 10px;
 }
 
-.filter-button {
-    margin-left: 5px;
+.filter-dropdown {
+    margin: 10px;
+    width: 50%;
+    height: 40%;
+}
+
+.filter-dropdown2{
+    width: 100%;
+    height: 100%;
+}
+
+.filter-dropdown3 {
+    height: 100%;
+}
+
+.filter-dropdown-item{
+    width: 50px;
+    font-size: 12px;
+}
+
+.checkbox{
+    background: red;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-item{
+    background: blue;
 }
