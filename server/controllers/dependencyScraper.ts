@@ -50,6 +50,7 @@ const dependencyScraperController: DependencyScraperController = {
                     const obj: ApiObj = {};
                     // use fs method, to get the content from the yaml file
                     const content: string = fs.readFileSync(file, 'utf-8');   
+                    console.log(content);
                     //add all properties to an object using regex to scrape yaml file for values
                     const properties = ['apiVersion', 'kind', 'name', 'namespace', 'image'];
                     const defaults = ['NA', 'NA', 'NA', 'Default', 'NA'];
@@ -69,6 +70,7 @@ const dependencyScraperController: DependencyScraperController = {
                 };
                 //save the data on locals and go to next middleware function
                 res.locals.clusterData = dependencies;
+                console.log(res.locals.clusterData)
                 return next();                   
             }
             catch (err){
