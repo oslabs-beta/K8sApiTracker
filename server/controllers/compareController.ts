@@ -11,7 +11,6 @@ const compareController = {
   compare: (req: Request, res: Response, next: NextFunction) => {
     const kubePug = res.locals.apiInfo;
     const clusterData = res.locals.clusterData;
-
     // Iterate through clusterData objects
     for (const object of clusterData) {
       let found: boolean = false;
@@ -36,9 +35,7 @@ const compareController = {
             object.deprecationStatus = 'updateAvailable';
             object.description = kubePug[object.kind].description;
           }
-
         }
-
       }
 
       // IF not match, make sure clusterData still has appropriate properties
