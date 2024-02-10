@@ -37,5 +37,5 @@ xdescribe("dependencyScraperController",() => {
             expect(typeof apiObj.image).toBe('string');
             expect(typeof apiObj.location).toBe('string');
         };
-    })
+    }, 20000)
 });

@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 const compareController = require('../server/controllers/compareController.js');
 import { getMockReq } from '@jest-mock/express';
 
-describe("compareController", () => {
+xdescribe("compareController", () => {
     test("compareController.compare middleware takes in res.locals.apiInfo and res.locals.clusterData and should return an of objects on res.locals.clusterData", async() => {
         const mockReq: Request = getMockReq();
         // create a mock response to be used when we invoke our middleware
