@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@jest-mock/express": "^2.0.2",
     "@testing-library/dom": "^9.3.4",
     "@types/jest": "^29.5.12",
     "@types/react": "^18.2.48",
@@ -23,6 +24,7 @@
     "mini-css-extract-plugin": "^2.7.7",
     "prettier": "^3.2.4",
     "style-loader": "^3.3.4",
+    "supertest": "^6.3.4",
     "ts-jest": "^29.1.2",
     "ts-loader": "^9.5.1",
     "typescript": "^5.3.3",
