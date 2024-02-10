@@ -70,7 +70,6 @@ const dependencyScraperController: DependencyScraperController = {
                 };
                 //save the data on locals and go to next middleware function
                 res.locals.clusterData = dependencies;
-                console.log(res.locals.clusterData)
                 return next();                   
             }
             catch (err){

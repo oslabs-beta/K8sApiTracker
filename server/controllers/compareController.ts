@@ -35,9 +35,7 @@ const compareController = {
             object.deprecationStatus = 'updateAvailable';
             object.description = kubePug[object.kind].description;
           }
-
         }
-
       }
 
       // IF not match, make sure clusterData still has appropriate properties
