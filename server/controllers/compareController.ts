@@ -11,7 +11,6 @@ const compareController = {
   compare: (req: Request, res: Response, next: NextFunction) => {
     const kubePug = res.locals.apiInfo;
     const clusterData = res.locals.clusterData;
-
     // Iterate through clusterData objects
     for (const object of clusterData) {
       let found: boolean = false;
