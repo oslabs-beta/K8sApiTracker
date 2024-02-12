@@ -1,5 +1,6 @@
 import Row from './Row';
 import RowHeader from './RowHeader';
+import ScanButton from './ScanButton';
 import React, { useState, useEffect } from 'react';
 import { SpinningCircles } from 'react-loading-icons'
 
@@ -13,6 +14,7 @@ export default function MainPageContainer(): React.JSX.Element {
   const [dependencies, setDependencies] = useState([]);
   const [isLoading, setLoading] = useState(true)
   const [filters, setFilters] = useState<string[]>(['stable', 'updateAvailable', 'removed']);
+  const [scanButtonText, setScanButtonText] = useState<string[]>(['Scan a directory of .yaml files', 'Scan a Helm chart before you install it']);
   
   // make a fetch request to our backend at the route /dependencies.
   // call a useEffect here to fetch our data when the page loads and update state.
@@ -56,8 +58,12 @@ export default function MainPageContainer(): React.JSX.Element {
     }
   }
 
+  // create two versions of the scanButton - one for directory scans, one for helm chart scans
+
   return (
     <div className='mainPageContainer'>
+      <ScanButton />
+      <ScanButton />
       <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' filters={filters} filter={updateFilters}/>
       {isLoading? <SpinningCircles className="content-loading" /> : null}
       <div className='row-content-container'>
