@@ -32,11 +32,11 @@ Include another screenshot here
 
 To contribute please fork the repository and submit a pull request with a descriptive explanation of the changes made. Feel free to reach out to us with any questions on the product using the information listed in the Contributors & Contact section. 
 
-Further documentation on the codebase can be found in README's located in the server(link to readme), and src(link to) directories.
+Further documentation on the codebase can be found in README's located in the server(link to readme), and src(link to readme) directories.
 
 Key features on our roadmap include:
 - xyz
-- xyz 
+- xyz
 
 # License
 
