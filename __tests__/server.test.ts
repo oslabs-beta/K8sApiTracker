@@ -9,12 +9,8 @@ describe('dependencies', () => {
         .get('/dependencies')
         .expect(200)
         .expect('Content-Type', /json/)
-        // .then((data: any) => data.json())
         .then((data: any) => { 
-            // console.log('data', data)
             let content = data._body;
-            // console.log('content', content)
-            // expect data to be an array
             expect(Array.isArray(content)).toBe(true)
             for(const apiObj of content){
                 expect(typeof apiObj).toBe('object'); 
@@ -40,9 +36,9 @@ describe("catch all route", () => {
 
 });
 });
-server.close(() => {
+    server.close(() => {
     console.log('HTTP server closed')
-    })
+    });
 //things we need to test
 // server sends static files
 // catch all route handler works
