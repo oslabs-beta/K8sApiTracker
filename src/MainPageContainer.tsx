@@ -59,11 +59,16 @@ export default function MainPageContainer(): React.JSX.Element {
   }
 
   // create two versions of the scanButton - one for directory scans, one for helm chart scans
+  let scanButtons: React.JSX.Element[] = [];
+  for(let i = 0; i < scanButtonText.length; i++) {
+    scanButtons.push(<ScanButton key={`scanButton${i}`} text={scanButtonText[i]}/>);
+  };
 
   return (
     <div className='mainPageContainer'>
-      <ScanButton />
-      <ScanButton />
+      <div id='scanButtonContainer'>
+        {scanButtons}
+      </div>
       <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' filters={filters} filter={updateFilters}/>
       {isLoading? <SpinningCircles className="content-loading" /> : null}
       <div className='row-content-container'>

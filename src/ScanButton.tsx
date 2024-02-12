@@ -1,9 +1,11 @@
 import React from 'react';
 
-export default function ScanButton():React.JSX.Element {
+type ScanButtonProps = {
+  text: string
+};
+
+export default function ScanButton(props:ScanButtonProps):React.JSX.Element {
     return (
-        <div>
-          <button className='scanButton'>Test</button>
-        </div>
+          <button className='scanButton'>{props.text}</button>
       )
 }
