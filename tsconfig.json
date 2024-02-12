@@ -6,7 +6,8 @@
     "target": "es6",
     "allowJs": true,
     "jsx": "react",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "types": ["jest"],
   },
   "files": [
     "server/controllers/clusterController.ts",

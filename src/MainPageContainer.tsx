@@ -6,12 +6,26 @@ import { SpinningCircles } from 'react-loading-icons'
 
 // use this website to change loading icon https://www.npmjs.com/package/react-loading-icons
 
+// define types
+type ApiObj = {
+  deprecationStatus: string,
+  location: string,
+  apiVersion: string,
+  name: string,
+  description: string,
+  newVersion: string
+}
+type MainData = ApiObj[];
+
 export default function MainPageContainer(): React.JSX.Element {
   //create an array of row components
   let rows: React.JSX.Element[] = [];
 
+  // create an array of type maindata to make the default for our state
+  const array: MainData = [];
+
   // initialize our state
-  const [dependencies, setDependencies] = useState([]);
+  const [dependencies, setDependencies] = useState(array);
   const [isLoading, setLoading] = useState(null);
   const [showRowHeader, setRowHeader] = useState(false);
   const [filters, setFilters] = useState<string[]>(['stable', 'updateAvailable', 'removed']);

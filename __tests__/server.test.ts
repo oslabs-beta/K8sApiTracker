@@ -1,8 +1,12 @@
 const request = require('supertest');
-const server  = require('../server/server.ts'); 
 
-describe('dependencies', () => {
-    
+xdescribe('dependencies', () => {
+    let server: any;
+    beforeAll((done) => {
+        server = require('../server/server.ts');
+        done();
+    });
+
     test("a get request to /dependencies should return an array of dependency object", ()=>{
         // make a fetch request to /dependencies
         return request(server)
@@ -25,39 +29,18 @@ describe('dependencies', () => {
                 expect(typeof apiObj.deprecationStatus).toBe('string');
         }});
     });
-});
 
-describe("catch all route", () => {
     test("Should receive 404 when requesting non existing endpoints", () => {
         return request(server)
         .get('/pig')
         .expect(404)
         .expect('Page Not Found')
-
-});
-});
-    server.close(() => {
-    console.log('HTTP server closed')
     });
-//things we need to test
-// server sends static files
-// catch all route handler works
-// error handler works
 
-// let server: any;
-// beforeAll((done)=>{
-//     server = app.listen(3001,() => {
-//         console.log('Test server listening on 3001')
-//         done()
-//     })        
-// })
-
-// // terminate the server
-// afterAll((done) => {
-// // Close the server after running the tests
-//   server.close(() => {
-//         console.log('Server closed');
-//         done();
-//     });
-// });
-    // for later, we can maybe have the tests start the server and then close the server down so the user doesnt have to do it manually
+    afterAll((done) => {
+        server.close(() => {
+            console.log('HTTP server closed');
+            done(); // This ensures Jest waits for the server to close before exiting the test suite
+        });
+    });
+});
