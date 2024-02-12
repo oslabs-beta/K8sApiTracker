@@ -1,1 +1,54 @@
-# K8sDependencyTracker
+Logo goes here
+
+# Table of Contents
+
+
+
+# Kubernetes API Tracker (KAT)
+For users of Kubernetes, encountering deprecated APIs is a common challenge. Sifting through Kubernetes documentation to verify every API used across a sizable product can take a substantial amount of time. KAT is designed to address this issue by enabling users to swiftly identify deprecated APIs and discover appropriate alternatives.
+
+Include screenshot here.
+
+# About The Project
+KAT will scan your kubernetes configuration files, cross check them against a list of deprecated api's, and provide a summary of your cluster in a lightweight GUI. In addition, KAT will identify the location of each API, and provide commentary as well as a recommended replacement. KAT is designed to be run locally for maximum security, never sending your data anywhere. 
+
+# Installation and Getting Started
+
+Requirements: Node Package Manager
+
+1) Clone the project into the root repository where your Kubernetes configuration files exist, or are neste within. KAT is designed to scan the directory in which it is installed, and all nested sub-directories, so please ensure that the location of installation is correct.
+2) Run npm install to install dependencies.
+3) Run TSC to compile all typescript files
+4) Run npm run build to prepare the bundle
+5) Run npm start, and go to localhost:3000 to see all of your dependencies
+    OR
+4) Run npm run dev
+
+Once the project is installed, you should be up and running! Filter dependencies, and scroll through the generated list.
+
+Include another screenshot here
+
+# Contributing
+
+To contribute please fork the repository and submit a pull request with a descriptive explanation of the changes made. Feel free to reach out to us with any questions on the product using the information listed in the Contributors & Contact section. 
+
+Further documentation on the codebase can be found in README's located in the server(link to readme), and src(link to) directories.
+
+Key features on our roadmap include:
+- xyz
+- xyz 
+
+# License
+
+This project is licensed under the MIT License - see the LICENSE file for details
+
+# Contributors & Contact
+
+Matt Hart - Github | Linkedin
+Thomas Ortiz - Github | Linkedin
+Tyler Savitsky - Github | Linkedin
+Yiting Xiao - Github | Linkedin
+
+# Aknowledgements
+
+Thank you to the team at Kubepug(link) for putting together the script to scrape the Kubernetes Repository(link) for the latest deprecated API status. Thank you to the team at Kubernetes for providing the original script (link), and for the excellent documentation.
