@@ -9,7 +9,7 @@ import App from '../src/App'
 describe('Testing on RowHeader', () => {
 
   test('On load of web page, RowHeader should load', () => {
-    // const app = render(<App />)
+    render(<App />)
     expect(2+2).toBe(4)
     });
-}) 
+})
