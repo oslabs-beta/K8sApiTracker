@@ -39,11 +39,11 @@ export default function MainPageContainer(): React.JSX.Element {
 
   // create two versions of the scanButton - one for directory scans, one for helm chart scans
   // change the endpoint of fetch request based on which button is clicked
-  // throttle the buttons until the new rows load and clear out the old rows
+  // disable the buttons until the new rows load and clear out the old rows
   let scanButtons: React.JSX.Element[] = [];
   const handleClick = (endpoint: string) => {
     setDependencies([]);
-    async function getDependencies() {
+    async function getDependencies(): Promise<void> {
     setLoading(true);
     setRowHeader(true);
     let response = await fetch(`${endpoint}`);
@@ -61,7 +61,7 @@ export default function MainPageContainer(): React.JSX.Element {
   }
 
   for(let i = 0; i < scanButtonText.length; i++) {
-    scanButtons.push(<ScanButton key={`scanButton${i}`} text={scanButtonText[i]} onClick={() => handleClick(fetchEndpoint[i])}/>);
+    scanButtons.push(<ScanButton key={`scanButton${i}`} text={scanButtonText[i]} onClick={() => handleClick(fetchEndpoint[i])} isLoading={isLoading}/>);
   };
 
 
@@ -92,7 +92,7 @@ export default function MainPageContainer(): React.JSX.Element {
   return (
     <div className='mainPageContainer'>
       <div id='scanButtonContainer'>
-        {isLoading? null : scanButtons };
+        {scanButtons}
       </div>
       {showRowHeader? <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' filters={filters} filter={updateFilters}/> : false}
       {isLoading? <SpinningCircles className="content-loading" /> : null}
