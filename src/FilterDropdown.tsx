@@ -10,7 +10,7 @@ type FilterDropdown = {
 export default function FilterDropdownNative(props: FilterDropdown) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   function toggleDropdown(){
-      setIsOpen(!isOpen)
+    setIsOpen(!isOpen)
   }
 
   return (
