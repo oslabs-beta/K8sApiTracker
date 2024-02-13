@@ -10,7 +10,7 @@ type ClusterController = {
 }
 
 //define other types
-type NewObj  = {
+type NewObj = {
     name: string,
     kind: string,
     apiVersion: string,
@@ -26,7 +26,7 @@ const clusterController: ClusterController = {
         const childProcess = require('child_process');
 
         const clusterData: ClusterData = [];
-    
+
         async function sh(cmd_to_execute: string) {
             return new Promise(function (resolve, reject) {
                 childProcess.exec(cmd_to_execute, (err: any, stdout: any, stderr: any) => {
@@ -43,12 +43,12 @@ const clusterController: ClusterController = {
                                 namespace: object.metadata.namespace,
                                 image: 'placeholder'
                             }
-    
+
                             if (newObj.kind === 'Pod') {
                                 newObj.image = object.spec.containers[0].image;
                             }
                             else newObj.image = '-';
-    
+
                             clusterData.push(newObj);
                         })
                         resolve(clusterData);
@@ -56,7 +56,7 @@ const clusterController: ClusterController = {
                 });
             });
         }
-    
+
         // The following command is run from the directory that this file is in
         res.locals.clusterData = await sh('kubectl get all -o json');
         return next();
