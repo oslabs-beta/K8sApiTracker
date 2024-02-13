@@ -1,7 +1,7 @@
 import Row from './Row';
 import RowHeader from './RowHeader';
 import ScanButton from './ScanButton';
-import DashboardContainer from './DashboardContainer';
+// import DashboardContainer from './DashboardContainer';
 import React, { useState, useEffect } from 'react';
 import { SpinningCircles } from 'react-loading-icons'
 
@@ -26,31 +26,13 @@ export default function MainPageContainer(): React.JSX.Element {
   const array: MainData = [];
 
   // initialize our state
-  const [dependencies, setDependencies] = useState(array);
+  const [dependencies, setDependencies] = useState([]);
   const [isLoading, setLoading] = useState<boolean>(false);
   const [showRowHeader, setRowHeader] = useState(false);
   const [filters, setFilters] = useState<string[]>(['stable', 'updateAvailable', 'removed']);
   const [scanButtonText, setScanButtonText] = useState<string[]>(['Scan a directory of .yaml files', 'Scan a Helm chart before you install it']);
   const [fetchEndpoint, setFetchEndpoint] = useState<string[]>(['/dependencies', '/helm']);
-  
-  // make a fetch request to our backend at the route /dependencies.
-  // call a useEffect here to fetch our data when the page loads and update state.
-  // Our dependency array is an empty array, so that this only happens once on page load
-  // useEffect(() => {
-  //   async function getDependencies() {
-  //     let response = await fetch('/dependencies');
-  //     const responseData = await response.json()
-  //     //sort the response data alphabetically by deprecation status
-  //     responseData.sort((a: any, b:any) => {
-  //       if (a.deprecationStatus < b.deprecationStatus) return -1;
-  //       if (a.deprecationStatus > b.deprecationStatu) return 1;
-  //       return 0;
-  //     })
-  //     setDependencies(responseData);
-  //     setLoading(false);
-  //   }
-  //   getDependencies();
-  // }, []);
+
 
   // create two versions of the scanButton - one for directory scans, one for helm chart scans
   // change the endpoint of fetch request based on which button is clicked
@@ -59,16 +41,16 @@ export default function MainPageContainer(): React.JSX.Element {
   const handleClick = (endpoint: string) => {
     setDependencies([]);
     async function getDependencies(): Promise<void> {
-    setLoading(true);
-    setRowHeader(true);
-    let response = await fetch(`${endpoint}`);
-    const responseData = await response.json();
-    //sort the response data alphabetically by deprecation status
-    responseData.sort((a: any, b:any) => {
-      if (a.deprecationStatus < b.deprecationStatus) return -1;
-      if (a.deprecationStatus > b.deprecationStatu) return 1;
-      return 0;
-    })
+      setLoading(true);
+      let response = await fetch(`${endpoint}`);
+      const responseData = await response.json();
+      //sort the response data alphabetically by deprecation status
+      responseData.sort((a: any, b:any) => {
+        if (a.deprecationStatus < b.deprecationStatus) return -1;
+        if (a.deprecationStatus > b.deprecationStatu) return 1;
+        return 0;
+      })
+      setRowHeader(true);
       setDependencies(responseData);
       setLoading(false);
     }
@@ -105,11 +87,11 @@ export default function MainPageContainer(): React.JSX.Element {
 
 
   return (
-    <div className='mainPageContainer'>
+    <div id='mainPageContainer'>
       <div id='scanButtonContainer'>
         {scanButtons}
       </div>
-      <DashboardContainer />
+      {/* <DashboardContainer /> */}
       {showRowHeader? <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' filters={filters} filter={updateFilters}/> : false}
       {isLoading? <SpinningCircles className="content-loading" /> : null}
       <div className='row-content-container'>
