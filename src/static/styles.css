@@ -268,8 +268,10 @@ html {
 
 #scanButtonContainer {
     /* margin: 1em 1.5em 0.5em 1.5em; */
+    /* width: 400px; */
+    flex-wrap: wrap;
     display: flex;
-    height: 5em;
+    height: 4.87em;
     flex-direction: row;
     justify-content: space-evenly;
 }
@@ -280,6 +282,7 @@ html {
     background-color: rgb(82, 83, 97);
     border-radius: 10px;
     border-color: rgb(240, 240, 240);
-    box-shadow: 2px 2px 5px ;
-    width: 40em;
+    box-shadow: 1px 1px 3px;
+    height: 50px;
+    width: 260px;
 }
