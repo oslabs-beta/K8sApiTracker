@@ -8,7 +8,7 @@
     "start": "nodemon ./server/server.js",
     "build": "webpack --mode=production --node-env=production",
     "dev": "nodemon ./server/server.js & webpack serve --open --mode=development",
-    "lint": "eslint --ignore-path .eslintignore --ext .js,.ts"
+    "lint": "eslint --ignore-path .eslintignore ."
   },
   "keywords": [],
   "author": "",
