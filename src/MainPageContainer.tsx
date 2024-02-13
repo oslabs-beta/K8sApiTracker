@@ -1,6 +1,7 @@
 import Row from './Row';
 import RowHeader from './RowHeader';
 import ScanButton from './ScanButton';
+import DashboardContainer from './DashboardContainer';
 import React, { useState, useEffect } from 'react';
 import { SpinningCircles } from 'react-loading-icons'
 
@@ -108,6 +109,7 @@ export default function MainPageContainer(): React.JSX.Element {
       <div id='scanButtonContainer'>
         {scanButtons}
       </div>
+      <DashboardContainer />
       {showRowHeader? <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' filters={filters} filter={updateFilters}/> : false}
       {isLoading? <SpinningCircles className="content-loading" /> : null}
       <div className='row-content-container'>
