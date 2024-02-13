@@ -7,6 +7,7 @@ const kubePugController = require('./controllers/kubePugController.js');
 const compareController = require('./controllers/compareController.js');
 const dependencyScraperController = require('./controllers/dependencyScraper.js');
 const helmController = require('./controllers/helmController.js');
+const compareControllerHelm = require('./controllers/compareControllerHelm.js');
 
 const app = express();
 const PORT = 3000;
@@ -35,6 +36,8 @@ app.get('/dependencies',
 
 app.get('/helm',
     helmController.getUserInput,
+    kubePugController.getApiInfo,
+    compareControllerHelm.compare,
     (req: Request, res: Response, next: NextFunction) => {
         console.log('Inside of /helm GET route');
         console.log(res.locals.helmData);
