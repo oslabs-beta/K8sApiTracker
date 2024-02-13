@@ -32,7 +32,5 @@ describe('Testing on RowHeader', () => {
         // test it contains the notes column header
         const notesHeader = screen.getByText('NOTES')
         expect(notesHeader).toBeDefined();
-        // test it contains the filters Array? these may not be necessary
-        // test it contains the filter function? these may not be necessary
     });
 })
