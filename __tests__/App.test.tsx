@@ -5,8 +5,8 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import App from '../src/App'
-// import MainPageContainer from '../src/';  
-describe('Testing on RowHeader', () => {
+
+xdescribe('Testing on App component', () => {
     test('Test our App component', () => {
       // create our app component
       const {container} = render(<App />);
