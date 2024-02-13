@@ -26,7 +26,7 @@ export default function MainPageContainer(): React.JSX.Element {
 
   // initialize our state
   const [dependencies, setDependencies] = useState(array);
-  const [isLoading, setLoading] = useState(null);
+  const [isLoading, setLoading] = useState<boolean>(false);
   const [showRowHeader, setRowHeader] = useState(false);
   const [filters, setFilters] = useState<string[]>(['stable', 'updateAvailable', 'removed']);
   const [scanButtonText, setScanButtonText] = useState<string[]>(['Scan a directory of .yaml files', 'Scan a Helm chart before you install it']);

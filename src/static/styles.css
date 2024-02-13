@@ -34,9 +34,9 @@ html {
     background-color: rgb(49, 49, 49);
     border-radius: 20px;
     border: 5px solid rgb(82, 83, 97);
-    align-items: left;
     overflow: hidden;
     width: 85vw;
+    margin-bottom: .8vw;
 }
 
 .row {
