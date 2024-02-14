@@ -363,3 +363,9 @@ html {
     align-items: center;
     justify-content: center;
 }
+
+.buttons-and-dashboard-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}

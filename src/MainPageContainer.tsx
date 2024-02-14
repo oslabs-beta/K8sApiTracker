@@ -144,8 +144,10 @@ export default function MainPageContainer(): React.JSX.Element {
 
   return (
     <div className="main-outer-div">
-      {showRowHeader ? <DashboardContainer chartData={pieChartInfo}/> : false}
-      <ScanButtonsContainer key="scanButtonContainer" handleClick={handleClick} isLoading={isLoading} repoHandleChange={repoHandleChange} chartHandleChange={chartHandleChange} helmChartPath={helmChartPath} helmRepoPath={helmRepoPath} />
+      <div className="buttons-and-dashboard-container">
+        {showRowHeader ? <DashboardContainer chartData={pieChartInfo}/> : false}
+        <ScanButtonsContainer key="scanButtonContainer" handleClick={handleClick} isLoading={isLoading} repoHandleChange={repoHandleChange} chartHandleChange={chartHandleChange} helmChartPath={helmChartPath} helmRepoPath={helmRepoPath} />        
+      </div>
       {showRowHeader || isLoading ?
         <div id='mainPageContainer'>
         <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' filters={filters} filter={updateFilters} />
