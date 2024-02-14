@@ -36,7 +36,7 @@ html {
     border: 5px solid rgb(82, 83, 97);
     overflow: hidden;
     width: fit-content;
-    max-width: 85vw;
+    max-width: 90vw;
     margin-bottom: 2vw;
     height: fit-content;
 }
@@ -56,6 +56,7 @@ html {
     color: rgb(220, 220, 220);
     background-color: rgb(82, 83, 97);
     border-radius: 10px;
+    width: 85vw;
 }
 
 .api-info-api {
@@ -123,9 +124,11 @@ html {
     font-size: small;
     flex-wrap: wrap;
     width: 20%;
+    min-width: 20%;
     margin: 10px;
     padding: 3px;
     border-radius: 5px;
+    display: inline-block;
     word-wrap: break-word;
 }
 

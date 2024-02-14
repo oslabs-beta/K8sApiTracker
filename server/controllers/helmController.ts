@@ -5,17 +5,16 @@ type HelmController = {
     getUserInput: getUserInput;
 }
 type NewObj = {
-    name: string,
-    kind: string,
-    apiVersion: string,
-    namespace: string,
-    image: string
+    name?: string,
+    kind?: string,
+    apiVersion?: string,
+    namespace?: string,
+    image?: string
 }
-type MatchedData = String[];
+type MatchedData = string[];
 type CleanData = NewObj[];
 
 const helmController: HelmController = {
-
 
     getUserInput: async (req, res, next) => {
 
@@ -39,7 +38,7 @@ const helmController: HelmController = {
 
                         const regExp = new RegExp('(?=Source: )(.*?)(.yaml)|(?=apiVersion: )(.*?)(?=\\nkind)|(?=kind: )(.*?)(?=\\n)', "gm");
 
-                        let regExpData = manifest.match(regExp);
+                        const regExpData = manifest.match(regExp);
 
                         resolve(regExpData);
                     }
@@ -125,7 +124,7 @@ const helmController: HelmController = {
                 newObj.image = 'placeholder';
                 cleanMatchedData.push(newObj);
             }
-        };
+        }
 
         res.locals.helmData = cleanMatchedData;
 
@@ -134,5 +133,3 @@ const helmController: HelmController = {
 }
 
 module.exports = helmController;
-
-
