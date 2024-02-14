@@ -357,3 +357,10 @@ html {
     flex-direction: column;
     align-items: center;
 }
+
+.pie-chart-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
