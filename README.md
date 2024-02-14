@@ -1,4 +1,4 @@
-<p align="center"><img src="./logo.png" /></p>
+<p align="center"><img src="./logo2.png" width="300" /></p>
 
 # Kubernetes API Tracker (KAT)
 For users of Kubernetes, encountering deprecated APIs is a common challenge. Sifting through Kubernetes documentation to verify every API used across a sizable product can take a substantial amount of time. KAT is designed to address this issue by enabling users to swiftly identify deprecated APIs and discover appropriate alternatives.
