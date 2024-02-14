@@ -40,4 +40,4 @@ describe('test on Row component', () => {
         const siIfixit = container.getElementsByClassName('icon-deprecated');
         expect(siIfixit).toBeDefined();
     });
-})
+});
