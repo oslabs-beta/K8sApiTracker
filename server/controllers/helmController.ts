@@ -20,7 +20,7 @@ const helmController: HelmController = {
 
         const childProcess = require('child_process');
 
-        /* 'sh' function will run a child process to execute a command in the user's terminal; the command being a helm install w/ dry-run and debug flags for whatever helm chart the user inputs in the front end. The returned object has a 'manifest' property that represents the .yaml files of that helm chart. We then use a regex expression to parse that data and store into an array. */
+        /* 'installChart' and repoProcess functions run child processes to execute a command in the user's terminal; the command being a helm install w/ dry-run and debug flags for whatever helm chart the user inputs in the front end, along with the respective chart's command to link the repo to the user's computer. The returned object from installChart has a 'manifest' property that represents the .yaml files of that helm chart. We then use a regex expression to parse that data and store into an array. */
 
         async function installChart(cmd_to_execute: string) {
             console.log('Inside installChart child process');
@@ -47,8 +47,6 @@ const helmController: HelmController = {
             });
         }
 
-        // --------------------------------------------------------------------------------
-        // --------------------------------------------------------------------------------
         async function repoProcess(cmd_to_execute: string) {
             console.log('Inside of sh function');
             return new Promise(function (resolve, reject) {
@@ -63,55 +61,31 @@ const helmController: HelmController = {
                 });
             });
         }
-        // --------------------------------------------------------------------------------
-        // --------------------------------------------------------------------------------
 
+        /* Get helm chart install command from user input. Then reformat the string to include the dry-run and debug flags with a json output at the end. Check to see if the repo input was populated, if so, run that in it's own child process first. If it's not run and the repo hasn't been linked on the user's machine, the front end will alert the user to submit it. Finally, call the 'repoProces' function above with the cleaned user input to execute the dry-run chart install, the output of which will be iterated through and filed into an array of objects representing each .yaml file in the chart. */
 
-        /* Get the user input which is the helm install command copied from a chart repo, like Artifact Hub. Then, reformat the string to include the dry-run and debug flags with a json output at the end. Finally, call the 'sh' function above with the cleaned user input to execute the dry-run chart install */
-        //! Update comments to explain checking for and adding + removing repo
-
-        console.log('req.body.helmChartPath: ', req.body.helmChartPath);
-        console.log('req.body.helmRepoPath: ', req.body.helmRepoPath);
-
-        // If repo body exists, concat it to terminal command to add (before the dry-run install) and after to delete, else leave both as empty strings
-        let addRepo = '';
-
-        // Store user's input and concat to proper syntax for helm install as dry-run in debug mode
         let userInput = req.body.helmChartPath;
-        // Remove 'helm install ' from user input then concat it back on with '--dry-run --debug ' and '-o json' at the end
         userInput = userInput.slice(13);
-        // userInput = `${addRepo}helm install --dry-run --debug ${userInput} -o json${removeRepo}`;
         userInput = `helm install --dry-run --debug ${userInput} -o json`;
 
-
-        // If repo is added, run child process before install
         if (req.body.helmRepoPath.length) {
-            addRepo = `${req.body.helmRepoPath}`;
+            const addRepo = `${req.body.helmRepoPath}`;
             await repoProcess(addRepo);
         }
 
         const matchedData: any = await installChart(userInput);
 
-        console.log('addRepo: ', addRepo);
-        console.log('Cleaned User Input: ', userInput);
-
         /* Now that we have the raw properties back from the chart install, iterate through that array, creating a new object whenever we hit an element that starts with "Source: ". Populate that object with the next two elements which should be the apiVersion and kind. Then hard code the namespace and image properties which will be default for the dry-run chart installs. This object is in the same format as the object that we persist through our middleware when scanning a users cluster, allowing us to render consistent data on the front end regardless of 'scan' type. */
 
         const cleanMatchedData: CleanData = [];
 
-        console.log('matchedData: ', matchedData);
-
         for (let i = 0; i < matchedData.length; i++) {
-
             // Iterate through matchedData looking for elements that begin with "Source: " 
             if (matchedData[i].slice(0, 6) === 'Source') {
                 // When found, init a new object to begin storing the next several elements into
                 const newObj: NewObj = {}
                 // Store that first "Source: " element in the object, slicing off the "Source: " so it's just the name of the .yaml file
                 newObj.name = matchedData[i].slice(8)
-
-                // Now, maintain the position of i, but use a secont pointer to iterate over the next elements, searching for, and storing into the new object, the "apiVersion" and "kind" elements, splicing respectively as we did with "Source: " above, until the next "Source: " element is found, at which point, reassign i to i + j to move the first point forward to this next "Source: " element
-
                 // Check for apiVersion
                 if (i + 1 < matchedData.length) {
                     if (matchedData[i + 1].slice(0, 3) === 'api') {
