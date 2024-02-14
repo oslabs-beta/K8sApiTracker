@@ -15,6 +15,8 @@ describe('test on Row component', () => {
         expect(location).toBeDefined();
         const status = container.getElementsByClassName("api-info-status-status");
         expect(status).toBeDefined();
+        const stable = container.getElementsByClassName("api-info-stable-version");
+        expect(stable).toBeDefined();
         const version = container.getElementsByClassName('api-info-stable-version');
         expect(version).toBeDefined();
         const notes = container.getElementsByClassName('api-info-notes');

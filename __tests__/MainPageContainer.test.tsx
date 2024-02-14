@@ -8,14 +8,14 @@ import MainPageContainer from '../src/MainPageContainer';
 
 // import MainPageContainer from '../src/'; 
 describe('Testing on MainPageContainer', () => {
-test('Test our MainPageContainer component', () => {
-//render MainPageContainer
-const {container} = render(<MainPageContainer/>);
-// expect the component to exist
-const scanButtonContainer = screen.queryByTestId('scanButtonContainer');
-expect(scanButtonContainer).toBeDefined();
-const rowContentContainer = container.getElementsByClassName('row-content-container');
-expect(rowContentContainer).toBeDefined();
+  test('Test our MainPageContainer component', () => {
+    //render MainPageContainer
+    const {container} = render(<MainPageContainer/>);
+    // expect the component to exist
+    const scanButtonContainer = screen.queryByTestId('scanButtonContainer');
+    expect(scanButtonContainer).toBeDefined();
+    const rowContentContainer = container.getElementsByClassName('row-content-container');
+    expect(rowContentContainer).toBeDefined();
 });
 // test('render rowHeader if showRowHeader is true', () => {
 // const {container} = render(<MainPageContainer/>);
