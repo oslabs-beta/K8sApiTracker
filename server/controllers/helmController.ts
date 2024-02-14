@@ -18,6 +18,7 @@ const helmController: HelmController = {
 
 
     getUserInput: async (req, res, next) => {
+
         const childProcess = require('child_process');
 
         /* 'sh' function will run a child process to execute a command in the user's terminal; the command being a helm install w/ dry-run and debug flags for whatever helm chart the user inputs in the front end. The returned object has a 'manifest' property that represents the .yaml files of that helm chart. We then use a regex expression to parse that data and store into an array. */
@@ -46,11 +47,16 @@ const helmController: HelmController = {
         }
 
         /* Get the user input which is the helm install command copied from a chart repo, like Artifact Hub. Then, reformat the string to include the dry-run and debug flags with a json output at the end. Finally, call the 'sh' function above with the cleaned user input to execute the dry-run chart install */
+        //! Update comments to explain checking for and adding + removing repo
+        if (req.body.helmRepoPath.length) {
+            console.log('Repo body has length');
+        }
+        else console.log(`Repo body doesn't have length`);
 
-        //! ---------------- HARD CODED VERSION - UPDATE BEFORE PRODUCTION -----------------
-        // Check users input and concat to proper syntax for helm install as dry-run in debug mode
-        let userInput = 'helm install my-prometheus prometheus-community/prometheus --version 25.11.1';
-        //! --------------------------------------------------------------------------------
+        console.log('req.body.helmChartPath: ', req.body.helmChartPath);
+        console.log('req.body.helmRepoPath: ', req.body.helmRepoPath);
+        // Store user's input and concat to proper syntax for helm install as dry-run in debug mode
+        let userInput = req.body.helmChartPath;
 
         // Remove 'helm install ' from user input then concat it back on with '--dry-run --debug ' and '-o json' at the end
         userInput = userInput.slice(13);

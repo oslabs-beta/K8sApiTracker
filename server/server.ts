@@ -34,13 +34,13 @@ app.get('/dependencies',
     });
 
 
-app.get('/helm',
+app.post('/helm',
     helmController.getUserInput,
     kubePugController.getApiInfo,
     compareControllerHelm.compare,
-    (req: Request, res: Response, next: NextFunction) => {
+    (req: Request, res: Response) => {
         console.log('Inside of /helm GET route');
-        console.log(res.locals.helmData);
+        // console.log(res.locals.helmData);
         res.status(200).json(res.locals.helmData);
     })
 

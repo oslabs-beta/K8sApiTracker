@@ -45,6 +45,9 @@ const compareController = {
         object.deprecationStatus = 'stable';
       }
     }
+
+    res.locals.helmData = clusterData;
+
     return next();
   }
 
