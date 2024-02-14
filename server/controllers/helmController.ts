@@ -11,7 +11,7 @@ type NewObj = {
     namespace?: string,
     image?: string
 }
-type MatchedData = string[];
+// type MatchedData = string[];
 type CleanData = NewObj[];
 
 const helmController: HelmController = {
@@ -89,7 +89,7 @@ const helmController: HelmController = {
             await repoProcess(addRepo);
         }
 
-        const matchedData: MatchedData = await installChart(userInput);
+        const matchedData: any = await installChart(userInput);
 
         console.log('addRepo: ', addRepo);
         console.log('Cleaned User Input: ', userInput);
