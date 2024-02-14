@@ -18,7 +18,7 @@ type ApiObj = {
 }
 type MainData = ApiObj[];
 
-type PieChartData = {name: string, value: number}
+type PieChartData = {name: string, value: number, color: string}
 type PieChartInfo = PieChartData[]
 
 export default function MainPageContainer(): React.JSX.Element {
@@ -32,7 +32,7 @@ export default function MainPageContainer(): React.JSX.Element {
   const [filters, setFilters] = useState<string[]>(['stable', 'updateAvailable', 'removed']);
   const [helmChartPath, setHelmChartPath] = useState<string>('');
   const [helmRepoPath, setHelmRepoPath] = useState<string>('');
-  const [pieChartInfo, setPieChartInfo] = useState<PieChartInfo>([{ name: 'stable', value: 12 }, { name: 'updateAvailable', value: 4 },{ name: 'removed', value: 1 },])
+  const [pieChartInfo, setPieChartInfo] = useState<PieChartInfo>([])
 
   // create two versions of the scanButton - one for directory scans, one for helm chart scans
   // change the fetch request based on which button is clicked, and if it is a Helm scan attach the input data
@@ -137,14 +137,15 @@ export default function MainPageContainer(): React.JSX.Element {
       if(dependency.deprecationStatus === 'updateAvailable') updateAvailable ++;
       if(dependency.deprecationStatus === 'removed') removed ++;
     }
-    arr.push({name: 'stable', value: stable }, {name: 'updateAvailable', value: updateAvailable },{name: 'removed', value: removed } )
+    arr.push({name: 'stable', value: stable, color: '#00ff00' }, {name: 'updateAvailable', value: updateAvailable, color: '#FFFF00' },{name: 'removed', value: removed, color: '#ff0000' } )
     //update the chartData
     setPieChartInfo(arr);
   },[dependencies])
 
   return (
-    <div>
-      {showRowHeader ? <DashboardContainer chartData={pieChartInfo}/> : false}
+    <div className="main-outer-div">
+      <DashboardContainer chartData={pieChartInfo}/>
+      {/* {showRowHeader ? <DashboardContainer chartData={pieChartInfo}/> : false} */}
       <div id='mainPageContainer'>
         <ScanButtonsContainer key="scanButtonContainer" handleClick={handleClick} isLoading={isLoading} repoHandleChange={repoHandleChange} chartHandleChange={chartHandleChange} helmChartPath={helmChartPath} helmRepoPath={helmRepoPath} />
         {showRowHeader ? <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' filters={filters} filter={updateFilters} /> : false}
