@@ -279,6 +279,20 @@ html {
     /* width: fit-content; */
 }
 
+#helmSection {
+    margin: 1em 1.5em 1em 1.5em;
+    color: rgb(220, 220, 220);
+    border: 2px solid rgb(82, 83, 97);
+    background-color: rgb(82, 83, 97);
+    border-radius: 10px;
+    border-color: rgb(240, 240, 240);
+    padding: 1em;
+    font-size: small;
+    box-shadow: 2px 2px 5px ;
+    display: flex;
+    flex-direction: column;
+}
+
 .scanButton {
     margin: 1em 1.5em 1em 1.5em;
     color: rgb(220, 220, 220);
@@ -286,6 +300,17 @@ html {
     border-radius: 10px;
     border-color: rgb(240, 240, 240);
     box-shadow: 2px 2px 5px ;
-    width:20em;
+    width: 26em;
+    padding: 1em;
+}
+
+#scanButton1 {
+    margin: 1em 1.5em 1em 1.5em;
+    color: rgb(220, 220, 220);
+    background-color: rgb(82, 83, 97);
+    border-radius: 10px;
+    border-color: rgb(240, 240, 240);
+    box-shadow: 2px 2px 5px ;
+    width:21em;
     padding: 1em;
 }
