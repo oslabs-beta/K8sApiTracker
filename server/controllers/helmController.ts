@@ -99,14 +99,18 @@ const helmController: HelmController = {
 
         const cleanMatchedData: CleanData = [];
 
+        console.log('matchedData: ', matchedData);
+
         for (let i = 0; i < matchedData.length; i++) {
 
-            // Check for name (aka: 'Source: ')
-            if (matchedData[i].slice(0, 3) === 'Sou') {
-
+            // Iterate through matchedData looking for elements that begin with "Source: " 
+            if (matchedData[i].slice(0, 6) === 'Source') {
+                // When found, init a new object to begin storing the next several elements into
                 const newObj: NewObj = {}
-
+                // Store that first "Source: " element in the object, slicing off the "Source: " so it's just the name of the .yaml file
                 newObj.name = matchedData[i].slice(8)
+
+                // Now, maintain the position of i, but use a secont pointer to iterate over the next elements, searching for, and storing into the new object, the "apiVersion" and "kind" elements, splicing respectively as we did with "Source: " above, until the next "Source: " element is found, at which point, reassign i to i + j to move the first point forward to this next "Source: " element
 
                 // Check for apiVersion
                 if (i + 1 < matchedData.length) {
@@ -115,7 +119,6 @@ const helmController: HelmController = {
                         i++;
                     }
                 }
-
                 // Check for kind
                 if (i + 1 < matchedData.length) {
                     if (matchedData[i + 1].slice(0, 3) === 'kin') {
@@ -123,17 +126,13 @@ const helmController: HelmController = {
                         i++;
                     }
                 }
-
                 // Init namespace to 'default' and image to 'placeholder'
                 newObj.namespace = 'default';
                 newObj.image = 'placeholder';
                 cleanMatchedData.push(newObj);
             }
         }
-        console.log('cleanMatchedData: ', cleanMatchedData);
-
         res.locals.helmData = cleanMatchedData;
-
         return next();
     }
 }
