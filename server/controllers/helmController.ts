@@ -48,19 +48,31 @@ const helmController: HelmController = {
 
         /* Get the user input which is the helm install command copied from a chart repo, like Artifact Hub. Then, reformat the string to include the dry-run and debug flags with a json output at the end. Finally, call the 'sh' function above with the cleaned user input to execute the dry-run chart install */
         //! Update comments to explain checking for and adding + removing repo
-        if (req.body.helmRepoPath.length) {
-            console.log('Repo body has length');
-        }
-        else console.log(`Repo body doesn't have length`);
 
         console.log('req.body.helmChartPath: ', req.body.helmChartPath);
         console.log('req.body.helmRepoPath: ', req.body.helmRepoPath);
+
+
+        // If repo body exists, concat it to terminal command to add (before the dry-run install) and after to delete, else leave both as empty strings
+        let addRepo = '';
+        let removeRepo = addRepo;
+        if (req.body.helmRepoPath.length) {
+            addRepo = `${req.body.helmRepoPath} && `;
+            // Slice 'helm repo add' and concat back on 'helm repo remove'
+            removeRepo = req.body.helmRepoPath.slice(14)
+            removeRepo = ` && helm repo remove ${removeRepo}`;
+
+        }
+
+        console.log('addRepo: ', addRepo);
+        console.log('removeRepo: ', removeRepo);
+
         // Store user's input and concat to proper syntax for helm install as dry-run in debug mode
         let userInput = req.body.helmChartPath;
 
         // Remove 'helm install ' from user input then concat it back on with '--dry-run --debug ' and '-o json' at the end
         userInput = userInput.slice(13);
-        userInput = `helm install --dry-run --debug ${userInput} -o json`;
+        userInput = `${addRepo}helm install --dry-run --debug ${userInput} -o json${removeRepo}`;
 
         console.log('Cleaned User Input: ', userInput);
 
