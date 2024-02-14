@@ -35,8 +35,7 @@ html {
     border-radius: 20px;
     border: 5px solid rgb(82, 83, 97);
     overflow: hidden;
-    width: fit-content;
-    max-width: 90vw;
+    width: 90vw;
     margin-bottom: 2vw;
     height: fit-content;
 }
