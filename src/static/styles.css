@@ -270,6 +270,8 @@ html {
 
 #scanButtonContainer {
     /* margin: 1em 1.5em 0.5em 1.5em; */
+    /* width: 400px; */
+    flex-wrap: wrap;
     display: flex;
     height: fit-content;
     flex-direction: column;
@@ -288,7 +290,7 @@ html {
     border-color: rgb(240, 240, 240);
     padding: 1em;
     font-size: small;
-    box-shadow: 2px 2px 5px ;
+    box-shadow: 2px 2px 5px;
     display: flex;
     flex-direction: column;
 }
@@ -299,7 +301,7 @@ html {
     background-color: rgb(82, 83, 97);
     border-radius: 10px;
     border-color: rgb(240, 240, 240);
-    box-shadow: 2px 2px 5px ;
+    box-shadow: 2px 2px 5px;
     width: 26em;
     padding: 1em;
 }
@@ -310,7 +312,7 @@ html {
     background-color: rgb(82, 83, 97);
     border-radius: 10px;
     border-color: rgb(240, 240, 240);
-    box-shadow: 2px 2px 5px ;
-    width:21em;
+    box-shadow: 2px 2px 5px;
+    width: 21em;
     padding: 1em;
 }

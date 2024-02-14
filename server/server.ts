@@ -6,6 +6,8 @@ import { Request, Response, NextFunction } from 'express';
 const kubePugController = require('./controllers/kubePugController.js');
 const compareController = require('./controllers/compareController.js');
 const dependencyScraperController = require('./controllers/dependencyScraper.js');
+const helmController = require('./controllers/helmController.js');
+const compareControllerHelm = require('./controllers/compareControllerHelm.js');
 
 const app = express();
 const PORT = 3000;
@@ -30,6 +32,17 @@ app.get('/dependencies',
     (req: Request, res: Response) => {
         res.status(200).json(res.locals.clusterData);
     });
+
+
+app.post('/helm',
+    helmController.getUserInput,
+    kubePugController.getApiInfo,
+    compareControllerHelm.compare,
+    (req: Request, res: Response) => {
+        console.log('Inside of /helm GET route');
+        // console.log(res.locals.helmData);
+        res.status(200).json(res.locals.helmData);
+    })
 
 // Catch All Handler
 app.use('*', (req: Request, res: Response, next: NextFunction) => {
