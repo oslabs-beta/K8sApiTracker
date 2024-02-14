@@ -45,28 +45,39 @@ export default function MainPageContainer(): React.JSX.Element {
     async function getDependencies(): Promise<void> {
       if (endpoint === '/helm') {
         setLoading(true);
-        let response = await fetch(`/helm`, {
-          method: 'POST',
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            helmChartPath: helmChartPath,
-            helmRepoPath: helmRepoPath
+        try {
+          let response = await fetch(`/helm`, {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              helmChartPath: helmChartPath,
+              helmRepoPath: helmRepoPath
+            })
+          });
+          const responseData = await response.json();
+          console.log('responseData: ', responseData);
+          //sort the response data alphabetically by deprecation status
+          responseData.sort((a: any, b: any) => {
+            if (a.deprecationStatus < b.deprecationStatus) return -1;
+            if (a.deprecationStatus > b.deprecationStatus) return 1;
+            return 0;
           })
-        });
-        const responseData = await response.json();
-        //sort the response data alphabetically by deprecation status
-        responseData.sort((a: any, b: any) => {
-          if (a.deprecationStatus < b.deprecationStatus) return -1;
-          if (a.deprecationStatus > b.deprecationStatus) return 1;
-          return 0;
-        })
-        setRowHeader(true);
-        setDependencies(responseData);
-        setHelmChartPath('');
-        setHelmRepoPath('');
-        setLoading(false);
+          setRowHeader(true);
+          setDependencies(responseData);
+          setHelmChartPath('');
+          setHelmRepoPath('');
+          setLoading(false);
+        }
+        catch {
+          alert('Repo not linked. Please copy heml repo add command.');
+          setHelmChartPath('');
+          setHelmRepoPath('');
+          setLoading(false);
+        }
+
+
       } else if (endpoint === '/dependencies') {
         setLoading(true);
         let response = await fetch(`${endpoint}`);
