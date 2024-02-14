@@ -23,11 +23,12 @@ const helmController: HelmController = {
         /* 'sh' function will run a child process to execute a command in the user's terminal; the command being a helm install w/ dry-run and debug flags for whatever helm chart the user inputs in the front end. The returned object has a 'manifest' property that represents the .yaml files of that helm chart. We then use a regex expression to parse that data and store into an array. */
 
         async function installChart(cmd_to_execute: string) {
-            console.log('Inside of sh function');
+            console.log('Inside installChart child process');
             return new Promise(function (resolve, reject) {
-                childProcess.exec(cmd_to_execute, (err: any, stdout: any, stderr: any) => {
+                childProcess.exec(cmd_to_execute, { maxBuffer: 1024 * 5000 }, (err: any, stdout: any, stderr: any) => {
                     if (err) {
-                        console.log('Error occured in sh function');
+                        console.log('Error occured in installChart child process');
+                        console.log(err);
                         return next(err);
                         // reject(err);
                     } else {
@@ -108,15 +109,19 @@ const helmController: HelmController = {
                 newObj.name = matchedData[i].slice(8)
 
                 // Check for apiVersion
-                if (matchedData[i + 1].slice(0, 3) === 'api') {
-                    newObj.apiVersion = matchedData[i + 1].slice(12);
-                    i++;
+                if (i + 1 < matchedData.length) {
+                    if (matchedData[i + 1].slice(0, 3) === 'api') {
+                        newObj.apiVersion = matchedData[i + 1].slice(12);
+                        i++;
+                    }
                 }
 
                 // Check for kind
-                if (matchedData[i + 1].slice(0, 3) === 'kin') {
-                    newObj.kind = matchedData[i + 1].slice(6);
-                    i++;
+                if (i + 1 < matchedData.length) {
+                    if (matchedData[i + 1].slice(0, 3) === 'kin') {
+                        newObj.kind = matchedData[i + 1].slice(6);
+                        i++;
+                    }
                 }
 
                 // Init namespace to 'default' and image to 'placeholder'
@@ -125,6 +130,7 @@ const helmController: HelmController = {
                 cleanMatchedData.push(newObj);
             }
         }
+        console.log('cleanMatchedData: ', cleanMatchedData);
 
         res.locals.helmData = cleanMatchedData;
 
