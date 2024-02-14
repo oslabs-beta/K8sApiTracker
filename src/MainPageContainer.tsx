@@ -1,8 +1,8 @@
 import Row from './Row';
 import RowHeader from './RowHeader';
 import ScanButtonsContainer from './ScanButtonsContainer';
-// import DashboardContainer from './DashboardContainer';
-import React, { useState } from 'react';
+import DashboardContainer from './DashboardContainer';
+import React, { useState, useEffect } from 'react';
 import { SpinningCircles } from 'react-loading-icons'
 
 // use this website to change loading icon https://www.npmjs.com/package/react-loading-icons
@@ -18,21 +18,21 @@ type ApiObj = {
 }
 type MainData = ApiObj[];
 
+type PieChartData = {name: string, value: number}
+type PieChartInfo = PieChartData[]
+
 export default function MainPageContainer(): React.JSX.Element {
   //create an array of row components
   const rows: React.JSX.Element[] = [];
 
-  //this is necessary to maintain the typing of our dependencies
-  const arr: MainData = [];
-
   // initialize our state
-  const [dependencies, setDependencies] = useState(arr);
+  const [dependencies, setDependencies] = useState<MainData>([]);
   const [isLoading, setLoading] = useState<boolean>(false);
   const [showRowHeader, setRowHeader] = useState(false);
   const [filters, setFilters] = useState<string[]>(['stable', 'updateAvailable', 'removed']);
   const [helmChartPath, setHelmChartPath] = useState<string>('');
   const [helmRepoPath, setHelmRepoPath] = useState<string>('');
-
+  const [pieChartInfo, setPieChartInfo] = useState<PieChartInfo>([{ name: 'stable', value: 12 }, { name: 'updateAvailable', value: 4 },{ name: 'removed', value: 1 },])
 
   // create two versions of the scanButton - one for directory scans, one for helm chart scans
   // change the fetch request based on which button is clicked, and if it is a Helm scan attach the input data
@@ -122,15 +122,37 @@ export default function MainPageContainer(): React.JSX.Element {
     }
   }
 
+  //iterate through state to make all of our rows, and push them into the array
+  useEffect(()=>{
+    console.log('useEffectInvoked')
+    //create an array
+    const arr:PieChartInfo = [];
+    let stable = 0;
+    let updateAvailable = 0;
+    let removed = 0;
+    //count all of the types
+    for(const dependency of dependencies){
+      // increment the array of data
+      if(dependency.deprecationStatus === 'stable') stable ++;
+      if(dependency.deprecationStatus === 'updateAvailable') updateAvailable ++;
+      if(dependency.deprecationStatus === 'removed') removed ++;
+    }
+    arr.push({name: 'stable', value: stable }, {name: 'updateAvailable', value: updateAvailable },{name: 'removed', value: removed } )
+    //update the chartData
+    setPieChartInfo(arr);
+  },[dependencies])
+
   return (
-    <div id='mainPageContainer'>
-      <ScanButtonsContainer key="scanButtonContainer" handleClick={handleClick} isLoading={isLoading} repoHandleChange={repoHandleChange} chartHandleChange={chartHandleChange} helmChartPath={helmChartPath} helmRepoPath={helmRepoPath} />
-      {/* <DashboardContainer /> */}
-      {showRowHeader ? <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' filters={filters} filter={updateFilters} /> : false}
-      {isLoading ? <SpinningCircles className="content-loading" /> : null}
-      <div className='row-content-container'>
-        {rows}
-      </div>
+    <div>
+      {showRowHeader ? <DashboardContainer chartData={pieChartInfo}/> : false}
+      <div id='mainPageContainer'>
+        <ScanButtonsContainer key="scanButtonContainer" handleClick={handleClick} isLoading={isLoading} repoHandleChange={repoHandleChange} chartHandleChange={chartHandleChange} helmChartPath={helmChartPath} helmRepoPath={helmRepoPath} />
+        {showRowHeader ? <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' filters={filters} filter={updateFilters} /> : false}
+        {isLoading ? <SpinningCircles className="content-loading" /> : null}
+        <div className='row-content-container'>
+          {rows}
+        </div>
+      </div>      
     </div>
   )
 }

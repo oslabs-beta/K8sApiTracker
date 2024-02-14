@@ -327,3 +327,14 @@ html {
     width: 21em;
     padding: 1em;
 }
+
+.dashboardcontainer{
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    border: 3px solid rgb(47, 47, 47);
+    height: fit-content;
+    background: rgb(95, 84, 107);
+    margin: 10px; 
+}
+
