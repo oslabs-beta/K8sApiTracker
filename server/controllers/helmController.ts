@@ -5,17 +5,16 @@ type HelmController = {
     getUserInput: getUserInput;
 }
 type NewObj = {
-    name: string,
-    kind: string,
-    apiVersion: string,
-    namespace: string,
-    image: string
+    name?: string,
+    kind?: string,
+    apiVersion?: string,
+    namespace?: string,
+    image?: string
 }
-type MatchedData = String[];
+type MatchedData = string[];
 type CleanData = NewObj[];
 
 const helmController: HelmController = {
-
 
     getUserInput: async (req, res, next) => {
 
@@ -38,7 +37,7 @@ const helmController: HelmController = {
 
                         const regExp = new RegExp('(?=Source: )(.*?)(.yaml)|(?=apiVersion: )(.*?)(?=\\nkind)|(?=kind: )(.*?)(?=\\n)', "gm");
 
-                        let regExpData = manifest.match(regExp);
+                        const regExpData = manifest.match(regExp);
 
                         resolve(regExpData);
                     }
@@ -64,7 +63,7 @@ const helmController: HelmController = {
 
         console.log('Cleaned User Input: ', userInput);
 
-        const matchedData: MatchedData = await sh(userInput);
+        const matchedData: any = await sh(userInput);
 
         /* Now that we have the raw properties back from the chart install, iterate through that array, creating a new object whenever we hit an element that starts with "Source: ". Populate that object with the next two elements which should be the apiVersion and kind. Then hard code the namespace and image properties which will be default for the dry-run chart installs. This object is in the same format as the object that we persist through our middleware when scanning a users cluster, allowing us to render consistent data on the front end regardless of 'scan' type. */
 
@@ -96,7 +95,7 @@ const helmController: HelmController = {
                 newObj.image = 'placeholder';
                 cleanMatchedData.push(newObj);
             }
-        };
+        }
 
         res.locals.helmData = cleanMatchedData;
 
@@ -105,5 +104,3 @@ const helmController: HelmController = {
 }
 
 module.exports = helmController;
-
-

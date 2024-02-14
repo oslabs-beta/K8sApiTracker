@@ -13,7 +13,9 @@
     "server/controllers/clusterController.ts",
     "server/controllers/dependencyScraper.ts",
     "server/controllers/compareController.ts",
+    "server/controllers/compareControllerHelm.ts",
     "server/controllers/kubePugController.ts",
+    "server/controllers/helmController.ts",
     "server/server.ts",
   ]
 }

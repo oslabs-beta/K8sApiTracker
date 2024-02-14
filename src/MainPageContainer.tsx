@@ -125,7 +125,7 @@ export default function MainPageContainer(): React.JSX.Element {
 
   return (
     <div id='mainPageContainer'>
-      <div id='scanButtonContainer'>
+      <div id='scanButtonContainer'> 
         {scanButtons[0]}
         <div id='helmSection'>
           <p>Or scan a Helm Chart before installing:</p>
