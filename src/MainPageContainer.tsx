@@ -3,7 +3,6 @@ import RowHeader from './RowHeader';
 import ScanButtonsContainer from './ScanButtonsContainer';
 import DashboardContainer from './DashboardContainer';
 import React, { useState, useEffect } from 'react';
-import { SpinningCircles } from 'react-loading-icons'
 
 // use this website to change loading icon https://www.npmjs.com/package/react-loading-icons
 
@@ -148,16 +147,14 @@ export default function MainPageContainer(): React.JSX.Element {
         {showRowHeader ? <DashboardContainer chartData={pieChartInfo}/> : false}
         <ScanButtonsContainer key="scanButtonContainer" handleClick={handleClick} isLoading={isLoading} repoHandleChange={repoHandleChange} chartHandleChange={chartHandleChange} helmChartPath={helmChartPath} helmRepoPath={helmRepoPath} />        
       </div>
-      {showRowHeader || isLoading ?
+      {showRowHeader ?
         <div id='mainPageContainer'>
-        <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' filters={filters} filter={updateFilters} />
-        {isLoading ? <SpinningCircles className="content-loading" /> : null}
+          <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' filters={filters} filter={updateFilters} />
         <div className='row-content-container'>
           {rows}
         </div>
       </div> 
     : false}
-    
     </div>
   )
 }

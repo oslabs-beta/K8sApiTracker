@@ -286,6 +286,9 @@ html {
     justify-content: space-evenly;
     align-items: center;
     padding: 1em;
+    /* background-color: gray;
+    border: 2px solid rgb(30, 30, 30);
+    border-radius: 10px; */
     /* width: fit-content; */
 }
 
