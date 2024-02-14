@@ -35,8 +35,7 @@ html {
     border-radius: 20px;
     border: 5px solid rgb(82, 83, 97);
     overflow: hidden;
-    width: fit-content;
-    max-width: 90vw;
+    width: 90vw;
     margin-bottom: 2vw;
     height: fit-content;
 }
@@ -287,6 +286,9 @@ html {
     justify-content: space-evenly;
     align-items: center;
     padding: 1em;
+    /* background-color: gray;
+    border: 2px solid rgb(30, 30, 30);
+    border-radius: 10px; */
     /* width: fit-content; */
 }
 
@@ -326,4 +328,47 @@ html {
     /* box-shadow: 2px 2px 5px; */
     width: 21em;
     padding: 1em;
+}
+
+.dashboardcontainer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 10px;
+    border: 3px solid rgb(47, 47, 47);
+    height: fit-content;
+    background: rgb(95, 84, 107);
+    margin: 10px; 
+}
+
+.version-eol{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.vl {
+    border-left: 6px solid rgb(69, 69, 69);
+    height: 180px;
+}
+
+.main-outer-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pie-chart-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons-and-dashboard-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
