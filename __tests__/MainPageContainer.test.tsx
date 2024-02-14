@@ -17,13 +17,20 @@ describe('Testing on MainPageContainer', () => {
     const rowContentContainer = container.getElementsByClassName('row-content-container');
     expect(rowContentContainer).toBeDefined();
 });
-// test('render rowHeader if showRowHeader is true', () => {
-// const {container} = render(<MainPageContainer/>);
-// const roe
-// // You can add more specific queries based on your actual component structure
-// expect(screen.getByText('API')).toBeInTheDocument();
-// expect(screen.getByText('STATUS')).toBeInTheDocument();
-// })
+  let showRowHeader;
+  test('render rowHeader if showRowHeader is true', () => {
+    const { container } = render(<MainPageContainer/>);
+    showRowHeader = true;
+    const rowHeader = container.getElementsByClassName('rowHeader');
+    expect(rowHeader).toBeDefined();
+})
+  test(`Don't render rowHeader if showRowHeader is false`, () => {
+    const { container } = render(<MainPageContainer/>);
+    showRowHeader = false;
+    const rowHeader = container.getElementsByClassName('rowHeader');
+    console.log('rowHeader', rowHeader)
+    expect(rowHeader).toBeUndefined();
+})
 })
 
 
