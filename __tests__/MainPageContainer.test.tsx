@@ -1,7 +1,6 @@
 /**
 * @jest-environment jsdom
 */
-
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import MainPageContainer from '../src/MainPageContainer';
@@ -23,14 +22,14 @@ describe('Testing on MainPageContainer', () => {
     showRowHeader = true;
     const rowHeader = container.getElementsByClassName('rowHeader');
     expect(rowHeader).toBeDefined();
-})
+});
   test(`Don't render rowHeader if showRowHeader is false`, () => {
     const { container } = render(<MainPageContainer/>);
     showRowHeader = false;
     const rowHeader = container.getElementsByClassName('rowHeader');
     console.log('rowHeader', rowHeader)
-    expect(rowHeader).toBeUndefined();
-})
+    expect(rowHeader.length).toBeFalsy();
+});
 })
 
 

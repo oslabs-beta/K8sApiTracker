@@ -28,15 +28,17 @@ html {
     width: 100%;
 }
 
-.mainPageContainer {
+#mainPageContainer {
     display: flex;
     flex-direction: column;
     background-color: rgb(49, 49, 49);
     border-radius: 20px;
     border: 5px solid rgb(82, 83, 97);
-    align-items: left;
     overflow: hidden;
-    width: 85vw;
+    width: fit-content;
+    max-width: 85vw;
+    margin-bottom: 2vw;
+    height: fit-content;
 }
 
 .row {
@@ -269,9 +271,26 @@ html {
 #scanButtonContainer {
     /* margin: 1em 1.5em 0.5em 1.5em; */
     display: flex;
-    height: 5em;
-    flex-direction: row;
+    height: fit-content;
+    flex-direction: column;
     justify-content: space-evenly;
+    align-items: center;
+    padding: 1em;
+    /* width: fit-content; */
+}
+
+#helmSection {
+    margin: 1em 1.5em 1em 1.5em;
+    color: rgb(220, 220, 220);
+    border: 2px solid rgb(82, 83, 97);
+    background-color: rgb(82, 83, 97);
+    border-radius: 10px;
+    border-color: rgb(240, 240, 240);
+    padding: 1em;
+    font-size: small;
+    box-shadow: 2px 2px 5px ;
+    display: flex;
+    flex-direction: column;
 }
 
 .scanButton {
@@ -281,5 +300,17 @@ html {
     border-radius: 10px;
     border-color: rgb(240, 240, 240);
     box-shadow: 2px 2px 5px ;
-    width: 40em;
+    width: 26em;
+    padding: 1em;
+}
+
+#scanButton1 {
+    margin: 1em 1.5em 1em 1.5em;
+    color: rgb(220, 220, 220);
+    background-color: rgb(82, 83, 97);
+    border-radius: 10px;
+    border-color: rgb(240, 240, 240);
+    box-shadow: 2px 2px 5px ;
+    width:21em;
+    padding: 1em;
 }
