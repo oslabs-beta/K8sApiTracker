@@ -42,28 +42,38 @@ export default function MainPageContainer(): React.JSX.Element {
     async function getDependencies(): Promise<void> {
       if (endpoint === '/helm') {
         setLoading(true);
-        const response = await fetch(`/helm`, {
-          method: 'POST',
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            helmChartPath: helmChartPath,
-            helmRepoPath: helmRepoPath
+        try {
+          const response = await fetch(`/helm`, {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              helmChartPath: helmChartPath,
+              helmRepoPath: helmRepoPath
+            })
+          });
+          const responseData = await response.json();
+          console.log('responseData: ', responseData);
+          //sort the response data alphabetically by deprecation status
+          responseData.sort((a: ApiObj, b: ApiObj) => {
+            if (a.deprecationStatus < b.deprecationStatus) return -1;
+            if (a.deprecationStatus > b.deprecationStatus) return 1;
+            return 0;
           })
-        });
-        const responseData = await response.json();
-        //sort the response data alphabetically by deprecation status
-        responseData.sort((a: ApiObj, b: ApiObj) => {
-          if (a.deprecationStatus < b.deprecationStatus) return -1;
-          if (a.deprecationStatus > b.deprecationStatus) return 1;
-          return 0;
-        })
-        setRowHeader(true);
-        setDependencies(responseData);
-        setHelmChartPath('');
-        setHelmRepoPath('');
-        setLoading(false);
+          setRowHeader(true);
+          setDependencies(responseData);
+          setHelmChartPath('');
+          setHelmRepoPath('');
+          setLoading(false);
+        }
+        catch {
+          alert('Please enter the chart repo & install commands');
+          setHelmChartPath('');
+          setHelmRepoPath('');
+          setLoading(false);
+        }
+
       } else if (endpoint === '/dependencies') {
         setLoading(true);
         const response = await fetch(`${endpoint}`);
@@ -114,7 +124,7 @@ export default function MainPageContainer(): React.JSX.Element {
 
   return (
     <div id='mainPageContainer'>
-      <ScanButtonsContainer key="scanButtonContainer" handleClick={handleClick} isLoading={isLoading} repoHandleChange={repoHandleChange} chartHandleChange={chartHandleChange} helmChartPath={helmChartPath} helmRepoPath={helmRepoPath}/>
+      <ScanButtonsContainer key="scanButtonContainer" handleClick={handleClick} isLoading={isLoading} repoHandleChange={repoHandleChange} chartHandleChange={chartHandleChange} helmChartPath={helmChartPath} helmRepoPath={helmRepoPath} />
       {/* <DashboardContainer /> */}
       {showRowHeader ? <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' filters={filters} filter={updateFilters} /> : false}
       {isLoading ? <SpinningCircles className="content-loading" /> : null}

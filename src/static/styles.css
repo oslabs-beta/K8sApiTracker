@@ -221,6 +221,12 @@ html {
     font-size: 18px;
 }
 
+.inputFields {
+    text-align: center;
+    border-radius: 8px;
+    background-color: lightgray;
+}
+
 .row-content-container {
     max-height: 78vh;
     overflow-y: scroll;
@@ -290,12 +296,14 @@ html {
     border: 2px solid rgb(82, 83, 97);
     background-color: rgb(82, 83, 97);
     border-radius: 10px;
-    border-color: rgb(240, 240, 240);
     padding: 1em;
     font-size: small;
-    box-shadow: 2px 2px 5px;
+    /* border-color: rgb(240, 240, 240); */
+    /* border: solid .1px; */
+    /* box-shadow: 2px 2px 5px; */
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 
 .scanButton {
@@ -303,8 +311,8 @@ html {
     color: rgb(220, 220, 220);
     background-color: rgb(82, 83, 97);
     border-radius: 10px;
-    border-color: rgb(240, 240, 240);
-    box-shadow: 2px 2px 5px;
+    /* border-color: rgb(240, 240, 240); */
+    /* box-shadow: 1px 2px 1px; */
     width: 26em;
     padding: 1em;
 }
@@ -314,8 +322,8 @@ html {
     color: rgb(220, 220, 220);
     background-color: rgb(82, 83, 97);
     border-radius: 10px;
-    border-color: rgb(240, 240, 240);
-    box-shadow: 2px 2px 5px;
+    /* border-color: rgb(240, 240, 240); */
+    /* box-shadow: 2px 2px 5px; */
     width: 21em;
     padding: 1em;
 }

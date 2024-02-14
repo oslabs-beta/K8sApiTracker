@@ -51,6 +51,7 @@ app.use('*', (req: Request, res: Response, next: NextFunction) => {
 
 // GLOBAL ERROR HANDLER 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+    console.log('Inside of global error handler');
     const defaultErr: Error = {
         log: 'Global err handler, unkonwn middleware error',
         status: 500,
