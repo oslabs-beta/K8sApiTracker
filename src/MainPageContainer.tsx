@@ -114,7 +114,7 @@ export default function MainPageContainer(): React.JSX.Element {
 
   return (
     <div id='mainPageContainer'>
-      <ScanButtonsContainer key="scanButtonContainer" handleClick={handleClick} isLoading={isLoading} repoHandleChange={repoHandleChange} chartHandleChange={chartHandleChange}/>
+      <ScanButtonsContainer key="scanButtonContainer" handleClick={handleClick} isLoading={isLoading} repoHandleChange={repoHandleChange} chartHandleChange={chartHandleChange} helmChartPath={helmChartPath} helmRepoPath={helmRepoPath}/>
       {/* <DashboardContainer /> */}
       {showRowHeader ? <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' filters={filters} filter={updateFilters} /> : false}
       {isLoading ? <SpinningCircles className="content-loading" /> : null}
