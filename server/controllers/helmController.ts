@@ -1,18 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
-
-type getUserInput = (req: Request, res: Response, next: NextFunction) => void
-type HelmController = {
-    getUserInput: getUserInput;
-}
-type NewObj = {
-    name?: string,
-    kind?: string,
-    apiVersion?: string,
-    namespace?: string,
-    image?: string
-}
-// type MatchedData = string[];
-type CleanData = NewObj[];
+import { HelmController, NewObj, CleanData, Error, MatchedData } from '../types'
 
 const helmController: HelmController = {
 
@@ -25,11 +11,10 @@ const helmController: HelmController = {
         async function installChart(cmd_to_execute: string) {
             console.log('Inside of sh function');
             return new Promise(function (resolve, reject) {
-                childProcess.exec(cmd_to_execute, (err: any, stdout: any, stderr: any) => {
+                childProcess.exec(cmd_to_execute, (err: Error, stdout: any, stderr: any) => {
                     if (err) {
                         console.log('Error occured in sh function');
                         return next(err);
-                        // reject(err);
                     } else {
                         console.log('No errors in sh function - processing data now');
                         const data = JSON.parse(stdout);
@@ -51,7 +36,7 @@ const helmController: HelmController = {
         async function repoProcess(cmd_to_execute: string) {
             console.log('Inside of sh function');
             return new Promise(function (resolve, reject) {
-                childProcess.exec(cmd_to_execute, (err: any, stdout: any, stderr: any) => {
+                childProcess.exec(cmd_to_execute, (err: Error, stdout: any, stderr: any) => {
                     if (err) {
                         console.log('Error occured repoProcess sh function');
                         reject(err);
@@ -89,7 +74,8 @@ const helmController: HelmController = {
             await repoProcess(addRepo);
         }
 
-        const matchedData: any = await installChart(userInput);
+        const matchedData: MatchedData = await installChart(userInput) as MatchedData;
+        console.log('this is matchedData', matchedData)
 
         console.log('addRepo: ', addRepo);
         console.log('Cleaned User Input: ', userInput);
@@ -125,7 +111,6 @@ const helmController: HelmController = {
                 cleanMatchedData.push(newObj);
             }
         }
-
         res.locals.helmData = cleanMatchedData;
 
         return next();

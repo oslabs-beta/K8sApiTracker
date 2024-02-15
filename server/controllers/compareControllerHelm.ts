@@ -1,11 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 
-type middleware = (req: Request, res: Response, next: NextFunction) => void;
-
-type compareController = {
-  compare: middleware;
-}
-
 const compareController = {
 
   compare: (req: Request, res: Response, next: NextFunction) => {

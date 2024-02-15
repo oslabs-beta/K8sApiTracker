@@ -22,3 +22,40 @@ export type Options = {
     absolute: boolean,
     ignore: string
 };
+//define getApiInfo type
+export type GetApiInfo = ( req: Request, res: Response, next: NextFunction ) => void;
+
+//define controller type
+export type KubePugController = {
+  getApiInfo: GetApiInfo;
+}
+export type Kind = {
+  version: string;
+  replacement: {
+    group: string;
+    version: string;
+    kind: string;
+  } | Record<string, never> //union type
+  description: string;
+}
+
+export type ApiObject = Record<string, any>; //the object keys are in type of string, while the value can be of any type
+
+export type ApiInfo = {
+    [key: string]: Kind //index signatures
+  };
+
+export type GetUserInput = (req: Request, res: Response, next: NextFunction) => void
+
+export type HelmController = {
+    getUserInput: GetUserInput;
+}
+export type NewObj = {
+    name?: string,
+    kind?: string,
+    apiVersion?: string,
+    namespace?: string,
+    image?: string
+}
+export type MatchedData = string[];
+export type CleanData = NewObj[];
