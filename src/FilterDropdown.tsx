@@ -9,13 +9,13 @@ export default function FilterDropdownNative(props: FilterDropdownProps) {
     setIsOpen(!isOpen)
   }
   return (
-    <div >
+    <div className='filter-Container'>
       <button onClick={toggleDropdown} className="filter-button">
         {isOpen ? <VscTriangleUp />: <VscTriangleDown />}
       </button>
 
-      {isOpen && (
-        <ul className='filter-dropdown'>
+      
+        <ul className='filter-dropdown' style={{visibility: `${isOpen ? 'visible' : 'hidden'}`}}>
             <li className='filter-dropdown-item'>
             <label className="filter-label">
                 <input
@@ -52,7 +52,7 @@ export default function FilterDropdownNative(props: FilterDropdownProps) {
               </label>
             </li>
         </ul>
-      )}
+      
     </div>
   );
 }

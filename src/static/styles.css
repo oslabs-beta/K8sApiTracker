@@ -1,7 +1,7 @@
 :root{
-    --primary-gray: rgb(48, 46, 46);
-    --dark-gray: rgb(40, 40, 40);
-    --primary-border: rgb(82, 83, 97);
+    --primary-gray: rgb(23, 23, 24);
+    --dark-gray: rgb(10, 1, 32);
+    --primary-border: rgb(22, 22, 29);
     --primary-green: rgb(74, 255, 149);
     --primary-red: rgb(255, 4, 0);
     --primary-yellow: rgb(255, 204, 0);
@@ -21,11 +21,17 @@ body {
     height: 100%;
     font-family: "Open Sans", "PT Sans";
     background: linear-gradient(135.9deg, rgb(54, 46, 119) 16.4%, rgb(12, 6, 51) 56.1%);
+    letter-spacing: .3px;
+    z-index: 100;
 }
 
 html {
     overflow: hidden;
-    height: 100%;
+    height: 100%; 
+}
+
+.kdt-header {
+    font-weight: 700;
 }
 
 .app {
@@ -65,11 +71,10 @@ html {
     justify-content: space-around;
     color: rgb(240, 240, 240);
     width: var(--row-width);
+    font-size: small;
 }
 
 .rowHeader {
-    /* margin:auto;
-    margin-top: .5rem; */
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -77,18 +82,23 @@ html {
     background-color: var(--dark-gray);
     border-radius: 16px;
     width: var(--row-width);
+    font-weight: 500;
+    font-size: medium;
+    height: 6vh;
+
+   
 }
 
 .api-info-api {
     display: flex;
     align-items: center;
-    font-size: small;
     flex-wrap: wrap;
     width: var(--api-col-width);
     margin: 10px;
     padding: 3px;
     border-radius: 5px;
     word-wrap: break-word;
+    overflow: scroll;
 }
 
 .api-info-status-wrapper {
@@ -102,7 +112,6 @@ html {
 .api-info-status-stable {
     display: flex;
     align-items: center;
-    font-size: small;
     flex-wrap: wrap;
     width: 100%;
     height: fit-content;
@@ -115,7 +124,6 @@ html {
 .api-info-status-updateAvailable {
     display: flex;
     align-items: center;
-    font-size: small;
     flex-wrap: wrap;
     width: 100%;
     height: fit-content;
@@ -128,7 +136,6 @@ html {
 .api-info-status-removed {
     display: flex;
     align-items: center;
-    font-size: small;
     flex-wrap: wrap;
     width: 100%;
     height: fit-content;
@@ -141,16 +148,14 @@ html {
 .api-info-location {
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: small;
     flex-wrap: wrap;
     width: var(--location-col-width);
     max-width: var(--location-col-width);
     margin: 10px;
     padding: 3px;
     border-radius: 5px;
-    display: inline-block;
     word-wrap: break-word;
+    overflow: scroll;
 }
 
 .api-info-stable-version {
@@ -159,7 +164,6 @@ html {
     width: var(--stable-version-col-width);
     margin: 10px;
     padding: 3px;
-    font-size: small;
 }
 
 .api-info-notes {
@@ -167,7 +171,6 @@ html {
     width: var(--notes-col-width);
     margin: 10px;
     padding: 3px;
-    font-size: small;
     max-height: 100px;
     overflow-y: scroll;
 }
@@ -178,14 +181,12 @@ html {
     width: var(--notes-col-width);
     margin: 10px;
     padding: 3px;
-    font-size: small;
     overflow-y: scroll;
 }
 
 .headerName {
     display: flex;
     align-items: center;
-    font-size: small;
     margin: 10px;
     width: var(--location-col-width);
     padding: 3px;
@@ -194,7 +195,6 @@ html {
 .headerName-api {
     display: flex;
     align-items: center;
-    font-size: small;
     margin: 10px;
     width: var(--api-col-width);
     padding: 3px;
@@ -203,7 +203,6 @@ html {
 .headerName-stable {
     display: flex;
     align-items: center;
-    font-size: small;
     margin: 10px;
     width: var(--stable-version-col-width);
     padding: 3px;
@@ -213,7 +212,6 @@ html {
     display: flex;
     align-items: center;
     display: flex;
-    font-size: small;
     margin: 10px;
     width: var(--status-col-width);
     padding: 3px;
@@ -222,7 +220,6 @@ html {
 .headerName-notes {
     display: flex;
     align-items: center;
-    font-size: small;
     width: var(--notes-col-width);
     padding: 3px;
     margin: 10px;
@@ -250,10 +247,11 @@ html {
     text-align: left;
     border-radius: 5px;
     background-color: lightgray;
-    margin-bottom: .3rem;
+    margin-bottom: .5rem;
     border: none;
     outline: 0;
     padding-left: 1rem;
+    line-height: 1.4rem;
 }
 
 .row-content-container {
@@ -269,6 +267,12 @@ html {
     margin: 10px;
 }
 
+.filter-Container {
+    position: relative;
+    /* margin-top: 90px; */
+    margin-top: 12vh;
+}
+
 .filter-button {
     background: none;
     border: 1px solid var(--primary-border);
@@ -276,22 +280,29 @@ html {
     color: white;
     font-family: "Open Sans", "PT Sans";
     font-weight: 400;
-    height: 20%;
+    height: 2vh;
     margin-left: 5px;
 }
 
 .filter-dropdown {
-    position: absolute;
+    /* position:absolute; */
+    display: block;
     margin: 0;
     margin-left: 5px;
-    padding: 0;
+    padding: 2px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: var(--primary-gray);
+    /* position: absolute; */
+    /* overflow: hidden; */
+    z-index: 5;
+    /* margin-top: 75px; */
 }
 
 .filter-dropdown-item {
     margin: 0;
     padding: 3px;
     display: flex;
-    background-color: rgb(65, 65, 65);
     border-radius: 2px;
     flex-direction: row;
 }
@@ -331,24 +342,57 @@ html {
 }
 
 .scanButton {
-    margin: 1em 1.5em 1em 1.5em;
-    color: rgb(220, 220, 220);
-    background-color: var(--dark-gray);
-    border-radius: 10px;
-    width: 26em;
-    padding: 1em;
-    line-height: 2rem;
-    border: 1px solid rgb(172, 169, 169) ;
-    cursor:pointer;
+    align-items: center;
+    background-image: linear-gradient(144deg,#551384, #5B42F3 50%,#1f5255);
+    border: 1px solid #a09ba0;
+    border-radius: 8px;
+    /* box-shadow: white 0 15px 30px -5px; */
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
+    font-family: Phantomsans, sans-serif;
+    font-size: 20px;
+    justify-content: center;
+    line-height: 1em;
+    max-width: 100%;
+    min-width: 140px;
+    padding: 3px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.scanButton:hover {
+  background-image: none;
+  outline: 0;
+  background-color: rgb(15, 17, 69);
+}
+
+.scanButton {
+  background-color: rgb(5, 6, 45);
+  padding: 16px 24px;
+  border-radius: 6px;
+  width: 21em;
+  height: 100%;
+  transition: 300ms;
+  
 }
 
 #scanButton1 {
     margin: 1em 1.5em 1em 1.5em;
     color: rgb(220, 220, 220);
     background-color: var(--dark-gray);
-    border-radius: 10px;
+    border-radius: 6px;
     width: 21em;
-    padding: 1em;
+}
+
+#scanButton1:hover {
+    background-image: none;
+    outline: 0;
+    background-color: rgb(15, 17, 69);
 }
 
 .dashboardcontainer{
@@ -357,11 +401,15 @@ html {
     align-items: center;
     border-radius: 10px;
     border: 3px solid var(--primary-border);
-    height: fit-content;
+    height: 310px;
     background: var(--primary-gray);
     margin: 10px; 
+    margin-bottom: 30px;
 }
 
+#text365 {
+    font-size: 3rem;
+}
 .version-eol{
     display: flex;
     flex-direction: column;

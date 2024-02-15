@@ -13,7 +13,7 @@ export default function DashboardContainer(props: DashboardContainerProps) :Reac
         </div>
         <div className="vl"></div>
         <div className="version-eol">
-          <div>365</div>
+          <div id='text365'>365</div>
           <div>Days Until Version EOL</div>
         </div>
     </div>

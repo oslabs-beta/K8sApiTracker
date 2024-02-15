@@ -48,13 +48,7 @@ const config = {
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-        type: 'asset',
-        use: [
-          {
-            loader: 'file-loader',
-          },
-        ],
-        exclude: ['/node_modules/'],
+        type: 'asset/resource',
       },
 
     ],
