@@ -16,7 +16,7 @@ export default function MainPageContainer(): React.JSX.Element {
   const [filters, setFilters] = useState<string[]>(['stable', 'updateAvailable', 'removed']);
   const [helmChartPath, setHelmChartPath] = useState<string>('');
   const [helmRepoPath, setHelmRepoPath] = useState<string>('');
-  const [pieChartInfo, setPieChartInfo] = useState<PieChartInfo>([{name: 'stable', value: 0, color: '#00ff00' }, {name: 'updateAvailable', value: 0, color: '#FFFF00' },{name: 'removed', value: 0, color: '#ff0000' } ])
+  const [pieChartInfo, setPieChartInfo] = useState<PieChartInfo>([])
 
   // create two versions of the scanButton - one for directory scans, one for helm chart scans
   // change the fetch request based on which button is clicked, and if it is a Helm scan attach the input data
@@ -119,7 +119,7 @@ export default function MainPageContainer(): React.JSX.Element {
       if(dependency.deprecationStatus === 'updateAvailable') updateAvailable ++;
       if(dependency.deprecationStatus === 'removed') removed ++;
     }
-    arr.push({name: 'stable', value: stable, color: '#00ff00' }, {name: 'updateAvailable', value: updateAvailable, color: '#FFFF00' },{name: 'removed', value: removed, color: '#ff0000' } )
+    arr.push({name: 'stable', value: stable, color: '#4AFF95' }, {name: 'updateAvailable', value: updateAvailable, color: '#FFCC00' },{name: 'removed', value: removed, color: '#FF0400' } )
     //update the chartData
     setPieChartInfo(arr);
   },[dependencies])
@@ -130,7 +130,7 @@ export default function MainPageContainer(): React.JSX.Element {
         {showRowHeader ? <DashboardContainer chartData={pieChartInfo}/> : false}
         <ScanButtonsContainer key="scanButtonContainer" handleClick={handleClick} isLoading={isLoading} repoHandleChange={repoHandleChange} chartHandleChange={chartHandleChange} helmChartPath={helmChartPath} helmRepoPath={helmRepoPath} />        
       </div>
-      {showRowHeader ?
+      {true ?
         <div id='mainPageContainer'>
           <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' filters={filters} filter={updateFilters} />
         <div className='row-content-container'>
