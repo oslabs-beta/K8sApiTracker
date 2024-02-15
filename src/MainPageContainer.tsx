@@ -38,7 +38,6 @@ export default function MainPageContainer(): React.JSX.Element {
             })
           });
           const responseData = await response.json();
-          console.log('responseData: ', responseData);
           //sort the response data alphabetically by deprecation status
           responseData.sort((a: ApiObj, b: ApiObj) => {
             if (a.deprecationStatus < b.deprecationStatus) return -1;
@@ -108,7 +107,6 @@ export default function MainPageContainer(): React.JSX.Element {
 
   //iterate through state to make all of our rows, and push them into the array
   useEffect(()=>{
-    console.log('useEffectInvoked')
     //create an array
     const arr:PieChartInfo = [];
     let stable = 0;

@@ -30,8 +30,6 @@ app.post('/helm',
     kubePugController.getApiInfo,
     compareControllerHelm.compare,
     (req: Request, res: Response) => {
-        console.log('Inside of /helm GET route');
-        // console.log(res.locals.helmData);
         res.status(200).json(res.locals.helmData);
     })
 
@@ -42,7 +40,6 @@ app.use('*', (req: Request, res: Response) => {
 
 // GLOBAL ERROR HANDLER 
 app.use((err: Error, req: Request, res: Response) => {
-    console.log('Inside of global error handler');
     const defaultErr: Error = {
         log: 'Global err handler, unkonwn middleware error',
         status: 500,
