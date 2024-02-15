@@ -27,7 +27,6 @@ describe('Testing on MainPageContainer', () => {
     const { container } = render(<MainPageContainer/>);
     showRowHeader = false;
     const rowHeader = container.getElementsByClassName('rowHeader');
-    console.log('rowHeader', rowHeader)
     expect(rowHeader.length).toBeFalsy();
 });
 })
