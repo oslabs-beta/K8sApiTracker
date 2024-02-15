@@ -1,18 +1,13 @@
 import React, {useState} from 'react';
 import { VscTriangleDown } from "react-icons/vsc";
 import { VscTriangleUp } from "react-icons/vsc";
+import { FilterDropdownProps } from "./types"
 
-type FilterDropdown = {
-  filters: string[],
-  filter: (status: string)=> void
-}
-
-export default function FilterDropdownNative(props: FilterDropdown) {
+export default function FilterDropdownNative(props: FilterDropdownProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   function toggleDropdown(){
     setIsOpen(!isOpen)
   }
-
   return (
     <div >
       <button onClick={toggleDropdown} className="filter-button">

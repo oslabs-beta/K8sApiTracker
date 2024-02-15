@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import MainPageContainer from './MainPageContainer';
 
 export default function App():React.JSX.Element {
@@ -9,4 +9,4 @@ export default function App():React.JSX.Element {
       <MainPageContainer />
     </ div>
   );
-};
+}

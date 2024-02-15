@@ -1,15 +1,7 @@
 import ScanButton from './ScanButton';
 import React from 'react';
 import { SpinningCircles } from 'react-loading-icons'
-
-type ScanButtonsContainerProps = {
-  handleClick: (endpoint: string) => void,
-  isLoading: boolean,
-  repoHandleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
-  chartHandleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
-  helmChartPath?: string,
-  helmRepoPath?: string
-}
+import { ScanButtonsContainerProps } from './types'
 
 export default function ScanButtonsContainer(props: ScanButtonsContainerProps): React.JSX.Element {
   return (

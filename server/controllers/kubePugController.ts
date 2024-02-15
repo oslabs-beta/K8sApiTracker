@@ -1,27 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-
-//define getApiInfo type
-type GetApiInfo = ( req: Request, res: Response, next: NextFunction ) => void;
-
-//define controller type
-type KubePugController = {
-  getApiInfo: GetApiInfo;
-}
-type Kind = {
-  version: string;
-  replacement: {
-    group: string;
-    version: string;
-    kind: string;
-  } | {} //union type
-  description: string;
-}
-
-type ApiObject = Record<string, any>; //the object keys are in type of string, while the value can be of any type
-
-type ApiInfo = {
-    [key: string]: Kind //index signatures
-  };
+import { KubePugController, ApiObject, ApiInfo } from '../types'
 
 const kubePugController: KubePugController = {
 getApiInfo: (req: Request, res: Response, next: NextFunction) => {
@@ -35,7 +13,7 @@ getApiInfo: (req: Request, res: Response, next: NextFunction) => {
           replacement: apiObject.replacement,
           description: apiObject.description
         };
-      };
+      }
       res.locals.apiInfo = apiInfo;
       return next();
     })

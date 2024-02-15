@@ -1,11 +1,5 @@
 import React from 'react';
-
-type ScanButtonProps = {
-  id: number,
-  text: string,
-  onClick: React.MouseEventHandler<HTMLButtonElement>,
-  isLoading: boolean
-};
+import { ScanButtonProps } from './types'
 
 export default function ScanButton(props: ScanButtonProps): React.JSX.Element {
   return (

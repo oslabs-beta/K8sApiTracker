@@ -3,22 +3,7 @@ import RowHeader from './RowHeader';
 import ScanButtonsContainer from './ScanButtonsContainer';
 import DashboardContainer from './DashboardContainer';
 import React, { useState, useEffect } from 'react';
-
-// use this website to change loading icon https://www.npmjs.com/package/react-loading-icons
-
-// define types
-type ApiObj = {
-  deprecationStatus: string,
-  location: string,
-  apiVersion: string,
-  name: string,
-  description: string,
-  newVersion: string
-}
-type MainData = ApiObj[];
-
-type PieChartData = {name: string, value: number, color: string}
-type PieChartInfo = PieChartData[]
+import { ApiObj, MainData, PieChartInfo } from './types'
 
 export default function MainPageContainer(): React.JSX.Element {
   //create an array of row components
@@ -53,7 +38,6 @@ export default function MainPageContainer(): React.JSX.Element {
             })
           });
           const responseData = await response.json();
-          console.log('responseData: ', responseData);
           //sort the response data alphabetically by deprecation status
           responseData.sort((a: ApiObj, b: ApiObj) => {
             if (a.deprecationStatus < b.deprecationStatus) return -1;
@@ -123,7 +107,6 @@ export default function MainPageContainer(): React.JSX.Element {
 
   //iterate through state to make all of our rows, and push them into the array
   useEffect(()=>{
-    console.log('useEffectInvoked')
     //create an array
     const arr:PieChartInfo = [];
     let stable = 0;
