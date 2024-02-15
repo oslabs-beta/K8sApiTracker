@@ -1,3 +1,21 @@
+:root{
+    --primary-gray: rgb(48, 46, 46);
+    --dark-gray: rgb(40, 40, 40);
+    --primary-border: rgb(82, 83, 97);
+    --primary-green: rgb(74, 255, 149);
+    --primary-red: rgb(255, 4, 0);
+    --primary-yellow: rgb(255, 204, 0);
+    --translucent-red: rgba(255, 4, 0, 0.213);
+    --translucent-green: rgba(74, 255, 149, 0.122);
+    --translucent-yellow: rgba(255, 204, 0, 0.195);
+    --row-width: 87vw;    
+    --api-col-width: 15%;
+    --location-col-width: 20%;
+    --status-col-width: 15%;
+    --stable-version-col-width:15%;
+    --notes-col-width:  35%;   
+}
+
 body {
     overflow: auto;
     height: 100%;
@@ -14,7 +32,7 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: white;
+    color: rgb(223, 220, 220);
 }
 
 .kdt-header {
@@ -31,31 +49,34 @@ html {
 #mainPageContainer {
     display: flex;
     flex-direction: column;
-    background-color: rgb(49, 49, 49);
-    border-radius: 20px;
-    border: 5px solid rgb(82, 83, 97);
+    background-color: var(--primary-gray);
+    border-radius: 24px;
+    border: 5px solid var(--primary-border);
     overflow: hidden;
-    width: 90vw;
+    width: fit-content;
     margin-bottom: 2vw;
     height: fit-content;
+    padding: 8px;
 }
 
 .row {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     color: rgb(240, 240, 240);
-    margin-right: 1.5em;
-    margin-left: 1.5em;
+    width: var(--row-width);
 }
 
 .rowHeader {
-    margin: 1em 1.5em 0.5em 1.5em;
+    /* margin:auto;
+    margin-top: .5rem; */
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     color: rgb(220, 220, 220);
-    background-color: rgb(82, 83, 97);
-    border-radius: 10px;
-    width: 85vw;
+    background-color: var(--dark-gray);
+    border-radius: 16px;
+    width: var(--row-width);
 }
 
 .api-info-api {
@@ -63,7 +84,7 @@ html {
     align-items: center;
     font-size: small;
     flex-wrap: wrap;
-    width: 17%;
+    width: var(--api-col-width);
     margin: 10px;
     padding: 3px;
     border-radius: 5px;
@@ -73,7 +94,7 @@ html {
 .api-info-status-wrapper {
     display: flex;
     align-items: center;
-    width: 15%;
+    width: var(--api-col-width);
     margin: 10px;
     padding: 3px;
 }
@@ -88,7 +109,7 @@ html {
     padding: 6px;
     border-radius: 10px;
     word-wrap: break-word;
-    background-color: rgba(74, 255, 149, 0.122);
+    background-color: var(--translucent-green);
 }
 
 .api-info-status-updateAvailable {
@@ -101,7 +122,7 @@ html {
     padding: 6px;
     border-radius: 10px;
     word-wrap: break-word;
-    background-color: rgba(255, 204, 0, 0.195);
+    background-color: var(--translucent-yellow);
 }
 
 .api-info-status-removed {
@@ -114,16 +135,17 @@ html {
     padding: 6px;
     border-radius: 10px;
     word-wrap: break-word;
-    background-color: rgba(255, 4, 0, 0.213);
+    background-color: var(--translucent-red);
 }
 
 .api-info-location {
     display: flex;
     align-items: center;
+    justify-content: center;
     font-size: small;
     flex-wrap: wrap;
-    width: 20%;
-    min-width: 20%;
+    width: var(--location-col-width);
+    max-width: var(--location-col-width);
     margin: 10px;
     padding: 3px;
     border-radius: 5px;
@@ -134,7 +156,7 @@ html {
 .api-info-stable-version {
     display: flex;
     align-items: center;
-    width: 15%;
+    width: var(--stable-version-col-width);
     margin: 10px;
     padding: 3px;
     font-size: small;
@@ -142,7 +164,7 @@ html {
 
 .api-info-notes {
     display: flex;
-    width: 35%;
+    width: var(--notes-col-width);
     margin: 10px;
     padding: 3px;
     font-size: small;
@@ -150,11 +172,10 @@ html {
     overflow-y: scroll;
 }
 
-
 .api-info-notes-has-notes {
     display: flex;
     align-items: center;
-    width: 35%;
+    width: var(--notes-col-width);
     margin: 10px;
     padding: 3px;
     font-size: small;
@@ -166,7 +187,8 @@ html {
     align-items: center;
     font-size: small;
     margin: 10px;
-    width: 20%;
+    width: var(--location-col-width);
+    padding: 3px;
 }
 
 .headerName-api {
@@ -174,7 +196,8 @@ html {
     align-items: center;
     font-size: small;
     margin: 10px;
-    width: 17%;
+    width: var(--api-col-width);
+    padding: 3px;
 }
 
 .headerName-stable {
@@ -182,7 +205,8 @@ html {
     align-items: center;
     font-size: small;
     margin: 10px;
-    width: 15%;
+    width: var(--stable-version-col-width);
+    padding: 3px;
 }
 
 .headerName-status {
@@ -191,43 +215,50 @@ html {
     display: flex;
     font-size: small;
     margin: 10px;
-    width: 15%;
+    width: var(--status-col-width);
+    padding: 3px;
 }
 
 .headerName-notes {
     display: flex;
     align-items: center;
     font-size: small;
-    /* margin: 10px; */
-    width: 35%;
+    width: var(--notes-col-width);
+    padding: 3px;
+    margin: 10px;
 }
 
 .icon-stable {
     padding: 5px 8px 5px 5px;
-    color: rgb(74, 255, 149);
+    color: var(--primary-green);
     font-size: 16px;
 }
 
 .icon-removed {
     padding: 5px 8px 5px 5px;
-    color: rgb(255, 4, 0);
+    color: var(--primary-red);
     font-size: 16px;
 }
 
 .icon-deprecated {
     padding: 5px 8px 5px 5px;
-    color: rgb(255, 204, 0);
+    color: var(--primary-yellow);
     font-size: 18px;
 }
 
 .inputFields {
-    text-align: center;
-    border-radius: 8px;
+    text-align: left;
+    border-radius: 5px;
     background-color: lightgray;
+    margin-bottom: .3rem;
+    border: none;
+    outline: 0;
+    padding-left: 1rem;
 }
 
 .row-content-container {
     max-height: 78vh;
+    width: 100%;
     overflow-y: scroll;
 }
 
@@ -240,8 +271,8 @@ html {
 
 .filter-button {
     background: none;
-    border: 1px solid rgb(74, 74, 74);
-    border-radius: 5%;
+    border: 1px solid var(--primary-border);
+    border-radius: 4px;
     color: white;
     font-family: "Open Sans", "PT Sans";
     font-weight: 400;
@@ -277,8 +308,6 @@ html {
 }
 
 #scanButtonContainer {
-    /* margin: 1em 1.5em 0.5em 1.5em; */
-    /* width: 400px; */
     flex-wrap: wrap;
     display: flex;
     height: fit-content;
@@ -286,23 +315,16 @@ html {
     justify-content: space-evenly;
     align-items: center;
     padding: 1em;
-    /* background-color: gray;
-    border: 2px solid rgb(30, 30, 30);
-    border-radius: 10px; */
-    /* width: fit-content; */
 }
 
 #helmSection {
     margin: 1em 1.5em 1em 1.5em;
     color: rgb(220, 220, 220);
-    border: 2px solid rgb(82, 83, 97);
-    background-color: rgb(82, 83, 97);
+    border: 2px solid var(--primary-border);
+    background-color: var(--primary-gray);
     border-radius: 10px;
     padding: 1em;
     font-size: small;
-    /* border-color: rgb(240, 240, 240); */
-    /* border: solid .1px; */
-    /* box-shadow: 2px 2px 5px; */
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -311,21 +333,20 @@ html {
 .scanButton {
     margin: 1em 1.5em 1em 1.5em;
     color: rgb(220, 220, 220);
-    background-color: rgb(82, 83, 97);
+    background-color: var(--dark-gray);
     border-radius: 10px;
-    /* border-color: rgb(240, 240, 240); */
-    /* box-shadow: 1px 2px 1px; */
     width: 26em;
     padding: 1em;
+    line-height: 2rem;
+    border: 1px solid rgb(172, 169, 169) ;
+    cursor:pointer;
 }
 
 #scanButton1 {
     margin: 1em 1.5em 1em 1.5em;
     color: rgb(220, 220, 220);
-    background-color: rgb(82, 83, 97);
+    background-color: var(--dark-gray);
     border-radius: 10px;
-    /* border-color: rgb(240, 240, 240); */
-    /* box-shadow: 2px 2px 5px; */
     width: 21em;
     padding: 1em;
 }
@@ -335,9 +356,9 @@ html {
     justify-content: space-evenly;
     align-items: center;
     border-radius: 10px;
-    border: 3px solid rgb(47, 47, 47);
+    border: 3px solid var(--primary-border);
     height: fit-content;
-    background: rgb(95, 84, 107);
+    background: var(--primary-gray);
     margin: 10px; 
 }
 
