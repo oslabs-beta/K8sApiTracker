@@ -1,8 +1,7 @@
 const path = require('path');
 const express = require('express');
-import { Request, Response, NextFunction } from 'express';
-
-// const clusterController = require('./controllers/clusterController.js');
+import { Request, Response } from 'express';
+import { Error } from './types'
 const kubePugController = require('./controllers/kubePugController.js');
 const compareController = require('./controllers/compareController.js');
 const dependencyScraperController = require('./controllers/dependencyScraper.js');
@@ -12,20 +11,12 @@ const compareControllerHelm = require('./controllers/compareControllerHelm.js');
 const app = express();
 const PORT = 3000;
 
-// define types for custom errors
-type Error = {
-    log: string,
-    status: number,
-    message: string
-}
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
 app.get('/dependencies',
-    // clusterController.kubectlGetAll,
     dependencyScraperController.getDependencies, // This is our repo scraping middleware, outputs the same thing as the kubectlGetAll middleware
     kubePugController.getApiInfo,
     compareController.compare,
@@ -45,12 +36,12 @@ app.post('/helm',
     })
 
 // Catch All Handler
-app.use('*', (req: Request, res: Response, next: NextFunction) => {
+app.use('*', (req: Request, res: Response) => {
     res.status(404).send('Page Not Found');
 });
 
 // GLOBAL ERROR HANDLER 
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+app.use((err: Error, req: Request, res: Response) => {
     console.log('Inside of global error handler');
     const defaultErr: Error = {
         log: 'Global err handler, unkonwn middleware error',
@@ -61,7 +52,7 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
     return res.status(errObj.status).json(errObj.message);
 });
 
-let server = app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
 });
 
