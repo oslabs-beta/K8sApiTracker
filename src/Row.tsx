@@ -6,7 +6,7 @@ import { RowProps } from './types'
 
 export default function Row(props:RowProps):React.JSX.Element {
   // render the icon depending on the status of the api
-  let icon: any;
+  let icon: React.ReactElement;
   if(props.status === 'stable'){
     icon = <FaCheckCircle className="icon-stable"/>;
   } else if (props.status === 'updateAvailable'){
