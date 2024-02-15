@@ -2,14 +2,7 @@ import React from 'react';
 import { FaCheckCircle } from "react-icons/fa";
 import { IoIosWarning } from "react-icons/io";
 import { SiIfixit } from "react-icons/si";
-
-type RowProps = {
-  api: string,
-  location: string,
-  status: string,
-  stable: string,
-  notes: string
-}
+import { RowProps } from './types'
 
 export default function Row(props:RowProps):React.JSX.Element {
   // render the icon depending on the status of the api

@@ -1,10 +1,6 @@
 import React from 'react';
 import PieChart from './PieChart'
-
-type PieChartData = {name: string, value: number, color: string}
-type DashboardContainerProps = {
-  chartData: PieChartData[]
-}
+import { DashboardContainerProps } from './types'
 
 export default function DashboardContainer(props: DashboardContainerProps) :React.JSX.Element {
   return (

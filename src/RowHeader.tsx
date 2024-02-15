@@ -1,15 +1,6 @@
 import React from 'react';
 import FilterDropdown from './FilterDropdown'
-
-type RowHeaderProps = {
-  api: string,
-  status: string,
-  location: string,
-  stable: string,
-  notes: string,
-  filters: string[],
-  filter: (status: string)=> void
-}
+import { RowHeaderProps } from './types'
 
 export default function RowHeader(props:RowHeaderProps):React.JSX.Element {
   return (
