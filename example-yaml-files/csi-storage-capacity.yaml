@@ -1,0 +1,6 @@
+apiVersion: v1alpha1
+kind: CSIStorageCapacity
+metadata:
+  name: csi-storage-capacity
+spec:
+  type: csi-storage-capacity

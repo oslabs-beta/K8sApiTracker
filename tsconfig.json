@@ -1,12 +1,21 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
-    "module": "es6",
-    "target": "es5",
-    "moduleResolution": "bundler",
+    "noImplicitAny": true, //no implicit type of any
+    "module": "node16",
+    "target": "es6",
     "allowJs": true,
-    "jsx": "react"
+    "jsx": "react",
+    "esModuleInterop": true,
+    "types": ["jest"],
   },
-  "files": ["src/index.tsx"]
+  "files": [
+    "server/controllers/clusterController.ts",
+    "server/controllers/dependencyScraper.ts",
+    "server/controllers/compareController.ts",
+    "server/controllers/compareControllerHelm.ts",
+    "server/controllers/kubePugController.ts",
+    "server/controllers/helmController.ts",
+    "server/server.ts",
+  ]
 }

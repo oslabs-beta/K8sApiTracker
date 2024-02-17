@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import MainContainer from './MainPageContainer';
+import React from 'react';
+import MainPageContainer from './MainPageContainer';
+// import newLogo from '../newLogo.png';
 
 export default function App():React.JSX.Element {
 
   return (
     <div className="app">
-      <h1>Kubernetes Dependency Tracker</h1>
-      <MainContainer />
+      {/* <img src={newLogo}/> */}
+      <h1 className="kdt-header">KUBERNETES API TRACKER</h1>
+      <MainPageContainer />
     </ div>
   );
-};
+}
