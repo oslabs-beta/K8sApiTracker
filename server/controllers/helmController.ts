@@ -75,6 +75,7 @@ const helmController: HelmController = {
 
         const matchedData: any = await installChart(userInput);
 
+        // console.log(matchedData);
         /* Now that we have the raw properties back from the chart install, iterate through that array, creating a new object whenever we hit an element that starts with "Source: ". Populate that object with the next two elements which should be the apiVersion and kind. Then hard code the namespace and image properties which will be default for the dry-run chart installs. This object is in the same format as the object that we persist through our middleware when scanning a users cluster, allowing us to render consistent data on the front end regardless of 'scan' type. */
 
         const cleanMatchedData: CleanData = [];
@@ -95,7 +96,7 @@ const helmController: HelmController = {
                 }
                 // Check for kind
                 if (i + 1 < matchedData.length) {
-                    if (matchedData[i + 1].slice(0, 3) === 'kin') {
+                    if (matchedData[i + 1].slice(0, 4) === 'kind') {
                         newObj.kind = matchedData[i + 1].slice(6);
                         i++;
                     }
@@ -106,6 +107,7 @@ const helmController: HelmController = {
                 cleanMatchedData.push(newObj);
             }
         }
+        console.log(cleanMatchedData);
         res.locals.helmData = cleanMatchedData;
         return next();
     }
