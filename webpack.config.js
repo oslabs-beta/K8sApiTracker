@@ -9,7 +9,7 @@ const config = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+        filename: 'bundle.js'
     ,
   },
   devServer: {
@@ -48,8 +48,7 @@ const config = {
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-        type: 'asset',
-        exclude: ['/node_modules/'],
+        type: 'asset/resource',
       },
 
     ],

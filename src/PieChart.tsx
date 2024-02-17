@@ -1,11 +1,6 @@
 import React from 'react';
 import { PieChart, Pie, Cell } from 'recharts';
-
-type PieChartData = {name: string, value: number, color: string}
-type PieChartProps = {
-    chartData: PieChartData[]
-}
-
+import { PieChartProps } from './types'
 
 export default function PieChartC(props: PieChartProps): React.JSX.Element {
     return (
@@ -15,7 +10,7 @@ export default function PieChartC(props: PieChartProps): React.JSX.Element {
                     data={props.chartData} 
                     dataKey="value" cx="50%" 
                     cy="50%" 
-                    outerRadius={60} 
+                    outerRadius={50} 
                     fill={'#000000'}
                 >
                 {props.chartData.map((entry, index) => (

@@ -1,24 +1,8 @@
 const { glob } = require('glob');
 const fs = require('fs');
 const path = require('path');
-import { Request, Response, NextFunction, RequestHandler } from 'express';
-
-//define all of our types here
-//define our get dependencies functions types
-type GetDependencies = (req: Request, res: Response, next: NextFunction) => void
-
-//define all of our larger controller's types
-type DependencyScraperController = {
-    getDependencies: GetDependencies;
-}
-// define types for our api objects that go within our api array  
-type ApiObj = Record<string, string>;
-// type for globbing options
-type options = {
-    cwd: string,
-    absolute: boolean,
-    ignore: string
-};
+import { Request, Response, NextFunction } from 'express';
+import { DependencyScraperController, ApiObj, Options } from '../types'
 
 //then have our functionality below
 const dependencyScraperController: DependencyScraperController = {
@@ -27,7 +11,7 @@ const dependencyScraperController: DependencyScraperController = {
         // invokes glob to crawl through cwd and returns an array of yaml filenames
         const getYaml = async () => {
             try {
-                const options: options = {
+                const options: Options = {
                   cwd: path.resolve(__dirname, '../../../'),
                   absolute: true,
                   ignore: 'node_modules/**'
@@ -56,17 +40,17 @@ const dependencyScraperController: DependencyScraperController = {
                     for (let i = 0; i < properties.length; i++){
                         try {
                             const version = new RegExp(`${properties[i]}:\\s*(.*)`);
-                            let array = version.exec(content);
+                            const array = version.exec(content);
                             obj[properties[i]] = array[0].replace(`${properties[i]}:`, '').trim();                        
                         }
                         catch {
                             obj[properties[i]] = defaults[i]; // if the pattern is not available, use the default
                         }
-                    };
+                    }
                     // also add in the filepath to send to the frontend
                     obj.location = file;
                     dependencies.push(obj);
-                };
+                }
                 //save the data on locals and go to next middleware function
                 res.locals.clusterData = dependencies;
                 return next();                   

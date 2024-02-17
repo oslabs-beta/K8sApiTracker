@@ -1,4 +1,5 @@
-import { Request, Response, NextFunction, RequestHandler } from 'express';
+import { Request, Response, NextFunction } from 'express';
+import { Error } from '../types'
 
 //define all of our types here
 //define our get dependencies functions types
@@ -29,7 +30,7 @@ const clusterController: ClusterController = {
 
         async function sh(cmd_to_execute: string) {
             return new Promise(function (resolve, reject) {
-                childProcess.exec(cmd_to_execute, (err: any, stdout: any, stderr: any) => {
+                childProcess.exec(cmd_to_execute, (err: Error, stdout: any, stderr: any) => {
                     if (err) {
                         reject(err);
                     } else {

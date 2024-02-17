@@ -1,18 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
-
-type getUserInput = (req: Request, res: Response, next: NextFunction) => void
-type HelmController = {
-    getUserInput: getUserInput;
-}
-type NewObj = {
-    name?: string,
-    kind?: string,
-    apiVersion?: string,
-    namespace?: string,
-    image?: string
-}
-// type MatchedData = string[];
-type CleanData = NewObj[];
+import { HelmController, NewObj, CleanData, Error, MatchedData } from '../types'
 
 const helmController: HelmController = {
 
@@ -30,9 +16,7 @@ const helmController: HelmController = {
                         console.log('Error occured in installChart child process');
                         console.log(err);
                         return next(err);
-                        // reject(err);
                     } else {
-                        console.log('No errors in sh function - processing data now');
                         const data = JSON.parse(stdout);
 
                         const manifest = data.manifest;
@@ -48,14 +32,12 @@ const helmController: HelmController = {
         }
 
         async function repoProcess(cmd_to_execute: string) {
-            console.log('Inside of sh function');
             return new Promise(function (resolve, reject) {
-                childProcess.exec(cmd_to_execute, (err: any, stdout: any, stderr: any) => {
+                childProcess.exec(cmd_to_execute, (err: Error, stdout: any, stderr: any) => {
                     if (err) {
                         console.log('Error occured repoProcess sh function');
                         reject(err);
                     } else {
-                        console.log('No errors in repoProcess function - processing data now');
                         resolve(stdout);
                     }
                 });
@@ -73,9 +55,7 @@ const helmController: HelmController = {
             await repoProcess(addRepo);
         }
 
-        const matchedData: any = await installChart(userInput);
-
-        // console.log(matchedData);
+        const matchedData: MatchedData = await installChart(userInput) as MatchedData;
         /* Now that we have the raw properties back from the chart install, iterate through that array, creating a new object whenever we hit an element that starts with "Source: ". Populate that object with the next two elements which should be the apiVersion and kind. Then hard code the namespace and image properties which will be default for the dry-run chart installs. This object is in the same format as the object that we persist through our middleware when scanning a users cluster, allowing us to render consistent data on the front end regardless of 'scan' type. */
 
         const cleanMatchedData: CleanData = [];

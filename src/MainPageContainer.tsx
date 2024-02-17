@@ -3,22 +3,7 @@ import RowHeader from './RowHeader';
 import ScanButtonsContainer from './ScanButtonsContainer';
 import DashboardContainer from './DashboardContainer';
 import React, { useState, useEffect } from 'react';
-
-// use this website to change loading icon https://www.npmjs.com/package/react-loading-icons
-
-// define types
-type ApiObj = {
-  deprecationStatus: string,
-  location: string,
-  apiVersion: string,
-  name: string,
-  description: string,
-  newVersion: string
-}
-type MainData = ApiObj[];
-
-type PieChartData = {name: string, value: number, color: string}
-type PieChartInfo = PieChartData[]
+import { ApiObj, MainData, PieChartInfo } from './types'
 
 export default function MainPageContainer(): React.JSX.Element {
   //create an array of row components
@@ -31,7 +16,7 @@ export default function MainPageContainer(): React.JSX.Element {
   const [filters, setFilters] = useState<string[]>(['stable', 'updateAvailable', 'removed']);
   const [helmChartPath, setHelmChartPath] = useState<string>('');
   const [helmRepoPath, setHelmRepoPath] = useState<string>('');
-  const [pieChartInfo, setPieChartInfo] = useState<PieChartInfo>([{name: 'stable', value: 0, color: '#00ff00' }, {name: 'updateAvailable', value: 0, color: '#FFFF00' },{name: 'removed', value: 0, color: '#ff0000' } ])
+  const [pieChartInfo, setPieChartInfo] = useState<PieChartInfo>([])
 
   // create two versions of the scanButton - one for directory scans, one for helm chart scans
   // change the fetch request based on which button is clicked, and if it is a Helm scan attach the input data
@@ -53,7 +38,6 @@ export default function MainPageContainer(): React.JSX.Element {
             })
           });
           const responseData = await response.json();
-          console.log('responseData: ', responseData);
           //sort the response data alphabetically by deprecation status
           responseData.sort((a: ApiObj, b: ApiObj) => {
             if (a.deprecationStatus < b.deprecationStatus) return -1;
@@ -67,7 +51,7 @@ export default function MainPageContainer(): React.JSX.Element {
           setLoading(false);
         }
         catch {
-          alert('Please enter the chart repo & install commands');
+          alert('An error has occured! Please make sure both the repo link and chart install commands are entered. Otherwise, the goof is on us!');
           setHelmChartPath('');
           setHelmRepoPath('');
           setLoading(false);
@@ -122,39 +106,38 @@ export default function MainPageContainer(): React.JSX.Element {
   }
 
   //iterate through state to make all of our rows, and push them into the array
-  useEffect(()=>{
-    console.log('useEffectInvoked')
+  useEffect(() => {
     //create an array
-    const arr:PieChartInfo = [];
+    const arr: PieChartInfo = [];
     let stable = 0;
     let updateAvailable = 0;
     let removed = 0;
     //count all of the types
-    for(const dependency of dependencies){
+    for (const dependency of dependencies) {
       // increment the array of data
-      if(dependency.deprecationStatus === 'stable') stable ++;
-      if(dependency.deprecationStatus === 'updateAvailable') updateAvailable ++;
-      if(dependency.deprecationStatus === 'removed') removed ++;
+      if (dependency.deprecationStatus === 'stable') stable++;
+      if (dependency.deprecationStatus === 'updateAvailable') updateAvailable++;
+      if (dependency.deprecationStatus === 'removed') removed++;
     }
-    arr.push({name: 'stable', value: stable, color: '#00ff00' }, {name: 'updateAvailable', value: updateAvailable, color: '#FFFF00' },{name: 'removed', value: removed, color: '#ff0000' } )
+    arr.push({ name: 'stable', value: stable, color: '#4AFF95' }, { name: 'updateAvailable', value: updateAvailable, color: '#FFCC00' }, { name: 'removed', value: removed, color: '#FF0400' })
     //update the chartData
     setPieChartInfo(arr);
-  },[dependencies])
+  }, [dependencies])
 
   return (
     <div className="main-outer-div">
       <div className="buttons-and-dashboard-container">
-        {showRowHeader ? <DashboardContainer chartData={pieChartInfo}/> : false}
-        <ScanButtonsContainer key="scanButtonContainer" handleClick={handleClick} isLoading={isLoading} repoHandleChange={repoHandleChange} chartHandleChange={chartHandleChange} helmChartPath={helmChartPath} helmRepoPath={helmRepoPath} />        
+        {showRowHeader ? <DashboardContainer chartData={pieChartInfo} /> : false}
+        <ScanButtonsContainer key="scanButtonContainer" handleClick={handleClick} isLoading={isLoading} repoHandleChange={repoHandleChange} chartHandleChange={chartHandleChange} helmChartPath={helmChartPath} helmRepoPath={helmRepoPath} />
       </div>
       {showRowHeader ?
         <div id='mainPageContainer'>
           <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' filters={filters} filter={updateFilters} />
-        <div className='row-content-container'>
-          {rows}
+          <div className='row-content-container'>
+            {rows}
+          </div>
         </div>
-      </div> 
-    : false}
+        : false}
     </div>
   )
 }
