@@ -30,8 +30,20 @@ html {
     height: 100%; 
 }
 
-.kdt-header {
-    font-weight: 700;
+.kat-header {
+    display: flex;
+    flex-direction: row;
+}
+
+h1 {
+    font-weight: 500;
+    padding: 0.5rem;
+}
+
+#logo {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-top: 1.2rem;
 }
 
 .app {
@@ -41,7 +53,7 @@ html {
     color: rgb(223, 220, 220);
 }
 
-.kdt-header {
+.kat-header {
     font-weight: 300;
     margin: 15px 15px 15px 15px;
 }

@@ -17,5 +17,6 @@
     "server/controllers/kubePugController.ts",
     "server/controllers/helmController.ts",
     "server/server.ts",
+    "declarations.d.ts"
   ]
 }
