@@ -15,8 +15,6 @@ export default function Row(props:RowProps):React.JSX.Element {
     icon = <SiIfixit className="icon-removed"/>
   }
 
-  //-------- Icons can be found here: https://react-icons.github.io/react-icons/search/#q=error --------//
-
   return (
       <div className='row'>
         <div className="api-info-api">{props.api}</div>
