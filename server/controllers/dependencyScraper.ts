@@ -16,7 +16,7 @@ const dependencyScraperController: DependencyScraperController = {
                   absolute: true,
                   ignore: 'node_modules/**'
                 };
-                const response: string[] = await glob('**/*.yaml', options);
+                const response: string[] = await glob(['**/*.yaml','**/*.yml'], options);
                 return response;
               }
               catch(e) {
