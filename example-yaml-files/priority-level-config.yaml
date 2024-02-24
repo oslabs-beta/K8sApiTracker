@@ -1,6 +1,0 @@
-apiVersion: v1beta1
-kind: APIGroupDiscoveryList
-metadata: 
-  name: priority-level-config
-spec:
-  type: priority-level-config

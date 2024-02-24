@@ -1,6 +1,0 @@
-apiVersion: v1beta2
-kind: FlowSchema
-metadata:
-  name: cluster-scale
-spec:
-  type: cluster-scale
