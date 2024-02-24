@@ -1,6 +1,0 @@
-apiVersion: v1beta2
-kind: FlowSchema
-metadata:
-  name: controller-revision
-spec:
-  type: controller-revision

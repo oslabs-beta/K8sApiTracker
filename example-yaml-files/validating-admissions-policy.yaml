@@ -1,6 +1,0 @@
-apiVersion: v1beta1
-kind: FCronJobList
-metadata:
-  name: validating-admissions-policy
-spec:
-  type: validating-admissions-policy
