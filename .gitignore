@@ -3,3 +3,4 @@
 /dist
 /**/*.js
 !jest.config.js
+/example-yaml-files
