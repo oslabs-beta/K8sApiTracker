@@ -17,7 +17,7 @@ Requirements: Node Package Manager
 4) Run npm run build to prepare the bundle.
 5) Run npm start, and go to localhost:3000 to see all of your dependencies.
 
-Once the project is installed, you should be up and running! Filter dependencies, and scroll through the generated list.
+Once the project is installed, you should be up and running! Click the buttons to scan a local cluster or Helm Chart. Filter dependencies, and search through the automatically generated list.
 
 # Contributing
 
