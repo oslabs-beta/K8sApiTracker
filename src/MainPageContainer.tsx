@@ -100,7 +100,7 @@ export default function MainPageContainer(): React.JSX.Element {
     // for each subarray, create a new row, passing in the data from data, 
     // which we get from a fetch request to the back end
     if (filters.includes(dependency.deprecationStatus)) {
-      rows.push(<Row key={dependency.location + dependency.apiVersion} api={dependency.apiVersion} status={dependency.deprecationStatus} location={dependency.name}
+      rows.push(<Row key={dependency.location + dependency.apiVersion} api={dependency.apiVersion} status={dependency.deprecationStatus} location={dependency.location}
         stable={dependency.newVersion ? dependency.newVersion : 'Up to date'} notes={dependency.description ? dependency.description : 'NA'} />);
     }
   }
