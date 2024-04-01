@@ -36,7 +36,7 @@ Matt Hart - [Github](https://github.com/TechToysAreFun) | [Linkedin](https://www
 
 Thomas Ortiz - [Github](https://github.com/thomas444ortiz) | [Linkedin](https://www.linkedin.com/in/thomas-ortiz-52a187166/)
 
-Tyler Savitsky - [Github](https://github.com/booleanmagus) | [Linkedin](https://www.linkedin.com/in/tylersavitsky/)
+Tyler Savitsky - [Github](https://github.com/tylersavitsky) | [Linkedin](https://www.linkedin.com/in/tylersavitsky/)
 
 Yiting Xiao - [Github](https://github.com/Yitingx531) | [Linkedin](https://www.linkedin.com/in/yiting-xiao/)
 
