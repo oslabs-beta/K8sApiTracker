@@ -16,6 +16,7 @@
   "devDependencies": {
     "@jest-mock/express": "^2.0.2",
     "@testing-library/dom": "^9.3.4",
+    "@testing-library/jest-dom": "^6.4.2",
     "@types/jest": "^29.5.12",
     "@types/react": "^18.2.48",
     "@typescript-eslint/eslint-plugin": "^7.0.1",
@@ -45,7 +46,6 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.8",
-    "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "^14.5.2",
     "@types/react-dom": "^18.2.18",
