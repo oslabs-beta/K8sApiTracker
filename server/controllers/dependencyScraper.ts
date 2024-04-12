@@ -30,26 +30,31 @@ const dependencyScraperController: DependencyScraperController = {
                 //create our array to hold all of our api objects
                 const dependencies: ApiObj[] = [];
                 // iterate through the files
-                for(const file of data) {
+                for(const file of data) {  
                     const obj: ApiObj = {};
                     // use fs method, to get the content from the yaml file
                     const content: string = fs.readFileSync(file, 'utf-8');   
                     //add all properties to an object using regex to scrape yaml file for values
                     const properties = ['apiVersion', 'kind', 'name', 'namespace', 'image'];
                     const defaults = ['NA', 'NA', 'NA', 'Default', 'NA'];
-                    for (let i = 0; i < properties.length; i++){
-                        try {
-                            const version = new RegExp(`${properties[i]}:\\s*(.*)`);
-                            const array = version.exec(content);
-                            obj[properties[i]] = array[0].replace(`${properties[i]}:`, '').trim();                        
+                    
+                    const versionTest = new RegExp(`apiVersion:\\s*(.*)`);
+                    const arrayTest = versionTest.exec(content);
+                    if(arrayTest !== null){ // if the dependency is there (ie its a valid k8s file)
+                        for (let i = 0; i < properties.length; i++){
+                            try {
+                                const version = new RegExp(`${properties[i]}:\\s*(.*)`);
+                                const array = version.exec(content);
+                                obj[properties[i]] = array[0].replace(`${properties[i]}:`, '').trim();                        
+                            }
+                            catch {
+                                obj[properties[i]] = defaults[i]; // if the pattern is not available, use the default
+                            }
                         }
-                        catch {
-                            obj[properties[i]] = defaults[i]; // if the pattern is not available, use the default
-                        }
+                        // also add in the filepath to send to the frontend
+                        obj.location = file;
+                        dependencies.push(obj);
                     }
-                    // also add in the filepath to send to the frontend
-                    obj.location = file;
-                    dependencies.push(obj);
                 }
                 //save the data on locals and go to next middleware function
                 res.locals.clusterData = dependencies;

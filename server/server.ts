@@ -25,6 +25,13 @@ app.get('/dependencies',
     });
 
 
+app.get('/test',
+    dependencyScraperController.getDependencies,
+    (req: Request, res: Response) => {
+        res.status(200).json(res.locals.clusterData);
+    });
+
+
 app.post('/helm',
     helmController.getUserInput,
     kubePugController.getApiInfo,
