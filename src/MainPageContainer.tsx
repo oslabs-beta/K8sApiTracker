@@ -134,7 +134,7 @@ export default function MainPageContainer(): React.JSX.Element {
         <div id='mainPageContainer'>
           <RowHeader key={'row-header-key'} api='API' status='STATUS' location='LOCATION' stable='STABLE VERSION' notes='NOTES' filters={filters} filter={updateFilters} />
           <div className='row-content-container'>
-            {rows}
+            {rows.length > 0 ? rows: <h2 style={{marginLeft: "12px"}}>No dependencies found...</h2>}
           </div>
         </div>
         : false}
