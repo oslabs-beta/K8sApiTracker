@@ -24,7 +24,6 @@ app.get('/dependencies',
         res.status(200).json(res.locals.clusterData);
     });
 
-
 app.post('/helm',
     helmController.getUserInput,
     kubePugController.getApiInfo,
