@@ -1,4 +1,4 @@
-import glob from 'glob';
+const glob = require('glob');
 import fs from 'fs';
 import path from 'path';
 import { Request, Response, NextFunction } from 'express';
