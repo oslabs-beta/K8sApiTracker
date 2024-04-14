@@ -1,4 +1,4 @@
-const path = require('path');
+import path from 'path';
 const express = require('express');
 import { Request, Response } from 'express';
 import { Error } from './types'
