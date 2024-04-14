@@ -1,14 +1,14 @@
 import path from 'path';
-const express = require('express');
-import { Request, Response } from 'express';
+import express from 'express';
+import { Request, Response, Express } from 'express';
 import { Error } from './types'
-const kubePugController = require('./controllers/kubePugController.js');
-const compareController = require('./controllers/compareController.js');
-const dependencyScraperController = require('./controllers/dependencyScraper.js');
-const helmController = require('./controllers/helmController.js');
-const compareControllerHelm = require('./controllers/compareControllerHelm.js');
+import kubePugController from './controllers/kubePugController.js';
+import compareController from './controllers/compareController.js';
+import dependencyScraperController from './controllers/dependencyScraper.js';
+import helmController from './controllers/helmController.js';
+import compareControllerHelm from './controllers/compareControllerHelm.js';
 
-const app = express();
+const app: Express = express();
 const PORT = 3000;
 
 app.use(express.json());
@@ -53,4 +53,4 @@ const server = app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
 });
 
-module.exports = server;
+export default server;

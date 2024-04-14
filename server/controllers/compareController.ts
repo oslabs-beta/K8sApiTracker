@@ -44,4 +44,4 @@ const compareController = {
 };
 
 // 
-module.exports = compareController;
+export default compareController;
