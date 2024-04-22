@@ -3,7 +3,9 @@ import RowHeader from './RowHeader';
 import ScanButtonsContainer from './ScanButtonsContainer';
 import DashboardContainer from './DashboardContainer';
 import React, { useState, useEffect } from 'react';
-import { ApiObj, MainData, PieChartInfo } from './types'
+import { ApiObj, MainData, PieChartInfo } from './types';
+import { useContext } from 'react';
+import ThemeContext from './ThemeContext';
 
 export default function MainPageContainer(): React.JSX.Element {
   //create an array of row components
@@ -123,6 +125,7 @@ export default function MainPageContainer(): React.JSX.Element {
     //update the chartData
     setPieChartInfo(arr);
   }, [dependencies])
+
 
   return (
     <div className="main-outer-div">

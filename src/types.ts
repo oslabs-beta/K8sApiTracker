@@ -9,7 +9,7 @@ export type ApiObj = {
 
 export type MainData = ApiObj[];
 
-export type PieChartData = {name: string, value: number, color: string}
+export type PieChartData = { name: string, value: number, color: string }
 
 export type PieChartInfo = PieChartData[]
 
@@ -19,7 +19,7 @@ export type DashboardContainerProps = {
 
 export type FilterDropdownProps = {
   filters: string[],
-  filter: (status: string)=> void
+  filter: (status: string) => void
 }
 
 export type PieChartProps = {
@@ -41,7 +41,7 @@ export type RowHeaderProps = {
   stable: string,
   notes: string,
   filters: string[],
-  filter: (status: string)=> void
+  filter: (status: string) => void
 }
 
 export type ScanButtonProps = {
@@ -58,4 +58,9 @@ export type ScanButtonsContainerProps = {
   chartHandleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
   helmChartPath?: string,
   helmRepoPath?: string
+}
+
+export type ThemeContextType = {
+  theme: string,
+  setTheme: (input: string) => void;
 }

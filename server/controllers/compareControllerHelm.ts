@@ -47,5 +47,4 @@ const compareController = {
 
 };
 
-// 
 export default compareController;

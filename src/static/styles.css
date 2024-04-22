@@ -1,4 +1,4 @@
-:root{
+:root {
     --primary-gray: rgb(23, 23, 24);
     --dark-gray: rgb(10, 1, 32);
     --primary-border: rgb(22, 22, 29);
@@ -8,27 +8,45 @@
     --translucent-red: rgba(255, 4, 0, 0.213);
     --translucent-green: rgba(74, 255, 149, 0.122);
     --translucent-yellow: rgba(255, 204, 0, 0.195);
-    --row-width: 87vw;    
+    --row-width: 87vw;
     --api-col-width: 15%;
     --location-col-width: 20%;
     --status-col-width: 15%;
-    --stable-version-col-width:15%;
-    --notes-col-width:  35%;   
+    --stable-version-col-width: 15%;
+    --notes-col-width: 35%;
 }
 
 body {
     overflow: auto;
-    height: 100%;
     font-family: "Open Sans", "PT Sans";
-    background: linear-gradient(135.9deg, rgb(54, 46, 119) 16.4%, rgb(12, 6, 51) 56.1%);
     letter-spacing: .3px;
+}
+
+#dark {
+    background: linear-gradient(135.9deg, rgb(54, 46, 119) 16.4%, rgb(12, 6, 51) 56.1%);
     z-index: 100;
 }
 
-html {
-    overflow: hidden;
-    height: 100%; 
+#light {
+    background-color: white;
 }
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    /* overflow: hidden; */
+    min-height: 100vh;
+}
+
+#dark,
+#light {
+    height: 100vh;
+    width: 100vw;
+    overflow: auto;
+}
+
 
 .kat-header {
     display: flex;
@@ -98,7 +116,7 @@ h1 {
     font-size: medium;
     height: 6vh;
 
-   
+
 }
 
 .api-info-api {
@@ -355,7 +373,7 @@ h1 {
 
 .scanButton {
     align-items: center;
-    background-image: linear-gradient(144deg,#551384, #5B42F3 50%,#1f5255);
+    background-image: linear-gradient(144deg, #551384, #5B42F3 50%, #1f5255);
     border: 1px solid #a09ba0;
     border-radius: 8px;
     /* box-shadow: white 0 15px 30px -5px; */
@@ -378,19 +396,19 @@ h1 {
 }
 
 .scanButton:hover {
-  background-image: none;
-  outline: 0;
-  background-color: rgb(15, 17, 69);
+    background-image: none;
+    outline: 0;
+    background-color: rgb(15, 17, 69);
 }
 
 .scanButton {
-  background-color: rgb(5, 6, 45);
-  padding: 16px 24px;
-  border-radius: 6px;
-  width: 21em;
-  height: 100%;
-  transition: 300ms;
-  
+    background-color: rgb(5, 6, 45);
+    padding: 16px 24px;
+    border-radius: 6px;
+    width: 21em;
+    height: 100%;
+    transition: 300ms;
+
 }
 
 #scanButton1 {
@@ -407,7 +425,7 @@ h1 {
     background-color: rgb(15, 17, 69);
 }
 
-.dashboardcontainer{
+#dashboardcontainer {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -415,14 +433,15 @@ h1 {
     border: 3px solid var(--primary-border);
     height: 310px;
     background: var(--primary-gray);
-    margin: 10px; 
+    margin: 10px;
     margin-bottom: 30px;
 }
 
 #text365 {
     font-size: 3rem;
 }
-.version-eol{
+
+.version-eol {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -441,15 +460,24 @@ h1 {
     align-items: center;
 }
 
-.pie-chart-container{
+.pie-chart-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.buttons-and-dashboard-container{
+.buttons-and-dashboard-container {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+}
+
+select {
+    outline: none;
+    width: 8rem;
+    font-size: 1rem;
+    padding: .2rem;
+    border-radius: .5rem;
+    align-self: flex-start;
 }

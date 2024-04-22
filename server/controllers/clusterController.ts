@@ -64,4 +64,4 @@ const clusterController: ClusterController = {
     }
 };
 
-module.exports = clusterController;
+export default clusterController;

@@ -93,4 +93,4 @@ const helmController: HelmController = {
     }
 }
 
-module.exports = helmController;
+export default helmController;
